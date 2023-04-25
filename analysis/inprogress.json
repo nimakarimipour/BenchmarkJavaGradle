@@ -1,0 +1,1445 @@
+{
+    "00004": {
+        "io": [
+            {
+                "id": "00004",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(param, \"10340\");",
+                "status": "check if arg1 is definitly the second parameter of a method"
+            }
+        ]
+    },
+    "00171": {
+        "io": [
+            {
+                "id": "00171",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));",
+                "status": "can it be fixed with polymorphic annotation ? (can we infer them ?)"
+            }
+        ]
+    },
+    "00172": {
+        "io": [
+            {
+                "id": "00172",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00176": {
+        "io": [
+            {
+                "id": "00176",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00177": {
+        "io": [
+            {
+                "id": "00177",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00189": {
+        "io": [
+            {
+                "id": "00189",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00252": {
+        "io": [
+            {
+                "id": "00252",
+                "line": "74",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00253": {
+        "io": [
+            {
+                "id": "00253",
+                "line": "83",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00304": {
+        "io": [
+            {
+                "id": "00304",
+                "line": "88",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00305": {
+        "io": [
+            {
+                "id": "00305",
+                "line": "99",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00306": {
+        "io": [
+            {
+                "id": "00306",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00310": {
+        "io": [
+            {
+                "id": "00310",
+                "line": "84",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00311": {
+        "io": [
+            {
+                "id": "00311",
+                "line": "80",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00326": {
+        "io": [
+            {
+                "id": "00326",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00327": {
+        "io": [
+            {
+                "id": "00327",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00409": {
+        "io": [
+            {
+                "id": "00409",
+                "line": "90",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00412": {
+        "io": [
+            {
+                "id": "00412",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00426": {
+        "io": [
+            {
+                "id": "00426",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00427": {
+        "io": [
+            {
+                "id": "00427",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00498": {
+        "io": [
+            {
+                "id": "00498",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00500": {
+        "io": [
+            {
+                "id": "00500",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00508": {
+        "io": [
+            {
+                "id": "00508",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00570": {
+        "io": [
+            {
+                "id": "00570",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00571": {
+        "io": [
+            {
+                "id": "00571",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00575": {
+        "io": [
+            {
+                "id": "00575",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00576": {
+        "io": [
+            {
+                "id": "00576",
+                "line": "74",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00587": {
+        "io": [
+            {
+                "id": "00587",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00588": {
+        "io": [
+            {
+                "id": "00588",
+                "line": "66",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00659": {
+        "io": [
+            {
+                "id": "00659",
+                "line": "79",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00742": {
+        "io": [
+            {
+                "id": "00742",
+                "line": "66",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00743": {
+        "io": [
+            {
+                "id": "00743",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00757": {
+        "io": [
+            {
+                "id": "00757",
+                "line": "70",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00758": {
+        "io": [
+            {
+                "id": "00758",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00759": {
+        "io": [
+            {
+                "id": "00759",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00824": {
+        "io": [
+            {
+                "id": "00824",
+                "line": "99",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00825": {
+        "io": [
+            {
+                "id": "00825",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00826": {
+        "io": [
+            {
+                "id": "00826",
+                "line": "86",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00827": {
+        "io": [
+            {
+                "id": "00827",
+                "line": "87",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00834": {
+        "io": [
+            {
+                "id": "00834",
+                "line": "78",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00835": {
+        "io": [
+            {
+                "id": "00835",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00836": {
+        "io": [
+            {
+                "id": "00836",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00909": {
+        "io": [
+            {
+                "id": "00909",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00910": {
+        "io": [
+            {
+                "id": "00910",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00922": {
+        "io": [
+            {
+                "id": "00922",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00923": {
+        "io": [
+            {
+                "id": "00923",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00981": {
+        "io": [
+            {
+                "id": "00981",
+                "line": "89",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00982": {
+        "io": [
+            {
+                "id": "00982",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00995": {
+        "io": [
+            {
+                "id": "00995",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01068": {
+        "io": [
+            {
+                "id": "01068",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01081": {
+        "io": [
+            {
+                "id": "01081",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01082": {
+        "io": [
+            {
+                "id": "01082",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01144": {
+        "io": [
+            {
+                "id": "01144",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01145": {
+        "io": [
+            {
+                "id": "01145",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01146": {
+        "io": [
+            {
+                "id": "01146",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01193": {
+        "io": [
+            {
+                "id": "01193",
+                "line": "78",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01207": {
+        "io": [
+            {
+                "id": "01207",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01288": {
+        "io": [
+            {
+                "id": "01288",
+                "line": "57",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01362": {
+        "io": [
+            {
+                "id": "01362",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01365": {
+        "io": [
+            {
+                "id": "01365",
+                "line": "62",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01376": {
+        "io": [
+            {
+                "id": "01376",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01377": {
+        "io": [
+            {
+                "id": "01377",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01446": {
+        "io": [
+            {
+                "id": "01446",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01458": {
+        "io": [
+            {
+                "id": "01458",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01532": {
+        "io": [
+            {
+                "id": "01532",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01533": {
+        "io": [
+            {
+                "id": "01533",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01549": {
+        "io": [
+            {
+                "id": "01549",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01550": {
+        "io": [
+            {
+                "id": "01550",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01551": {
+        "io": [
+            {
+                "id": "01551",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01608": {
+        "io": [
+            {
+                "id": "01608",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01609": {
+        "io": [
+            {
+                "id": "01609",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01610": {
+        "io": [
+            {
+                "id": "01610",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01617": {
+        "io": [
+            {
+                "id": "01617",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01618": {
+        "io": [
+            {
+                "id": "01618",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01619": {
+        "io": [
+            {
+                "id": "01619",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01687": {
+        "io": [
+            {
+                "id": "01687",
+                "line": "94",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01692": {
+        "io": [
+            {
+                "id": "01692",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01693": {
+        "io": [
+            {
+                "id": "01693",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01710": {
+        "io": [
+            {
+                "id": "01710",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01711": {
+        "io": [
+            {
+                "id": "01711",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01794": {
+        "io": [
+            {
+                "id": "01794",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01795": {
+        "io": [
+            {
+                "id": "01795",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01796": {
+        "io": [
+            {
+                "id": "01796",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01874": {
+        "io": [
+            {
+                "id": "01874",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01875": {
+        "io": [
+            {
+                "id": "01875",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01876": {
+        "io": [
+            {
+                "id": "01876",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01938": {
+        "io": [
+            {
+                "id": "01938",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01939": {
+        "io": [
+            {
+                "id": "01939",
+                "line": "62",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01942": {
+        "io": [
+            {
+                "id": "01942",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01943": {
+        "io": [
+            {
+                "id": "01943",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01944": {
+        "io": [
+            {
+                "id": "01944",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01959": {
+        "io": [
+            {
+                "id": "01959",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01960": {
+        "io": [
+            {
+                "id": "01960",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02068": {
+        "io": [
+            {
+                "id": "02068",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02070": {
+        "io": [
+            {
+                "id": "02070",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02084": {
+        "io": [
+            {
+                "id": "02084",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02085": {
+        "io": [
+            {
+                "id": "02085",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02086": {
+        "io": [
+            {
+                "id": "02086",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02151": {
+        "io": [
+            {
+                "id": "02151",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02152": {
+        "io": [
+            {
+                "id": "02152",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02153": {
+        "io": [
+            {
+                "id": "02153",
+                "line": "57",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02154": {
+        "io": [
+            {
+                "id": "02154",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02155": {
+        "io": [
+            {
+                "id": "02155",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02156": {
+        "io": [
+            {
+                "id": "02156",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02167": {
+        "io": [
+            {
+                "id": "02167",
+                "line": "49",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02168": {
+        "io": [
+            {
+                "id": "02168",
+                "line": "49",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02252": {
+        "io": [
+            {
+                "id": "02252",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02253": {
+        "io": [
+            {
+                "id": "02253",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02263": {
+        "io": [
+            {
+                "id": "02263",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02341": {
+        "io": [
+            {
+                "id": "02341",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02343": {
+        "io": [
+            {
+                "id": "02343",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02344": {
+        "io": [
+            {
+                "id": "02344",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02352": {
+        "io": [
+            {
+                "id": "02352",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02432": {
+        "io": [
+            {
+                "id": "02432",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02433": {
+        "io": [
+            {
+                "id": "02433",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02448": {
+        "io": [
+            {
+                "id": "02448",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02512": {
+        "io": [
+            {
+                "id": "02512",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02513": {
+        "io": [
+            {
+                "id": "02513",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02516": {
+        "io": [
+            {
+                "id": "02516",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02517": {
+        "io": [
+            {
+                "id": "02517",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02518": {
+        "io": [
+            {
+                "id": "02518",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02527": {
+        "io": [
+            {
+                "id": "02527",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02611": {
+        "io": [
+            {
+                "id": "02611",
+                "line": "94",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02612": {
+        "io": [
+            {
+                "id": "02612",
+                "line": "80",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02613": {
+        "io": [
+            {
+                "id": "02613",
+                "line": "77",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02622": {
+        "io": [
+            {
+                "id": "02622",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02623": {
+        "io": [
+            {
+                "id": "02623",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02624": {
+        "io": [
+            {
+                "id": "02624",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02713": {
+        "io": [
+            {
+                "id": "02713",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02714": {
+        "io": [
+            {
+                "id": "02714",
+                "line": "55",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02725": {
+        "io": [
+            {
+                "id": "02725",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02726": {
+        "io": [
+            {
+                "id": "02726",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    }
+}
