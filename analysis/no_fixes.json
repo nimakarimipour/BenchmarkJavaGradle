@@ -1,25 +1,7 @@
 {
     "00004": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2627,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00004"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
-                
                 "id": "00004",
                 "line": "67",
                 "type": "argument",
@@ -29,23 +11,6 @@
         ]
     },
     "00099": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2972,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00099"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00099",
@@ -57,23 +22,6 @@
         ]
     },
     "00171": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2908,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00171"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00171",
@@ -85,23 +33,6 @@
         ]
     },
     "00172": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2527,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00172"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00172",
@@ -113,23 +44,6 @@
         ]
     },
     "00176": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2186,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00176"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00176",
@@ -141,23 +55,6 @@
         ]
     },
     "00177": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2358,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00177"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00177",
@@ -169,23 +66,6 @@
         ]
     },
     "00189": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 3227,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00189"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00189",
@@ -197,23 +77,6 @@
         ]
     },
     "00252": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2689,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00252"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00252",
@@ -225,23 +88,6 @@
         ]
     },
     "00253": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2812,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00253"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00253",
@@ -253,23 +99,6 @@
         ]
     },
     "00304": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2859,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00304"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00304",
@@ -281,23 +110,6 @@
         ]
     },
     "00305": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3791,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00305"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00305",
@@ -309,23 +121,6 @@
         ]
     },
     "00306": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2412,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00306"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00306",
@@ -337,23 +132,6 @@
         ]
     },
     "00310": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2729,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00310"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00310",
@@ -365,23 +143,6 @@
         ]
     },
     "00311": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2639,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00311"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00311",
@@ -393,23 +154,6 @@
         ]
     },
     "00326": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2250,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00326"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00326",
@@ -421,23 +165,6 @@
         ]
     },
     "00327": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2217,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00327"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00327",
@@ -449,23 +176,6 @@
         ]
     },
     "00409": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2685,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00409"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00409",
@@ -477,23 +187,6 @@
         ]
     },
     "00412": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2247,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00412"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00412",
@@ -505,23 +198,6 @@
         ]
     },
     "00426": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 1942,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00426"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00426",
@@ -533,23 +209,6 @@
         ]
     },
     "00427": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2939,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00427"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00427",
@@ -561,23 +220,6 @@
         ]
     },
     "00498": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2297,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00498"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00498",
@@ -589,23 +231,6 @@
         ]
     },
     "00500": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2288,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00500"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00500",
@@ -617,23 +242,6 @@
         ]
     },
     "00508": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2009,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00508"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00508",
@@ -645,23 +253,6 @@
         ]
     },
     "00570": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2713,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00570"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00570",
@@ -673,23 +264,6 @@
         ]
     },
     "00571": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2560,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00571"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00571",
@@ -701,23 +275,6 @@
         ]
     },
     "00575": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2739,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00575"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00575",
@@ -729,23 +286,6 @@
         ]
     },
     "00576": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2566,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00576"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00576",
@@ -757,23 +297,6 @@
         ]
     },
     "00587": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2607,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00587"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00587",
@@ -785,23 +308,6 @@
         ]
     },
     "00588": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2331,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00588"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00588",
@@ -813,23 +319,6 @@
         ]
     },
     "00659": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2568,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00659"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00659",
@@ -841,23 +330,6 @@
         ]
     },
     "00742": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2523,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00742"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00742",
@@ -869,23 +341,6 @@
         ]
     },
     "00743": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2447,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00743"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00743",
@@ -897,23 +352,6 @@
         ]
     },
     "00757": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2293,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00757"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00757",
@@ -925,23 +363,6 @@
         ]
     },
     "00758": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2191,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00758"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00758",
@@ -953,23 +374,6 @@
         ]
     },
     "00759": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1971,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00759"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00759",
@@ -981,23 +385,6 @@
         ]
     },
     "00824": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3516,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00824"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00824",
@@ -1009,23 +396,6 @@
         ]
     },
     "00825": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2966,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00825"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00825",
@@ -1037,23 +407,6 @@
         ]
     },
     "00826": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3040,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00826"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00826",
@@ -1065,23 +418,6 @@
         ]
     },
     "00827": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3124,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00827"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00827",
@@ -1093,23 +429,6 @@
         ]
     },
     "00834": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2886,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00834"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00834",
@@ -1121,23 +440,6 @@
         ]
     },
     "00835": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2991,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00835"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00835",
@@ -1149,23 +451,6 @@
         ]
     },
     "00836": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2713,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00836"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00836",
@@ -1177,23 +462,6 @@
         ]
     },
     "00909": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2213,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00909"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00909",
@@ -1205,23 +473,6 @@
         ]
     },
     "00910": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2237,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00910"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00910",
@@ -1233,23 +484,6 @@
         ]
     },
     "00922": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2327,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00922"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00922",
@@ -1261,23 +495,6 @@
         ]
     },
     "00923": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1930,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00923"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00923",
@@ -1289,23 +506,6 @@
         ]
     },
     "00981": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3127,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00981"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00981",
@@ -1317,23 +517,6 @@
         ]
     },
     "00982": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2847,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00982"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00982",
@@ -1345,23 +528,6 @@
         ]
     },
     "00995": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2676,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00995"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "00995",
@@ -1373,23 +539,6 @@
         ]
     },
     "01068": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2219,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01068"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01068",
@@ -1401,23 +550,6 @@
         ]
     },
     "01081": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2017,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01081"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01081",
@@ -1429,23 +561,6 @@
         ]
     },
     "01082": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2017,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01082"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01082",
@@ -1457,23 +572,6 @@
         ]
     },
     "01144": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2397,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01144"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01144",
@@ -1485,23 +583,6 @@
         ]
     },
     "01145": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2397,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01145"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01145",
@@ -1513,23 +594,6 @@
         ]
     },
     "01146": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2397,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01146"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01146",
@@ -1541,23 +605,6 @@
         ]
     },
     "01193": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2581,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01193"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01193",
@@ -1569,23 +616,6 @@
         ]
     },
     "01207": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2112,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01207"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01207",
@@ -1597,23 +627,6 @@
         ]
     },
     "01288": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 1984,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01288"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01288",
@@ -1625,23 +638,6 @@
         ]
     },
     "01362": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2417,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01362"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01362",
@@ -1653,23 +649,6 @@
         ]
     },
     "01365": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2150,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01365"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01365",
@@ -1681,23 +660,6 @@
         ]
     },
     "01376": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1948,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01376"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01376",
@@ -1709,23 +671,6 @@
         ]
     },
     "01377": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1948,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01377"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01377",
@@ -1737,23 +682,6 @@
         ]
     },
     "01446": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2461,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01446"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01446",
@@ -1765,23 +693,6 @@
         ]
     },
     "01458": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2259,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01458"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01458",
@@ -1793,23 +704,6 @@
         ]
     },
     "01532": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2153,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01532"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01532",
@@ -1821,23 +715,6 @@
         ]
     },
     "01533": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2084,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01533"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01533",
@@ -1849,23 +726,6 @@
         ]
     },
     "01549": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1951,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01549"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01549",
@@ -1877,23 +737,6 @@
         ]
     },
     "01550": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1951,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01550"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01550",
@@ -1905,23 +748,6 @@
         ]
     },
     "01551": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1951,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01551"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01551",
@@ -1933,23 +759,6 @@
         ]
     },
     "01608": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2061,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01608"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01608",
@@ -1961,23 +770,6 @@
         ]
     },
     "01609": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2101,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01609"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01609",
@@ -1989,23 +781,6 @@
         ]
     },
     "01610": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2101,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01610"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01610",
@@ -2017,23 +792,6 @@
         ]
     },
     "01617": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 1899,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01617"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01617",
@@ -2045,23 +803,6 @@
         ]
     },
     "01618": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1899,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01618"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01618",
@@ -2073,23 +814,6 @@
         ]
     },
     "01619": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1899,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01619"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01619",
@@ -2101,23 +825,6 @@
         ]
     },
     "01687": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3168,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01687"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01687",
@@ -2129,23 +836,6 @@
         ]
     },
     "01692": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2901,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01692"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01692",
@@ -2157,23 +847,6 @@
         ]
     },
     "01693": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2901,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01693"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01693",
@@ -2185,23 +858,6 @@
         ]
     },
     "01710": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2699,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01710"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01710",
@@ -2213,23 +869,6 @@
         ]
     },
     "01711": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2699,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01711"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01711",
@@ -2241,23 +880,6 @@
         ]
     },
     "01794": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2381,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01794"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01794",
@@ -2269,23 +891,6 @@
         ]
     },
     "01795": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2074,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01795"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01795",
@@ -2297,23 +902,6 @@
         ]
     },
     "01796": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2074,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01796"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01796",
@@ -2325,23 +913,6 @@
         ]
     },
     "01874": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2665,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01874"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01874",
@@ -2353,23 +924,6 @@
         ]
     },
     "01875": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2665,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01875"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01875",
@@ -2381,23 +935,6 @@
         ]
     },
     "01876": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2669,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01876"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01876",
@@ -2409,23 +946,6 @@
         ]
     },
     "01938": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2475,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01938"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01938",
@@ -2437,23 +957,6 @@
         ]
     },
     "01939": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2168,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01939"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01939",
@@ -2465,23 +968,6 @@
         ]
     },
     "01942": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2208,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01942"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01942",
@@ -2493,23 +979,6 @@
         ]
     },
     "01943": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2208,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01943"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01943",
@@ -2521,23 +990,6 @@
         ]
     },
     "01944": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2208,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01944"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01944",
@@ -2549,23 +1001,6 @@
         ]
     },
     "01959": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2006,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01959"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01959",
@@ -2577,23 +1012,6 @@
         ]
     },
     "01960": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2006,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01960"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "01960",
@@ -2605,23 +1023,6 @@
         ]
     },
     "02068": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2263,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02068"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02068",
@@ -2633,23 +1034,6 @@
         ]
     },
     "02070": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2234,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02070"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02070",
@@ -2661,23 +1045,6 @@
         ]
     },
     "02084": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2101,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02084"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02084",
@@ -2689,23 +1056,6 @@
         ]
     },
     "02085": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2101,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02085"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02085",
@@ -2717,23 +1067,6 @@
         ]
     },
     "02086": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2101,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02086"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02086",
@@ -2745,23 +1078,6 @@
         ]
     },
     "02151": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2280,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02151"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02151",
@@ -2773,23 +1089,6 @@
         ]
     },
     "02152": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2280,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02152"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02152",
@@ -2801,23 +1100,6 @@
         ]
     },
     "02153": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 1973,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02153"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02153",
@@ -2829,23 +1111,6 @@
         ]
     },
     "02154": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2013,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02154"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02154",
@@ -2857,23 +1122,6 @@
         ]
     },
     "02155": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 1944,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02155"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02155",
@@ -2885,23 +1133,6 @@
         ]
     },
     "02156": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 1944,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02156"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02156",
@@ -2913,23 +1144,6 @@
         ]
     },
     "02167": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1811,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02167"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02167",
@@ -2941,23 +1155,6 @@
         ]
     },
     "02168": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1811,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02168"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02168",
@@ -2969,23 +1166,6 @@
         ]
     },
     "02252": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2406,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02252"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02252",
@@ -2997,23 +1177,6 @@
         ]
     },
     "02253": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2406,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02253"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02253",
@@ -3025,23 +1188,6 @@
         ]
     },
     "02263": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 1937,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02263"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02263",
@@ -3053,23 +1199,6 @@
         ]
     },
     "02341": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2410,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02341"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02341",
@@ -3081,23 +1210,6 @@
         ]
     },
     "02343": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2450,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02343"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02343",
@@ -3109,23 +1221,6 @@
         ]
     },
     "02344": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2381,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02344"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02344",
@@ -3137,23 +1232,6 @@
         ]
     },
     "02352": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2248,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02352"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02352",
@@ -3165,23 +1243,6 @@
         ]
     },
     "02432": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2409,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02432"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02432",
@@ -3193,23 +1254,6 @@
         ]
     },
     "02433": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2409,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02433"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02433",
@@ -3221,23 +1265,6 @@
         ]
     },
     "02448": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 1940,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02448"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02448",
@@ -3249,23 +1276,6 @@
         ]
     },
     "02512": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2050,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02512"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02512",
@@ -3277,23 +1287,6 @@
         ]
     },
     "02513": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2050,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02513"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02513",
@@ -3305,23 +1298,6 @@
         ]
     },
     "02516": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2021,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02516"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02516",
@@ -3333,23 +1309,6 @@
         ]
     },
     "02517": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2021,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02517"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02517",
@@ -3361,23 +1320,6 @@
         ]
     },
     "02518": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2021,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02518"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02518",
@@ -3389,23 +1331,6 @@
         ]
     },
     "02527": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 1888,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02527"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02527",
@@ -3417,23 +1342,6 @@
         ]
     },
     "02611": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 3157,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02611"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02611",
@@ -3445,23 +1353,6 @@
         ]
     },
     "02612": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2850,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02612"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02612",
@@ -3473,23 +1364,6 @@
         ]
     },
     "02613": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2821,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02613"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02613",
@@ -3501,23 +1375,6 @@
         ]
     },
     "02622": {
-        "serialized": [
-            {
-                "args": [
-                    "arg1",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted Object"
-                ],
-                "messageKey": "argument",
-                "offset": 2688,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02622"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02622",
@@ -3529,23 +1386,6 @@
         ]
     },
     "02623": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2688,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02623"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02623",
@@ -3557,23 +1397,6 @@
         ]
     },
     "02624": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 2688,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02624"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02624",
@@ -3585,23 +1408,6 @@
         ]
     },
     "02713": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2063,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02713"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02713",
@@ -3613,23 +1419,6 @@
         ]
     },
     "02714": {
-        "serialized": [
-            {
-                "args": [
-                    "dir",
-                    "exec",
-                    "@RTainted File",
-                    "@RUntainted File"
-                ],
-                "messageKey": "argument",
-                "offset": 2034,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02714"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02714",
@@ -3641,23 +1430,6 @@
         ]
     },
     "02725": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1901,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02725"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02725",
@@ -3669,23 +1441,6 @@
         ]
     },
     "02726": {
-        "serialized": [
-            {
-                "args": [
-                    "arg0",
-                    "setAttribute",
-                    "@RTainted String",
-                    "@RUntainted String"
-                ],
-                "messageKey": "argument",
-                "offset": 1901,
-                "region": {
-                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
-                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02726"
-                },
-                "fixes": []
-            }
-        ],
         "io": [
             {
                 "id": "02726",

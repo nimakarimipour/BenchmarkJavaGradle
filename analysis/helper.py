@@ -92,7 +92,7 @@ def no_fixes():
             cleaned_io.append(io_errors[i])
             cleaned_de.append(de_errors[i])
         if len(cleaned_de) != 0:
-            combined[key]['serialized'] = cleaned_de
+            del combined[key]['serialized']
             combined[key]['io'] = cleaned_io
         else:
             to_delete.append(key)
