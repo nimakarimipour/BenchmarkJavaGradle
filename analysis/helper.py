@@ -12,7 +12,11 @@ def fetch_error_by_id(errors, errid):
         
 
 def error_is_unresovalbe(error):
-    return error['message'] == 'incompatible argument for parameter arg0 of setContentType.' and error['code'] == 'response.setContentType("text/html;charset=UTF-8");'
+    if error['message'] == 'incompatible argument for parameter arg0 of setContentType.' and error['code'] == 'response.setContentType("text/html;charset=UTF-8");':
+        return True
+    if error['message'] == 'incompatible argument for parameter arg0 of setHeader.' and error['code'] == 'response.setHeader("X-XSS-Protection", "0");':
+        return True
+    return False
 
 
 def unify():
@@ -72,3 +76,33 @@ def filter_errors():
     # output a json to file
     with open('filtered.json', 'w') as f:
         json.dump(combined, f, indent=4)
+
+
+def no_fixes():
+    combined = json.load(open("filtered.json", "r"))
+    to_delete = []
+    for key in combined.keys():
+        de_errors = combined[key]['serialized']
+        io_errors = combined[key]['io']
+        cleaned_io = []
+        cleaned_de = []
+        for i, e in enumerate(de_errors):
+            if len(e['fixes']) != 0:
+                continue
+            cleaned_io.append(io_errors[i])
+            cleaned_de.append(de_errors[i])
+        if len(cleaned_de) != 0:
+            combined[key]['serialized'] = cleaned_de
+            combined[key]['io'] = cleaned_io
+        else:
+            to_delete.append(key)
+    for key in to_delete:
+        del combined[key]
+    # sort combined by id
+    combined = {k: v for k, v in sorted(combined.items(), key=lambda item: item[0])}
+    # output a json to file
+    with open('no_fixes.json', 'w') as f:
+        json.dump(combined, f, indent=4)
+
+
+no_fixes()

@@ -1,0 +1,3699 @@
+{
+    "00004": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2627,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00004"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                
+                "id": "00004",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(param, \"10340\");"
+            }
+        ]
+    },
+    "00099": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2972,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00099"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00099",
+                "line": "78",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00171": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2908,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00171"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00171",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00172": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2527,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00172"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00172",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00176": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2186,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00176"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00176",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00177": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2358,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00177"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00177",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00189": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 3227,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00189"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00189",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00252": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2689,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00252"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00252",
+                "line": "74",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00253": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2812,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00253"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00253",
+                "line": "83",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00304": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2859,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00304"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00304",
+                "line": "88",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00305": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3791,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00305"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00305",
+                "line": "99",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00306": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2412,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00306"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00306",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00310": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2729,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00310"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00310",
+                "line": "84",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00311": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2639,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00311"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00311",
+                "line": "80",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00326": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2250,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00326"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00326",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00327": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2217,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00327"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00327",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00409": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2685,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00409"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00409",
+                "line": "90",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00412": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2247,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00412"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00412",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00426": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 1942,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00426"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00426",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00427": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2939,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00427"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00427",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00498": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2297,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00498"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00498",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00500": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2288,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00500"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00500",
+                "line": "67",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00508": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2009,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00508"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00508",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00570": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2713,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00570"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00570",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00571": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2560,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00571"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00571",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00575": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2739,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00575"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00575",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00576": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2566,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00576"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00576",
+                "line": "74",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00587": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2607,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00587"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00587",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00588": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2331,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00588"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00588",
+                "line": "66",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00659": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2568,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00659"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00659",
+                "line": "79",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00742": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2523,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00742"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00742",
+                "line": "66",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00743": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2447,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00743"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00743",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00757": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2293,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00757"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00757",
+                "line": "70",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00758": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2191,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00758"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00758",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00759": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1971,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00759"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00759",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00824": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3516,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00824"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00824",
+                "line": "99",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00825": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2966,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00825"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00825",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00826": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3040,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00826"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00826",
+                "line": "86",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00827": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3124,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00827"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00827",
+                "line": "87",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00834": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2886,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00834"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00834",
+                "line": "78",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00835": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2991,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00835"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00835",
+                "line": "82",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00836": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2713,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00836"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00836",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00909": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2213,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00909"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00909",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00910": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2237,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00910"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00910",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00922": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2327,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00922"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00922",
+                "line": "69",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "00923": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1930,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00923"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00923",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "00981": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3127,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00981"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00981",
+                "line": "89",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00982": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2847,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00982"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00982",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "00995": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2676,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest00995"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "00995",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01068": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2219,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01068"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01068",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01081": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2017,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01081"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01081",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01082": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2017,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01082"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01082",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01144": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2397,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01144"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01144",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01145": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2397,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01145"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01145",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01146": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2397,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01146"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01146",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01193": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2581,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01193"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01193",
+                "line": "78",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01207": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2112,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01207"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01207",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01288": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 1984,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01288"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01288",
+                "line": "57",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01362": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2417,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01362"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01362",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01365": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2150,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01365"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01365",
+                "line": "62",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01376": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1948,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01376"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01376",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01377": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1948,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01377"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01377",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01446": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2461,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01446"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01446",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01458": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2259,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01458"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01458",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01532": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2153,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01532"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01532",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01533": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2084,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01533"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01533",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01549": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1951,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01549"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01549",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01550": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1951,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01550"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01550",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01551": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1951,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01551"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01551",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01608": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2061,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01608"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01608",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01609": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2101,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01609"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01609",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01610": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2101,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01610"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01610",
+                "line": "60",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01617": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 1899,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01617"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01617",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01618": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1899,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01618"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01618",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01619": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1899,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01619"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01619",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01687": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3168,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01687"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01687",
+                "line": "94",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01692": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2901,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01692"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01692",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01693": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2901,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01693"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01693",
+                "line": "81",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01710": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2699,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01710"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01710",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01711": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2699,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01711"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01711",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01794": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2381,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01794"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01794",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01795": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2074,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01795"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01795",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01796": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2074,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01796"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01796",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01874": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2665,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01874"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01874",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01875": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2665,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01875"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01875",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "01876": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2669,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01876"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01876",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01938": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2475,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01938"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01938",
+                "line": "76",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01939": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2168,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01939"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01939",
+                "line": "62",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01942": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2208,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01942"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01942",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01943": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2208,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01943"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01943",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01944": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2208,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01944"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01944",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "01959": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2006,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01959"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01959",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "01960": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2006,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest01960"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "01960",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02068": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2263,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02068"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02068",
+                "line": "64",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02070": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2234,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02070"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02070",
+                "line": "61",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02084": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2101,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02084"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02084",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02085": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2101,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02085"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02085",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02086": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2101,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02086"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02086",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02151": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2280,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02151"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02151",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02152": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2280,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02152"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02152",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02153": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 1973,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02153"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02153",
+                "line": "57",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02154": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2013,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02154"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02154",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02155": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 1944,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02155"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02155",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02156": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 1944,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02156"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02156",
+                "line": "54",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02167": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1811,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02167"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02167",
+                "line": "49",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02168": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1811,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02168"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02168",
+                "line": "49",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02252": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2406,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02252"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02252",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02253": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2406,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02253"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02253",
+                "line": "75",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02263": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 1937,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02263"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02263",
+                "line": "53",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02341": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2410,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02341"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02341",
+                "line": "71",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02343": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2450,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02343"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02343",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02344": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2381,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02344"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02344",
+                "line": "68",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02352": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2248,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02352"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02352",
+                "line": "63",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02432": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2409,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02432"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02432",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02433": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2409,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02433"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02433",
+                "line": "73",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02448": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 1940,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02448"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02448",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02512": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2050,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02512"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02512",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02513": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2050,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02513"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02513",
+                "line": "59",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02516": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2021,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02516"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02516",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02517": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2021,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02517"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02517",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02518": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2021,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02518"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02518",
+                "line": "56",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02527": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 1888,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02527"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02527",
+                "line": "51",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02611": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 3157,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02611"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02611",
+                "line": "94",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02612": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2850,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02612"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02612",
+                "line": "80",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02613": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2821,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02613"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02613",
+                "line": "77",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02622": {
+        "serialized": [
+            {
+                "args": [
+                    "arg1",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted Object"
+                ],
+                "messageKey": "argument",
+                "offset": 2688,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02622"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02622",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg1 of setAttribute.",
+                "code": "request.getSession().setAttribute(bar, \"10340\");"
+            }
+        ]
+    },
+    "02623": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2688,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02623"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02623",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02624": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 2688,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02624"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02624",
+                "line": "72",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02713": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2063,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02713"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02713",
+                "line": "58",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02714": {
+        "serialized": [
+            {
+                "args": [
+                    "dir",
+                    "exec",
+                    "@RTainted File",
+                    "@RUntainted File"
+                ],
+                "messageKey": "argument",
+                "offset": 2034,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02714"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02714",
+                "line": "55",
+                "type": "argument",
+                "message": "incompatible argument for parameter dir of exec.",
+                "code": "Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty(\"user.dir\")));"
+            }
+        ]
+    },
+    "02725": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1901,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02725"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02725",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    },
+    "02726": {
+        "serialized": [
+            {
+                "args": [
+                    "arg0",
+                    "setAttribute",
+                    "@RTainted String",
+                    "@RUntainted String"
+                ],
+                "messageKey": "argument",
+                "offset": 1901,
+                "region": {
+                    "symbol": "doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                    "class": "org.owasp.benchmark.testcode.BenchmarkTest02726"
+                },
+                "fixes": []
+            }
+        ],
+        "io": [
+            {
+                "id": "02726",
+                "line": "50",
+                "type": "argument",
+                "message": "incompatible argument for parameter arg0 of setAttribute.",
+                "code": "request.getSession().setAttribute(\"userid\", bar);"
+            }
+        ]
+    }
+}
