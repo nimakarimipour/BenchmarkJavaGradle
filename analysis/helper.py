@@ -9,7 +9,7 @@ def fetch_error_by_id(errors, errid):
     for e in errors:
         if e['id'] == errid:
             return e
-        
+
 
 def error_is_unresovalbe(error):
     if error['message'] == 'incompatible argument for parameter arg0 of setContentType.' and error['code'] == 'response.setContentType("text/html;charset=UTF-8");':
@@ -120,7 +120,7 @@ def google_sheet():
             message = error['message']
             url = HYPER_LINK.format(URL.format(id, line), "Github")
             LINES.append(DISP.format(id, line, url, type, message))
-    with open('data.csv', "w") as f:
+    with open('no_fix.csv', "w") as f:
         f.writelines(LINES)
 
 google_sheet()
