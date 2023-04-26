@@ -105,4 +105,22 @@ def no_fixes():
         json.dump(combined, f, indent=4)
 
 
-no_fixes()
+def google_sheet():
+    DISP = "{}|{}|{}|{}|{}\n"
+    URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
+    HYPER_LINK = "\"=HYPERLINK(\"\"{}\"\",\"\"{}\"\")\""
+    LINES = ['"ID"|"Line"|"Link"|"Type"|"Message"\n']
+    all = json.load(open("no_fixes.json", "r"))
+    for key in all.keys():
+        errors = all[key]['io']
+        for error in errors:
+            id = error['id']
+            line = error['line']
+            type = error['type']
+            message = error['message']
+            url = HYPER_LINK.format(URL.format(id, line), "Github")
+            LINES.append(DISP.format(id, line, url, type, message))
+    with open('data.csv', "w") as f:
+        f.writelines(LINES)
+
+google_sheet()
