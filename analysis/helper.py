@@ -1,5 +1,6 @@
-import re
 import json
+import re
+import sys
 
 io = json.load(open("io.json", "r"))
 serialized = json.load(open("serialized.json", "r"))
@@ -18,9 +19,11 @@ def fetch_error_by_id(errors, errid):
 
 
 def error_is_unresolvable(error):
-    if error['message'] == 'incompatible argument for parameter arg0 of setContentType.' and error['code'] == 'response.setContentType("text/html;charset=UTF-8");':
+    if error['message'] == 'incompatible argument for parameter arg0 of setContentType.' and error[
+        'code'] == 'response.setContentType("text/html;charset=UTF-8");':
         return True
-    if error['message'] == 'incompatible argument for parameter arg0 of setHeader.' and error['code'] == 'response.setHeader("X-XSS-Protection", "0");':
+    if error['message'] == 'incompatible argument for parameter arg0 of setHeader.' and error[
+        'code'] == 'response.setHeader("X-XSS-Protection", "0");':
         return True
     return False
 
@@ -46,8 +49,8 @@ def unify():
     de_errors_id = {}
 
     for err in serialized_errors:
-        encClass = err['region']['class']
-        match = re.match(pattern, encClass)
+        enc_class = err['region']['class']
+        match = re.match(pattern, enc_class)
         if match:
             errid = match.group(1)
             if errid not in de_errors_id.keys():
@@ -98,7 +101,7 @@ def filter_errors():
 
 
 def no_fixes():
-    combined = json.load(open("filtered.json", "r"))
+    combined = json.load(open("combined.json", "r"))
     to_delete = []
     for key in combined.keys():
         de_errors = combined[key]['serialized']
@@ -122,6 +125,7 @@ def no_fixes():
     # output a json to file
     with open('no_fixes.json', 'w') as f:
         json.dump(combined, f, indent=4)
+
 
 def with_fixes():
     combined = json.load(open("filtered.json", "r"))
@@ -183,6 +187,22 @@ def with_null_fix_path():
         json.dump(combined, f, indent=4)
 
 
+def work_list():
+    combined = json.load(open("combined.json", "r"))
+    to_delete = []
+    for key in json.load(open("with_null_path.json", "r")).keys():
+        to_delete.append(key)
+    for key in json.load(open("no_fixes.json", "r")).keys():
+        to_delete.append(key)
+    for key in set(to_delete):
+        del combined[key]
+    # sort combined by id
+    combined = {k: v for k, v in sorted(combined.items(), key=lambda item: item[0])}
+    # output a json to file
+    with open('work_list.json', 'w') as f:
+        json.dump(combined, f, indent=4)
+
+
 def google_sheet():
     DISP = "{}|{}|{}|{}|{}\n"
     URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
@@ -204,7 +224,8 @@ def google_sheet():
 
 def google_sheet_null_path():
     DISP = "{}|{}|{}|{}|{}|{}\n"
-    URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
+    URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src" \
+          "/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
     HYPER_LINK = "\"=HYPERLINK(\"\"{}\"\",\"\"{}\"\")\""
     LINES = ['"ID"|"Line"|"Link"|"Type"|"Message"|"Fixes"\n']
     all = json.load(open("with_null_path.json", "r"))
@@ -223,4 +244,34 @@ def google_sheet_null_path():
         f.writelines(LINES)
 
 
-with_null_fix_path()
+# get first passed argument
+if len(sys.argv) > 1:
+    command = sys.argv[1]
+    if command == "unify":
+        unify()
+    elif command == "filter_errors":
+        filter_errors()
+    elif command == "no_fixes":
+        no_fixes()
+    elif command == "with_fixes":
+        with_fixes()
+    elif command == "with_null_fix_path":
+        with_null_fix_path()
+    elif command == "work_list":
+        work_list()
+    elif command == "google_sheet":
+        google_sheet()
+    elif command == "google_sheet_null_path":
+        google_sheet_null_path()
+    elif command == "update_all":
+        unify()
+        filter_errors()
+        no_fixes()
+        with_fixes()
+        with_null_fix_path()
+        work_list()
+        google_sheet()
+        google_sheet_null_path()
+
+else:
+    raise Exception("No command provided")
