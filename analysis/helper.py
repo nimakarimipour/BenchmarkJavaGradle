@@ -2,8 +2,11 @@ import json
 import re
 import sys
 
-io = json.load(open("io.json", "r"))
-serialized = json.load(open("serialized.json", "r"))
+IO = json.load(open("io.json", "r"))
+SERIALIZED = json.load(open("serialized.json", "r"))
+URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src" \
+      "/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
+HYPER_LINK = "\"=HYPERLINK(\"\"{}\"\",\"\"{}\"\")\""
 
 
 def simple_name(name):
@@ -41,24 +44,30 @@ def make_cell_string_for_fix(fix):
     raise Exception("Unknown location kind: " + loc['kind'])
 
 
+def make_cell_string_for_error_with_path(fix):
+    disp = make_cell_string_for_fix(fix)
+    return "EP-{}".format(disp) if fix['location']['path'] == "null" else disp
+
+
 def unify():
     # pattern = "^/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest(
     # [0-9]+).java:([0-9]+): error: \[(\w*)\] (.+)"
     pattern = "^org.owasp.benchmark.testcode.BenchmarkTest([0-9]+)"
-    serialized_errors = serialized["errors"]
+    serialized_errors = SERIALIZED["errors"]
     de_errors_id = {}
 
+    sizes = []
     for err in serialized_errors:
         enc_class = err['region']['class']
+        sizes.append(len(err['fixes']))
         match = re.match(pattern, enc_class)
         if match:
             errid = match.group(1)
             if errid not in de_errors_id.keys():
                 de_errors_id[errid] = []
             de_errors_id[errid].append(err)
-
     io_errors_id = {}
-    for err in io['errors']:
+    for err in IO['errors']:
         if err['id'] not in io_errors_id.keys():
             io_errors_id[err['id']] = []
         io_errors_id[err['id']].append(err)
@@ -204,44 +213,66 @@ def work_list():
 
 
 def google_sheet():
-    DISP = "{}|{}|{}|{}|{}\n"
-    URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
-    HYPER_LINK = "\"=HYPERLINK(\"\"{}\"\",\"\"{}\"\")\""
-    LINES = ['"ID"|"Line"|"Link"|"Type"|"Message"\n']
-    all = json.load(open("no_fixes.json", "r"))
-    for key in all.keys():
-        errors = all[key]['io']
+    disp = "{}|{}|{}|{}|{}\n"
+    lines = ['"ID"|"Line"|"Link"|"Type"|"Message"\n']
+    fixes = json.load(open("no_fixes.json", "r"))
+    for key in fixes.keys():
+        errors = fixes[key]['io']
         for error in errors:
-            id = error['id']
+            error_id = error['id']
             line = error['line']
-            type = error['type']
+            error_type = error['type']
             message = error['message']
-            url = HYPER_LINK.format(URL.format(id, line), "Github")
-            LINES.append(DISP.format(id, line, url, type, message))
+            url = HYPER_LINK.format(URL.format(error_id, line), "Github")
+            lines.append(disp.format(error_id, line, url, error_type, message))
     with open('no_fix.csv', "w") as f:
-        f.writelines(LINES)
+        f.writelines(lines)
 
 
 def google_sheet_null_path():
     DISP = "{}|{}|{}|{}|{}|{}\n"
-    URL = "https://github.com/nimakarimipour/BenchmarkJavaGradle/blob/af21eedf31cc9778b6daf9084c205cb8ccad018e/src" \
-          "/main/java/org/owasp/benchmark/testcode/BenchmarkTest{}.java#L{}"
-    HYPER_LINK = "\"=HYPERLINK(\"\"{}\"\",\"\"{}\"\")\""
     LINES = ['"ID"|"Line"|"Link"|"Type"|"Message"|"Fixes"\n']
-    all = json.load(open("with_null_path.json", "r"))
-    for key in all.keys():
-        errors = all[key]['io']
-        serialized = all[key]['serialized']
+    content = json.load(open("with_null_path.json", "r"))
+    for key in content.keys():
+        errors = content[key]['io']
+        serialized = content[key]['serialized']
         for i, error in enumerate(errors):
             fixes = ','.join([make_cell_string_for_fix(fix) for fix in serialized[i]['fixes']])
-            id = error['id']
+            error_id = error['id']
             line = error['line']
-            type = error['type']
+            error_type = error['type']
             message = error['message']
-            url = HYPER_LINK.format(URL.format(id, line), "Github")
-            LINES.append(DISP.format(id, line, url, type, message, fixes))
+            url = HYPER_LINK.format(URL.format(error_id, line), "Github")
+            LINES.append(DISP.format(error_id, line, url, error_type, message, fixes))
     with open('null_path_fix.csv', "w") as f:
         f.writelines(LINES)
+
+
+def google_sheet_combined():
+    disp = "{}|{}|{}|{}|{}\n"
+    lines = ['"ID"|"Line"|"Link"|"Type"|"Message"|"Fix 1"|Fix 2"\n']
+    content = json.load(open("filtered.json", "r"))
+    for key in content.keys():
+        de_errors = content[key]['serialized']
+        io_errors = content[key]['io']
+        fixes = "NONE|NONE"
+        for i, s_e in enumerate(de_errors):
+            if len(s_e['fixes']) == 1:
+                fixes = "{}|NONE".format(make_cell_string_for_error_with_path(s_e['fixes'][0]))
+            elif len(s_e['fixes']) == 2:
+                fixes = "{}|{}".format(make_cell_string_for_error_with_path(s_e['fixes'][0]),
+                                       make_cell_string_for_error_with_path(s_e['fixes'][1]))
+            if len(s_e['fixes']) > 2:
+                raise Exception("More than 2 fixes")
+            io_e = io_errors[i]
+            error_id = io_e['id']
+            line = io_e['line']
+            error_type = io_e['type']
+            message = io_e['message']
+            url = HYPER_LINK.format(URL.format(error_id, line), "Github")
+            lines.append(disp.format(error_id, line, url, error_type, message, fixes))
+    with open('combined.csv', "w") as f:
+        f.writelines(lines)
 
 
 # get first passed argument
@@ -263,6 +294,8 @@ if len(sys.argv) > 1:
         google_sheet()
     elif command == "google_sheet_null_path":
         google_sheet_null_path()
+    elif command == "google_sheet_combined":
+        google_sheet_combined()
     elif command == "update_all":
         unify()
         filter_errors()
@@ -272,6 +305,5 @@ if len(sys.argv) > 1:
         work_list()
         google_sheet()
         google_sheet_null_path()
-
 else:
     raise Exception("No command provided")
