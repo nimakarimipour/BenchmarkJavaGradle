@@ -40,7 +40,7 @@ def make_cell_string_for_fix(fix):
     if loc['kind'] == 'PARAMETER':
         return "P:{}:{}:{}".format(simple_name(loc['class']), loc['method'], loc['index'])
     if loc['kind'] == 'LOCAL_VARIABLE':
-        return "L:{}:{}".format(loc['method'], loc['varName'])
+        return "L:{}:{}".format(loc['encMethod'], loc['varName'])
     raise Exception("Unknown location kind: " + loc['kind'])
 
 
@@ -249,8 +249,8 @@ def google_sheet_null_path():
 
 
 def google_sheet_combined():
-    disp = "{}|{}|{}|{}|{}\n"
-    lines = ['"ID"|"Line"|"Link"|"Type"|"Message"|"Fix 1"|Fix 2"\n']
+    disp = "{}|{}|{}|{}|{}|{}|{}\n"
+    lines = ['"ID"|"Line"|"Link"|"Type"|"Message"|"Code"|"Fix 1"|Fix 2"\n']
     content = json.load(open("filtered.json", "r"))
     for key in content.keys():
         de_errors = content[key]['serialized']
@@ -269,8 +269,9 @@ def google_sheet_combined():
             line = io_e['line']
             error_type = io_e['type']
             message = io_e['message']
+            code = io_e['code']
             url = HYPER_LINK.format(URL.format(error_id, line), "Github")
-            lines.append(disp.format(error_id, line, url, error_type, message, fixes))
+            lines.append(disp.format(error_id, line, url, error_type, message, code, fixes))
     with open('combined.csv', "w") as f:
         f.writelines(lines)
 
