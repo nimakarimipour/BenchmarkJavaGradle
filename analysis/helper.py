@@ -40,7 +40,7 @@ def make_cell_string_for_fix(fix):
     if loc['kind'] == 'PARAMETER':
         return "P:{}:{}:{}".format(simple_name(loc['class']), loc['method'], loc['index'])
     if loc['kind'] == 'LOCAL_VARIABLE':
-        return "L:{}:{}".format(loc['encMethod'], loc['varName'])
+        return "L:{}:{}".format(loc['method'], loc['varName'])
     raise Exception("Unknown location kind: " + loc['kind'])
 
 
