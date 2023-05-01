@@ -1,7 +1,7 @@
 import subprocess
 
 ANNOTATOR_JAR = "/Users/nima/.m2/repository/edu/ucr/cs/riple/annotator/annotator-core/1.3.7-SNAPSHOT/annotator-core-1.3.7-SNAPSHOT.jar"
-REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip()
+REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().decode('utf-8')
 
 
 def make_config_paths():
@@ -14,10 +14,11 @@ def run_annotator():
     commands = []
     commands += ["java", "-jar", ANNOTATOR_JAR]
     commands += ['-d', '/tmp/ucr-tainting']
-    commands += ['-bc', 'cd {} ./gradlew compileJava'.format(REPO)]
+    commands += ['-bc', 'cd {} && ./gradlew compileJava'.format(REPO)]
     commands += ['-cp', '/tmp/ucr-tainting/paths.tsv']
     commands += ['-i', 'edu.ucr.Initializer']
     commands += ['-cn', 'UCRTaint']
+    commands += ['-rboserr']
 
     subprocess.call(commands)
 
