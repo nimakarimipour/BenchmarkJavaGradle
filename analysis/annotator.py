@@ -8,7 +8,7 @@ REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().
 
 def prepare():
     os.makedirs('/tmp/ucr-tainting', exist_ok=True)
-    shutil.rmtree('/tmp/ucr-tainting/0')
+    shutil.rmtree('/tmp/ucr-tainting/0', ignore_errors=True)
     with open('/tmp/ucr-tainting/paths.tsv', 'w') as o:
         o.write("{}\t{}\n".format('/tmp/ucr-tainting/taint.xml', '/tmp/ucr-tainting/scanner.xml'))
 
