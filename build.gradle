@@ -85,7 +85,7 @@ tasks.withType(JavaCompile) {
         options.errorprone.disableAllWarnings = true
         options.errorprone {
             check("AnnotatorScanner", CheckSeverity.ERROR)
-            option("AnnotatorScanner:ConfigPath", "/Users/nima/Developer/NullAwayFixer/testannotator/config/scanner.xml")
+            option("AnnotatorScanner:ConfigPath", "/tmp/ucr-tainting/scanner.xml")
         }
     }
     options.compilerArgs << "-Xmaxerrs" << "100000"
