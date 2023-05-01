@@ -18,7 +18,8 @@ def run_annotator():
     commands += ['-cp', '/tmp/ucr-tainting/paths.tsv']
     commands += ['-i', 'edu.ucr.Initializer']
     commands += ['-cn', 'UCRTaint']
-    commands += ['-rboserr']
+    # Uncomment to see build output
+    # commands += ['-rboserr']
 
     subprocess.call(commands)
 
