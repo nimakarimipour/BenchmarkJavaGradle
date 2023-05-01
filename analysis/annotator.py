@@ -1,16 +1,20 @@
 import subprocess
+import os
+import shutil
 
 ANNOTATOR_JAR = "/Users/nima/.m2/repository/edu/ucr/cs/riple/annotator/annotator-core/1.3.7-SNAPSHOT/annotator-core-1.3.7-SNAPSHOT.jar"
 REPO = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().decode('utf-8')
 
 
-def make_config_paths():
+def prepare():
+    os.makedirs('/tmp/ucr-tainting', exist_ok=True)
+    shutil.rmtree('/tmp/ucr-tainting/0')
     with open('/tmp/ucr-tainting/paths.tsv', 'w') as o:
         o.write("{}\t{}\n".format('/tmp/ucr-tainting/taint.xml', '/tmp/ucr-tainting/scanner.xml'))
 
 
 def run_annotator():
-    make_config_paths()
+    prepare()
     commands = []
     commands += ["java", "-jar", ANNOTATOR_JAR]
     commands += ['-d', '/tmp/ucr-tainting']
