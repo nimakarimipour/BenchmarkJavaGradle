@@ -18,6 +18,7 @@
 package org.owasp.benchmark.testcode;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +69,7 @@ public class BenchmarkTest00835 extends HttpServlet {
 
     String bar = "alsosafe";
     if (param != null) {
-      java.util.List<String> valuesList = new java.util.ArrayList<String>();
+      List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
       valuesList.add(param);
       valuesList.add("moresafe");

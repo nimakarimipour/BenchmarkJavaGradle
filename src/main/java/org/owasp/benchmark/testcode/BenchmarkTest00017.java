@@ -18,6 +18,7 @@
 package org.owasp.benchmark.testcode;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +43,7 @@ public class BenchmarkTest00017 extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00017");
+    Enumeration<String> headers = request.getHeaders("BenchmarkTest00017");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
