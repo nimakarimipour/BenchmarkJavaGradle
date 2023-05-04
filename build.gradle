@@ -75,6 +75,10 @@ checkerFramework {
     checkers = [
             'edu.ucr.cs.riple.taint.ucrtainting.UCRTaintingChecker',
     ]
+
+    extraJavacArgs = [
+            '-AannotatedPackages=' + 'org.owasp'
+    ]
 }
 
 import net.ltgt.gradle.errorprone.CheckSeverity
