@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-00/BenchmarkTest00332")
 public class BenchmarkTest00332 extends HttpServlet {
@@ -73,7 +74,7 @@ public class BenchmarkTest00332 extends HttpServlet {
     String g40477 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
     String bar = thing.doSomething(g40477); // reflection
 
-    String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
+    @RUntainted String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
 
     try {
       java.sql.Connection connection =

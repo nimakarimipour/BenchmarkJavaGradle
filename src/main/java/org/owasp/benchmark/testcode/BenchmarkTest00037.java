@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-00/BenchmarkTest00037")
 public class BenchmarkTest00037 extends HttpServlet {
@@ -58,7 +59,7 @@ public class BenchmarkTest00037 extends HttpServlet {
       }
     }
 
-    String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + param + "'";
+    @RUntainted String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + param + "'";
 
     try {
       java.sql.Connection connection =

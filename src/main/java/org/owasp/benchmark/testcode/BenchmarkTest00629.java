@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/pathtraver-00/BenchmarkTest00629")
 public class BenchmarkTest00629 extends HttpServlet {
@@ -56,7 +57,7 @@ public class BenchmarkTest00629 extends HttpServlet {
     java.io.InputStream is = null;
 
     try {
-      java.nio.file.Path path = java.nio.file.Paths.get(fileName);
+      java.nio.file.@RUntainted Path path = java.nio.file.Paths.get(fileName);
       is = java.nio.file.Files.newInputStream(path, java.nio.file.StandardOpenOption.READ);
       byte[] b = new byte[1000];
       int size = is.read(b);

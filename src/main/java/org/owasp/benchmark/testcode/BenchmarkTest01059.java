@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/weakrand-02/BenchmarkTest01059")
 public class BenchmarkTest01059 extends HttpServlet {
@@ -51,7 +52,7 @@ public class BenchmarkTest01059 extends HttpServlet {
     String bar = new Test().doSomething(request, param);
 
     double value = new java.util.Random().nextDouble();
-    String rememberMeKey = Double.toString(value).substring(2); // Trim off the 0. at the front.
+    @RUntainted String rememberMeKey = Double.toString(value).substring(2); // Trim off the 0. at the front.
 
     String user = "Donna";
     String fullClassName = this.getClass().getName();
@@ -59,7 +60,7 @@ public class BenchmarkTest01059 extends HttpServlet {
         fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
     user += testCaseNumber;
 
-    String cookieName = "rememberMe" + testCaseNumber;
+    @RUntainted String cookieName = "rememberMe" + testCaseNumber;
 
     boolean foundUser = false;
     javax.servlet.http.Cookie[] cookies = request.getCookies();

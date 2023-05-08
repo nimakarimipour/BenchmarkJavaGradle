@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-01/BenchmarkTest00837")
 public class BenchmarkTest00837 extends HttpServlet {
@@ -74,7 +75,7 @@ public class BenchmarkTest00837 extends HttpServlet {
     bar = (String) map5936.get("keyB-5936"); // get it back out
     bar = (String) map5936.get("keyA-5936"); // get safe value back out
 
-    String sql = "{call " + bar + "}";
+    @RUntainted String sql = "{call " + bar + "}";
 
     try {
       java.sql.Connection connection =

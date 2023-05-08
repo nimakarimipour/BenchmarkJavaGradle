@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-00/BenchmarkTest00008")
 public class BenchmarkTest00008 extends HttpServlet {
@@ -49,7 +50,7 @@ public class BenchmarkTest00008 extends HttpServlet {
     // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String sql = "{call " + param + "}";
+    @RUntainted String sql = "{call " + param + "}";
 
     try {
       java.sql.Connection connection =

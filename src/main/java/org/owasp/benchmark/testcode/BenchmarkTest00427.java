@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-00/BenchmarkTest00427")
 public class BenchmarkTest00427 extends HttpServlet {
@@ -63,7 +64,7 @@ public class BenchmarkTest00427 extends HttpServlet {
     String f70670 = e70670.split(" ")[0]; // split it on a space
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
-    String bar = thing.doSomething(f70670); // reflection
+    @RUntainted String bar = thing.doSomething(f70670); // reflection
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
     request.getSession().setAttribute("userid", bar);

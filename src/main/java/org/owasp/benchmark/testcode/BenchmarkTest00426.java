@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-00/BenchmarkTest00426")
 public class BenchmarkTest00426 extends HttpServlet {
@@ -43,7 +44,7 @@ public class BenchmarkTest00426 extends HttpServlet {
     String param = request.getParameter("BenchmarkTest00426");
     if (param == null) param = "";
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns param to bar on false condition
     int num = 106;

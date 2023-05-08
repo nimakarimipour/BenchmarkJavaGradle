@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-01/BenchmarkTest02448")
 public class BenchmarkTest02448 extends HttpServlet {
@@ -45,7 +46,7 @@ public class BenchmarkTest02448 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest02448");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String^,java.lang.Object)
     request.getSession().setAttribute(bar, "10340");

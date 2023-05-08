@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/weakrand-03/BenchmarkTest01373")
 public class BenchmarkTest01373 extends HttpServlet {
@@ -51,7 +52,7 @@ public class BenchmarkTest01373 extends HttpServlet {
 
     try {
       long l = java.security.SecureRandom.getInstance("SHA1PRNG").nextLong();
-      String rememberMeKey = Long.toString(l);
+      @RUntainted String rememberMeKey = Long.toString(l);
 
       String user = "SafeLogan";
       String fullClassName = this.getClass().getName();
@@ -59,7 +60,7 @@ public class BenchmarkTest01373 extends HttpServlet {
           fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
       user += testCaseNumber;
 
-      String cookieName = "rememberMe" + testCaseNumber;
+      @RUntainted String cookieName = "rememberMe" + testCaseNumber;
 
       boolean foundUser = false;
       javax.servlet.http.Cookie[] cookies = request.getCookies();

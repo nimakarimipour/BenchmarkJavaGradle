@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01064")
 public class BenchmarkTest01064 extends HttpServlet {
@@ -48,9 +49,9 @@ public class BenchmarkTest01064 extends HttpServlet {
     // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");

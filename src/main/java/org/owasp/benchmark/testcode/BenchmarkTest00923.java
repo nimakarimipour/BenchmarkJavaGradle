@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-00/BenchmarkTest00923")
 public class BenchmarkTest00923 extends HttpServlet {
@@ -44,7 +45,7 @@ public class BenchmarkTest00923 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest00923");
 
-    String bar = org.springframework.web.util.HtmlUtils.htmlEscape(param);
+    @RUntainted String bar = org.springframework.web.util.HtmlUtils.htmlEscape(param);
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
     request.getSession().setAttribute("userid", bar);

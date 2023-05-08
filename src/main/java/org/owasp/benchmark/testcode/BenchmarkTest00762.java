@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-01/BenchmarkTest00762")
 public class BenchmarkTest00762 extends HttpServlet {
@@ -52,7 +53,7 @@ public class BenchmarkTest00762 extends HttpServlet {
     if ((500 / 42) + num > 200) bar = param;
     else bar = "This should never happen";
 
-    String sql = "{call " + bar + "}";
+    @RUntainted String sql = "{call " + bar + "}";
 
     try {
       java.sql.Connection connection =

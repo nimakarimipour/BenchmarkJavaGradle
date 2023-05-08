@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/weakrand-02/BenchmarkTest01135")
 public class BenchmarkTest01135 extends HttpServlet {
@@ -67,7 +68,7 @@ public class BenchmarkTest01135 extends HttpServlet {
       byte[] randomBytes = new byte[40];
       getNextNumber(numGen, randomBytes);
 
-      String rememberMeKey = org.owasp.esapi.ESAPI.encoder().encodeForBase64(randomBytes, true);
+      @RUntainted String rememberMeKey = org.owasp.esapi.ESAPI.encoder().encodeForBase64(randomBytes, true);
 
       String user = "SafeBystander";
       String fullClassName = this.getClass().getName();
@@ -75,7 +76,7 @@ public class BenchmarkTest01135 extends HttpServlet {
           fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
       user += testCaseNumber;
 
-      String cookieName = "rememberMe" + testCaseNumber;
+      @RUntainted String cookieName = "rememberMe" + testCaseNumber;
 
       boolean foundUser = false;
       javax.servlet.http.Cookie[] cookies = request.getCookies();

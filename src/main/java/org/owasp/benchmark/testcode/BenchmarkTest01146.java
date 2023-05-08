@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-00/BenchmarkTest01146")
 public class BenchmarkTest01146 extends HttpServlet {
@@ -58,7 +59,7 @@ public class BenchmarkTest01146 extends HttpServlet {
     }
     // Note: We don't URL decode header names because people don't normally do that
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
     request.getSession().setAttribute("userid", bar);

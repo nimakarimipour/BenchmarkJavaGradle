@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @RestController
 public class DataBaseServer {
@@ -58,7 +59,7 @@ public class DataBaseServer {
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     List<XMLMessage> resp = new ArrayList<XMLMessage>();
-    String sql = "SELECT * from USERS";
+    @RUntainted String sql = "SELECT * from USERS";
     try {
       java.sql.Connection connection =
           org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();

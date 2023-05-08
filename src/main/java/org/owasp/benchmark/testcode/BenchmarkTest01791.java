@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest01791")
 public class BenchmarkTest01791 extends HttpServlet {
@@ -44,9 +45,9 @@ public class BenchmarkTest01791 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest01791");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");

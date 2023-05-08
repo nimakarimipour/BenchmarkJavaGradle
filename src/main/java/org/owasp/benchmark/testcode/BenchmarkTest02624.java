@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-01/BenchmarkTest02624")
 public class BenchmarkTest02624 extends HttpServlet {
@@ -66,7 +67,7 @@ public class BenchmarkTest02624 extends HttpServlet {
     }
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
     request.getSession().setAttribute("userid", bar);

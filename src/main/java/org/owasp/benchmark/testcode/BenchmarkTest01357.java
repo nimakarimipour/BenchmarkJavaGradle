@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/weakrand-03/BenchmarkTest01357")
 public class BenchmarkTest01357 extends HttpServlet {
@@ -58,7 +59,7 @@ public class BenchmarkTest01357 extends HttpServlet {
         fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
     user += testCaseNumber;
 
-    String cookieName = "rememberMe" + testCaseNumber;
+    @RUntainted String cookieName = "rememberMe" + testCaseNumber;
 
     boolean foundUser = false;
     javax.servlet.http.Cookie[] cookies = request.getCookies();

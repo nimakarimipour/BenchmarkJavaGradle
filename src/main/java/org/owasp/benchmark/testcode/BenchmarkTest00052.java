@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-00/BenchmarkTest00052")
 public class BenchmarkTest00052 extends HttpServlet {
@@ -45,7 +46,7 @@ public class BenchmarkTest00052 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest00052");
 
-    String sql = "{call " + param + "}";
+    @RUntainted String sql = "{call " + param + "}";
 
     try {
       java.sql.Connection connection =

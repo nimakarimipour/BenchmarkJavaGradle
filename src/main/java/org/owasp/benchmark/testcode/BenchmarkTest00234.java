@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/weakrand-00/BenchmarkTest00234")
 public class BenchmarkTest00234 extends HttpServlet {
@@ -67,7 +68,7 @@ public class BenchmarkTest00234 extends HttpServlet {
     bar = (String) map35995.get("keyA-35995"); // get safe value back out
 
     int randNumber = new java.util.Random().nextInt(99);
-    String rememberMeKey = Integer.toString(randNumber);
+    @RUntainted String rememberMeKey = Integer.toString(randNumber);
 
     String user = "Inga";
     String fullClassName = this.getClass().getName();
@@ -75,7 +76,7 @@ public class BenchmarkTest00234 extends HttpServlet {
         fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
     user += testCaseNumber;
 
-    String cookieName = "rememberMe" + testCaseNumber;
+    @RUntainted String cookieName = "rememberMe" + testCaseNumber;
 
     boolean foundUser = false;
     javax.servlet.http.Cookie[] cookies = request.getCookies();

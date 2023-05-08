@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/trustbound-00/BenchmarkTest00189")
 public class BenchmarkTest00189 extends HttpServlet {
@@ -69,7 +70,7 @@ public class BenchmarkTest00189 extends HttpServlet {
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
     String g14330 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-    String bar = thing.doSomething(g14330); // reflection
+    @RUntainted String bar = thing.doSomething(g14330); // reflection
 
     // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
     request.getSession().setAttribute("userid", bar);

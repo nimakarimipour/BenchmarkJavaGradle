@@ -35,6 +35,7 @@ import org.owasp.benchmark.helpers.entities.Certificate;
 import org.owasp.benchmark.helpers.entities.Employee;
 import org.owasp.benchmark.helpers.entities.Hobby;
 import org.owasp.benchmark.helpers.entities.User;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class HibernateUtil {
   org.hibernate.Session session;
@@ -70,7 +71,7 @@ public class HibernateUtil {
     try {
       Class.forName("org.hsqldb.jdbcDriver");
       //			System.out.println("Driver Loaded.");
-      String url = "jdbc:hsqldb:benchmarkDataBase;sql.enforce_size=false";
+      @RUntainted String url = "jdbc:hsqldb:benchmarkDataBase;sql.enforce_size=false";
       conn = DriverManager.getConnection(url, "sa", "");
       //			System.out.println("Got Connection.");
       st = conn.createStatement();

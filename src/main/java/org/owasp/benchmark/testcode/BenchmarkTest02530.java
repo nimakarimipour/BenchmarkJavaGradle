@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/sqli-05/BenchmarkTest02530")
 public class BenchmarkTest02530 extends HttpServlet {
@@ -47,7 +48,7 @@ public class BenchmarkTest02530 extends HttpServlet {
 
     String bar = doSomething(request, param);
 
-    String sql = "{call " + bar + "}";
+    @RUntainted String sql = "{call " + bar + "}";
 
     try {
       java.sql.Connection connection =

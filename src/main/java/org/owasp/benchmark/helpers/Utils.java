@@ -56,6 +56,7 @@ import org.apache.hc.client5.http.ssl.TrustSelfSignedStrategy;
 import org.apache.hc.core5.ssl.SSLContexts;
 import org.owasp.benchmark.service.pojo.XMLMessage;
 import org.owasp.esapi.ESAPI;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class Utils {
 
@@ -368,7 +369,7 @@ public class Utils {
     return ESAPI.encoder().encodeForHTML(value);
   }
 
-  public static boolean writeLineToFile(Path pathToFileDir, String completeName, String line) {
+  public static boolean writeLineToFile(@RUntainted Path pathToFileDir, String completeName, String line) {
     boolean result = true;
     PrintStream os = null;
     try {
