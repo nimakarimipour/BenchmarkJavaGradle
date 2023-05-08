@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/pathtraver-02/BenchmarkTest01908")
 public class BenchmarkTest01908 extends HttpServlet {

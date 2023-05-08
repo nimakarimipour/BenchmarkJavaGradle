@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.helpers;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -35,7 +36,6 @@ import org.owasp.benchmark.helpers.entities.Certificate;
 import org.owasp.benchmark.helpers.entities.Employee;
 import org.owasp.benchmark.helpers.entities.Hobby;
 import org.owasp.benchmark.helpers.entities.User;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class HibernateUtil {
   org.hibernate.Session session;

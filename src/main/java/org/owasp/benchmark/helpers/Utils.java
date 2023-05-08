@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.helpers;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -56,7 +57,6 @@ import org.apache.hc.client5.http.ssl.TrustSelfSignedStrategy;
 import org.apache.hc.core5.ssl.SSLContexts;
 import org.owasp.benchmark.service.pojo.XMLMessage;
 import org.owasp.esapi.ESAPI;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class Utils {
 
