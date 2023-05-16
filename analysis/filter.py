@@ -5,7 +5,6 @@ import os
 root = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().decode('utf-8'))
 src = Path(os.path.join(root, 'src', 'main', 'java', 'org', 'owasp', 'benchmark', 'testcode'))
 files = [file.name[0:-5] for file in src.iterdir() if file.is_file() and file.name.endswith('.java')]
-
 for f in files:
     path_to_xml = Path(os.path.join(src, f + '.xml'))
     path_to_src = Path(os.path.join(src, f + '.java'))
