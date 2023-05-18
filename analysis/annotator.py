@@ -22,6 +22,7 @@ def run_annotator():
     commands += ['-bc', 'cd {} && ./gradlew compileJava'.format(REPO)]
     commands += ['-cp', '/tmp/ucr-tainting/paths.tsv']
     commands += ['-i', 'edu.ucr.Initializer']
+    commands += ['-n', 'edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted']
     commands += ['-cn', 'UCRTaint']
     # Uncomment to see build output
     # commands += ['-rboserr']
