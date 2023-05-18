@@ -16,7 +16,8 @@
  * @created 2015
  */
 package org.owasp.benchmark.helpers;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public interface ThingInterface {
-  public String doSomething(String i);
+  public @RUntainted String doSomething(@RUntainted String i);
 }

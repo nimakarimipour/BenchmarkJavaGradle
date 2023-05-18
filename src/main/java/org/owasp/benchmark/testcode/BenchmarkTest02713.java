@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-03/BenchmarkTest02713")
 public class BenchmarkTest02713 extends HttpServlet {
@@ -49,8 +50,8 @@ public class BenchmarkTest02713 extends HttpServlet {
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
     Runtime r = Runtime.getRuntime();
 

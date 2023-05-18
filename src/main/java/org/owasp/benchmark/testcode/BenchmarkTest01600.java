@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01600")
 public class BenchmarkTest01600 extends HttpServlet {
@@ -40,14 +41,14 @@ public class BenchmarkTest01600 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest01600");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest01600");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -75,12 +76,12 @@ public class BenchmarkTest01600 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar = "alsosafe";
+      @RUntainted String bar = "alsosafe";
       if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
         valuesList.add("safe");
         valuesList.add(param);
         valuesList.add("moresafe");

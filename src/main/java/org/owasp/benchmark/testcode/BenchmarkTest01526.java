@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01526")
 public class BenchmarkTest01526 extends HttpServlet {
@@ -45,9 +46,9 @@ public class BenchmarkTest01526 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest01526");
     if (param == null) param = "";
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
@@ -67,10 +68,10 @@ public class BenchmarkTest01526 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;

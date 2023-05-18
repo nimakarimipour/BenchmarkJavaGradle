@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest00970")
 public class BenchmarkTest00970 extends HttpServlet {
@@ -52,7 +53,7 @@ public class BenchmarkTest00970 extends HttpServlet {
 
     javax.servlet.http.Cookie[] theCookies = request.getCookies();
 
-    String param = "noCookieValueSupplied";
+    @RUntainted String param = "noCookieValueSupplied";
     if (theCookies != null) {
       for (javax.servlet.http.Cookie theCookie : theCookies) {
         if (theCookie.getName().equals("BenchmarkTest00970")) {
@@ -62,9 +63,9 @@ public class BenchmarkTest00970 extends HttpServlet {
       }
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -90,10 +91,10 @@ public class BenchmarkTest00970 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple ? condition that assigns constant to bar on true condition
       int num = 106;
