@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest02242")
 public class BenchmarkTest02242 extends HttpServlet {
@@ -47,9 +48,9 @@ public class BenchmarkTest02242 extends HttpServlet {
       if (values != null) param = values[0];
     }
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -75,7 +76,7 @@ public class BenchmarkTest02242 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     // Chain a bunch of propagators in sequence

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00657")
 public class BenchmarkTest00657 extends HttpServlet {
@@ -45,7 +46,7 @@ public class BenchmarkTest00657 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest00657");
     if (param == null) param = "";
 
-    String bar = "safe!";
+    @RUntainted String bar = "safe!";
     java.util.HashMap<String, Object> map27260 = new java.util.HashMap<String, Object>();
     map27260.put("keyA-27260", "a_Value"); // put some stuff in the collection
     map27260.put("keyB-27260", param); // put it in a collection
@@ -53,7 +54,7 @@ public class BenchmarkTest00657 extends HttpServlet {
     bar = (String) map27260.get("keyB-27260"); // get it back out
     bar = (String) map27260.get("keyA-27260"); // get safe value back out
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");

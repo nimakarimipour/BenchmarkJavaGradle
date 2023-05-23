@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01440")
 public class BenchmarkTest01440 extends HttpServlet {
@@ -40,11 +41,11 @@ public class BenchmarkTest01440 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
+    @RUntainted String param = "";
     boolean flag = true;
     java.util.Enumeration<String> names = request.getParameterNames();
     while (names.hasMoreElements() && flag) {
-      String name = (String) names.nextElement();
+      @RUntainted String name = (String) names.nextElement();
       String[] values = request.getParameterValues(name);
       if (values != null) {
         for (int i = 0; i < values.length && flag; i++) {
@@ -57,9 +58,9 @@ public class BenchmarkTest01440 extends HttpServlet {
       }
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
@@ -79,10 +80,10 @@ public class BenchmarkTest01440 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple ? condition that assigns constant to bar on true condition
       int num = 106;

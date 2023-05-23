@@ -16,13 +16,14 @@
  * @created 2015
  */
 package org.owasp.benchmark.helpers;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class Thing2 implements ThingInterface {
 
   @Override
-  public String doSomething(String i) {
+  public @RUntainted String doSomething(String i) {
     if (i == null) return "";
-    String r = new StringBuilder(i).toString();
+    @RUntainted String r = new StringBuilder(i).toString();
     return r;
   }
 }

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00093")
 public class BenchmarkTest00093 extends HttpServlet {
@@ -52,7 +53,7 @@ public class BenchmarkTest00093 extends HttpServlet {
 
     javax.servlet.http.Cookie[] theCookies = request.getCookies();
 
-    String param = "noCookieValueSupplied";
+    @RUntainted String param = "noCookieValueSupplied";
     if (theCookies != null) {
       for (javax.servlet.http.Cookie theCookie : theCookies) {
         if (theCookie.getName().equals("BenchmarkTest00093")) {
@@ -62,9 +63,9 @@ public class BenchmarkTest00093 extends HttpServlet {
       }
     }
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
-      java.util.List<String> valuesList = new java.util.ArrayList<String>();
+      java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
       valuesList.add(param);
       valuesList.add("moresafe");
@@ -74,13 +75,13 @@ public class BenchmarkTest00093 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

@@ -19,6 +19,7 @@ package org.owasp.benchmark.helpers;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class SeparateClassRequest {
   private HttpServletRequest request;
@@ -27,7 +28,7 @@ public class SeparateClassRequest {
     this.request = request;
   }
 
-  public String getTheParameter(String p) {
+  public @RUntainted String getTheParameter(String p) {
     return request.getParameter(p);
   }
 
@@ -49,7 +50,7 @@ public class SeparateClassRequest {
   }
 
   // This method is a 'safe' source.
-  public String getTheValue(String p) {
+  public @RUntainted String getTheValue(String p) {
     return "bar";
   }
 }
