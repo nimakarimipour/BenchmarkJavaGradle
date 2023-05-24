@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,81 +28,81 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01353")
 public class BenchmarkTest01353 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01353");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest01353");
+            if (values != null) param = values[0];
+        }
 
-    String osName = System.getProperty("os.name");
-    if (osName.indexOf("Windows") != -1) {
-      argList.add("cmd.exe");
-      argList.add("/c");
-    } else {
-      argList.add("sh");
-      argList.add("-c");
-    }
-    argList.add("echo " + bar);
+        @RUntainted String bar = new Test().doSomething(request, param);
 
-    ProcessBuilder pb = new ProcessBuilder();
+        java.util.List<@RUntainted String> argList = new java.util.ArrayList<@RUntainted String>();
 
-    pb.command(argList);
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("Windows") != -1) {
+            argList.add("cmd.exe");
+            argList.add("/c");
+        } else {
+            argList.add("sh");
+            argList.add("-c");
+        }
+        argList.add("echo " + bar);
 
-    try {
-      Process p = pb.start();
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println(
-          "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
-      throw new ServletException(e);
-    }
-  } // end doPost
+        ProcessBuilder pb = new ProcessBuilder();
 
-  private class Test {
+        pb.command(argList);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        try {
+            Process p = pb.start();
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println(
+                    "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
+            throw new ServletException(e);
+        }
+    } // end doPost
 
-      String bar;
-      String guess = "ABC";
-      char switchTarget = guess.charAt(1); // condition 'B', which is safe
+    private class Test {
 
-      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-      switch (switchTarget) {
-        case 'A':
-          bar = param;
-          break;
-        case 'B':
-          bar = "bob";
-          break;
-        case 'C':
-        case 'D':
-          bar = param;
-          break;
-        default:
-          bar = "bob's your uncle";
-          break;
-      }
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      return bar;
-    }
-  } // end innerclass Test
+            String bar;
+            String guess = "ABC";
+            char switchTarget = guess.charAt(1); // condition 'B', which is safe
+
+            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+            switch (switchTarget) {
+                case 'A':
+                    bar = param;
+                    break;
+                case 'B':
+                    bar = "bob";
+                    break;
+                case 'C':
+                case 'D':
+                    bar = param;
+                    break;
+                default:
+                    bar = "bob's your uncle";
+                    break;
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

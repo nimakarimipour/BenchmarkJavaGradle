@@ -27,51 +27,50 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-00/BenchmarkTest01082")
 public class BenchmarkTest01082 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest01082") != null) {
-      param = request.getHeader("BenchmarkTest01082");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        if (request.getHeader("BenchmarkTest01082") != null) {
+            param = request.getHeader("BenchmarkTest01082");
+        }
 
-    // javax.servlet.http.HttpSession.setAttribute(java.lang.String^,java.lang.Object)
-    request.getSession().setAttribute(bar, "10340");
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    response
-        .getWriter()
-        .println(
-            "Item: '"
-                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                + "' with value: '10340' saved in session.");
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        // javax.servlet.http.HttpSession.setAttribute(java.lang.String^,java.lang.Object)
+        request.getSession().setAttribute(bar, "10340");
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.getWriter()
+                .println(
+                        "Item: '"
+                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                                + "' with value: '10340' saved in session.");
+    } // end doPost
 
-      String bar = param;
-      if (param != null && param.length() > 1) {
-        bar = param.substring(0, param.length() - 1);
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = param;
+            if (param != null && param.length() > 1) {
+                bar = param.substring(0, param.length() - 1);
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

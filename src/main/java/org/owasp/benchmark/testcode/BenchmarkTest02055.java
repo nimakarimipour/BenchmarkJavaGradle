@@ -27,42 +27,42 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest02055")
 public class BenchmarkTest02055 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("Referer");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("Referer");
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().println(bar.toCharArray());
-  } // end doPost
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    org.owasp.benchmark.helpers.ThingInterface thing =
-        org.owasp.benchmark.helpers.ThingFactory.createThing();
-    String bar = thing.doSomething(param);
+        String bar = doSomething(request, param);
 
-    return bar;
-  }
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().println(bar.toCharArray());
+    } // end doPost
+
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        org.owasp.benchmark.helpers.ThingInterface thing =
+                org.owasp.benchmark.helpers.ThingFactory.createThing();
+        String bar = thing.doSomething(param);
+
+        return bar;
+    }
 }

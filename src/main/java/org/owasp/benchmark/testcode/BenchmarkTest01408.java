@@ -27,76 +27,75 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-01/BenchmarkTest01408")
 public class BenchmarkTest01408 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    boolean flag = true;
-    java.util.Enumeration<String> names = request.getParameterNames();
-    while (names.hasMoreElements() && flag) {
-      String name = (String) names.nextElement();
-      String[] values = request.getParameterValues(name);
-      if (values != null) {
-        for (int i = 0; i < values.length && flag; i++) {
-          String value = values[i];
-          if (value.equals("BenchmarkTest01408")) {
-            param = name;
-            flag = false;
-          }
-        }
-      }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String fileName = null;
-    java.io.FileOutputStream fos = null;
+        String param = "";
+        boolean flag = true;
+        java.util.Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements() && flag) {
+            String name = (String) names.nextElement();
+            String[] values = request.getParameterValues(name);
+            if (values != null) {
+                for (int i = 0; i < values.length && flag; i++) {
+                    String value = values[i];
+                    if (value.equals("BenchmarkTest01408")) {
+                        param = name;
+                        flag = false;
+                    }
+                }
+            }
+        }
 
-    try {
-      fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
+        String bar = new Test().doSomething(request, param);
 
-      fos = new java.io.FileOutputStream(fileName, false);
-      response
-          .getWriter()
-          .println(
-              "Now ready to write to file: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
+        String fileName = null;
+        java.io.FileOutputStream fos = null;
 
-    } catch (Exception e) {
-      System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
-      //			System.out.println("File exception caught and swallowed: " + e.getMessage());
-    } finally {
-      if (fos != null) {
         try {
-          fos.close();
-          fos = null;
+            fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
+
+            fos = new java.io.FileOutputStream(fileName, false);
+            response.getWriter()
+                    .println(
+                            "Now ready to write to file: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
+
         } catch (Exception e) {
-          // we tried...
+            System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
+            //			System.out.println("File exception caught and swallowed: " + e.getMessage());
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                    fos = null;
+                } catch (Exception e) {
+                    // we tried...
+                }
+            }
         }
-      }
-    }
-  } // end doPost
+    } // end doPost
 
-  private class Test {
+    private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      org.owasp.benchmark.helpers.ThingInterface thing =
-          org.owasp.benchmark.helpers.ThingFactory.createThing();
-      String bar = thing.doSomething(param);
+            org.owasp.benchmark.helpers.ThingInterface thing =
+                    org.owasp.benchmark.helpers.ThingFactory.createThing();
+            String bar = thing.doSomething(param);
 
-      return bar;
-    }
-  } // end innerclass Test
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,42 +27,42 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-02/BenchmarkTest01337")
 public class BenchmarkTest01337 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01337");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    response.setHeader("X-XSS-Protection", "0");
-    Object[] obj = {"a", "b"};
-    response.getWriter().format(bar, obj);
-  } // end doPost
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest01337");
+            if (values != null) param = values[0];
+        }
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.setHeader("X-XSS-Protection", "0");
+        Object[] obj = {"a", "b"};
+        response.getWriter().format(bar, obj);
+    } // end doPost
 
-      StringBuilder sbxyz24804 = new StringBuilder(param);
-      String bar = sbxyz24804.append("_SafeStuff").toString();
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            StringBuilder sbxyz24804 = new StringBuilder(param);
+            String bar = sbxyz24804.append("_SafeStuff").toString();
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,81 +27,85 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/hash-01/BenchmarkTest01578")
 public class BenchmarkTest01578 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest01578");
-    String param;
-    if (values != null && values.length > 0) param = values[0];
-    else param = "";
+        String[] values = request.getParameterValues("BenchmarkTest01578");
+        String param;
+        if (values != null && values.length > 0) param = values[0];
+        else param = "";
 
-    String bar = new Test().doSomething(request, param);
+        String bar = new Test().doSomething(request, param);
 
-    try {
-      java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
-      byte[] input = {(byte) '?'};
-      Object inputParam = bar;
-      if (inputParam instanceof String) input = ((String) inputParam).getBytes();
-      if (inputParam instanceof java.io.InputStream) {
-        byte[] strInput = new byte[1000];
-        int i = ((java.io.InputStream) inputParam).read(strInput);
-        if (i == -1) {
-          response
-              .getWriter()
-              .println(
-                  "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
-          return;
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] input = {(byte) '?'};
+            Object inputParam = bar;
+            if (inputParam instanceof String) input = ((String) inputParam).getBytes();
+            if (inputParam instanceof java.io.InputStream) {
+                byte[] strInput = new byte[1000];
+                int i = ((java.io.InputStream) inputParam).read(strInput);
+                if (i == -1) {
+                    response.getWriter()
+                            .println(
+                                    "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
+                    return;
+                }
+                input = java.util.Arrays.copyOf(strInput, i);
+            }
+            md.update(input);
+
+            byte[] result = md.digest();
+            java.io.File fileTarget =
+                    new java.io.File(
+                            new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
+                            "passwordFile.txt");
+            java.io.FileWriter fw =
+                    new java.io.FileWriter(fileTarget, true); // the true will append the new data
+            fw.write(
+                    "hash_value="
+                            + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)
+                            + "\n");
+            fw.close();
+            response.getWriter()
+                    .println(
+                            "Sensitive value '"
+                                    + org.owasp
+                                            .esapi
+                                            .ESAPI
+                                            .encoder()
+                                            .encodeForHTML(new String(input))
+                                    + "' hashed and stored<br/>");
+
+        } catch (java.security.NoSuchAlgorithmException e) {
+            System.out.println("Problem executing hash - TestCase");
+            throw new ServletException(e);
         }
-        input = java.util.Arrays.copyOf(strInput, i);
-      }
-      md.update(input);
 
-      byte[] result = md.digest();
-      java.io.File fileTarget =
-          new java.io.File(
-              new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
-              "passwordFile.txt");
-      java.io.FileWriter fw =
-          new java.io.FileWriter(fileTarget, true); // the true will append the new data
-      fw.write(
-          "hash_value=" + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true) + "\n");
-      fw.close();
-      response
-          .getWriter()
-          .println(
-              "Sensitive value '"
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(new String(input))
-                  + "' hashed and stored<br/>");
+        response.getWriter()
+                .println(
+                        "Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
+    } // end doPost
 
-    } catch (java.security.NoSuchAlgorithmException e) {
-      System.out.println("Problem executing hash - TestCase");
-      throw new ServletException(e);
-    }
+    private class Test {
 
-    response
-        .getWriter()
-        .println("Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
-  } // end doPost
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-  private class Test {
+            StringBuilder sbxyz85952 = new StringBuilder(param);
+            String bar = sbxyz85952.append("_SafeStuff").toString();
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
-
-      StringBuilder sbxyz85952 = new StringBuilder(param);
-      String bar = sbxyz85952.append("_SafeStuff").toString();
-
-      return bar;
-    }
-  } // end innerclass Test
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,81 +27,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xpathi-00/BenchmarkTest01224")
 public class BenchmarkTest01224 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01224");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01224");
 
-    try {
-      java.io.FileInputStream file =
-          new java.io.FileInputStream(
-              org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                  "employees.xml", this.getClass().getClassLoader()));
-      javax.xml.parsers.DocumentBuilderFactory builderFactory =
-          javax.xml.parsers.DocumentBuilderFactory.newInstance();
-      // Prevent XXE
-      builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-      javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
-      org.w3c.dom.Document xmlDocument = builder.parse(file);
-      javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
-      javax.xml.xpath.XPath xp = xpf.newXPath();
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-      String expression = "/Employees/Employee[@emplid='" + bar + "']";
-      String result = xp.evaluate(expression, xmlDocument);
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-      response.getWriter().println("Your query results are: " + result + "<br/>");
+        String bar = new Test().doSomething(request, param);
 
-    } catch (javax.xml.xpath.XPathExpressionException
-        | javax.xml.parsers.ParserConfigurationException
-        | org.xml.sax.SAXException e) {
-      response
-          .getWriter()
-          .println(
-              "Error parsing XPath input: '"
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
-                  + "'");
-      throw new ServletException(e);
-    }
-  } // end doPost
+        try {
+            java.io.FileInputStream file =
+                    new java.io.FileInputStream(
+                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                                    "employees.xml", this.getClass().getClassLoader()));
+            javax.xml.parsers.DocumentBuilderFactory builderFactory =
+                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
+            // Prevent XXE
+            builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            org.w3c.dom.Document xmlDocument = builder.parse(file);
+            javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
+            javax.xml.xpath.XPath xp = xpf.newXPath();
 
-  private class Test {
+            String expression = "/Employees/Employee[@emplid='" + bar + "']";
+            String result = xp.evaluate(expression, xmlDocument);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+            response.getWriter().println("Your query results are: " + result + "<br/>");
 
-      String bar = "";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+        } catch (javax.xml.xpath.XPathExpressionException
+                | javax.xml.parsers.ParserConfigurationException
+                | org.xml.sax.SAXException e) {
+            response.getWriter()
+                    .println(
+                            "Error parsing XPath input: '"
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
+                                    + "'");
+            throw new ServletException(e);
+        }
+    } // end doPost
 
-        valuesList.remove(0); // remove the 1st safe value
+    private class Test {
 
-        bar = valuesList.get(0); // get the param value
-      }
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      return bar;
-    }
-  } // end innerclass Test
+            String bar = "";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
+
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(0); // get the param value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

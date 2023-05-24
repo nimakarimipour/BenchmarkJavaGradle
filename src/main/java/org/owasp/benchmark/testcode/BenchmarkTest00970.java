@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,80 +28,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest00970")
 public class BenchmarkTest00970 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    javax.servlet.http.Cookie userCookie =
-        new javax.servlet.http.Cookie("BenchmarkTest00970", "ECHOOO");
-    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-    userCookie.setSecure(true);
-    userCookie.setPath(request.getRequestURI());
-    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-    response.addCookie(userCookie);
-    javax.servlet.RequestDispatcher rd =
-        request.getRequestDispatcher("/cmdi-01/BenchmarkTest00970.html");
-    rd.include(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        javax.servlet.http.Cookie userCookie =
+                new javax.servlet.http.Cookie("BenchmarkTest00970", "ECHOOO");
+        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+        userCookie.setSecure(true);
+        userCookie.setPath(request.getRequestURI());
+        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+        response.addCookie(userCookie);
+        javax.servlet.RequestDispatcher rd =
+                request.getRequestDispatcher("/cmdi-01/BenchmarkTest00970.html");
+        rd.include(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+        javax.servlet.http.Cookie[] theCookies = request.getCookies();
 
-    String param = "noCookieValueSupplied";
-    if (theCookies != null) {
-      for (javax.servlet.http.Cookie theCookie : theCookies) {
-        if (theCookie.getName().equals("BenchmarkTest00970")) {
-          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-          break;
+        String param = "noCookieValueSupplied";
+        if (theCookies != null) {
+            for (javax.servlet.http.Cookie theCookie : theCookies) {
+                if (theCookie.getName().equals("BenchmarkTest00970")) {
+                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+                    break;
+                }
+            }
         }
-      }
-    }
 
-    String bar = new Test().doSomething(request, param);
+        String bar = new Test().doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+        java.util.List<@RUntainted String> argList = new java.util.ArrayList<@RUntainted String>();
 
-    String osName = System.getProperty("os.name");
-    if (osName.indexOf("Windows") != -1) {
-      argList.add("cmd.exe");
-      argList.add("/c");
-    } else {
-      argList.add("sh");
-      argList.add("-c");
-    }
-    argList.add("echo " + bar);
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("Windows") != -1) {
+            argList.add("cmd.exe");
+            argList.add("/c");
+        } else {
+            argList.add("sh");
+            argList.add("-c");
+        }
+        argList.add("echo " + bar);
 
-    ProcessBuilder pb = new ProcessBuilder(argList);
+        ProcessBuilder pb = new ProcessBuilder(argList);
 
-    try {
-      Process p = pb.start();
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println(
-          "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
-      throw new ServletException(e);
-    }
-  } // end doPost
+        try {
+            Process p = pb.start();
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println(
+                    "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
+            throw new ServletException(e);
+        }
+    } // end doPost
 
-  private class Test {
+    private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      String bar;
+            String bar;
 
-      // Simple ? condition that assigns constant to bar on true condition
-      int num = 106;
+            // Simple ? condition that assigns constant to bar on true condition
+            int num = 106;
 
-      bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+            bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-      return bar;
-    }
-  } // end innerclass Test
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

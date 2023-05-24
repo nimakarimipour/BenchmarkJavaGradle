@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,45 +28,47 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-00/BenchmarkTest00176")
 public class BenchmarkTest00176 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest00176") != null) {
-      param = request.getHeader("BenchmarkTest00176");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = param;
+        String param = "";
+        if (request.getHeader("BenchmarkTest00176") != null) {
+            param = request.getHeader("BenchmarkTest00176");
+        }
 
-    String cmd = "";
-    String osName = System.getProperty("os.name");
-    if (osName.indexOf("Windows") != -1) {
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
+
+        @RUntainted String bar = param;
+
+        String cmd = "";
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("Windows") != -1) {
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+        }
+
+        @RUntainted String[] argsEnv = {"Foo=bar"};
+        Runtime r = Runtime.getRuntime();
+
+        try {
+            Process p =
+                    r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty("user.dir")));
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
     }
-
-    String[] argsEnv = {"Foo=bar"};
-    Runtime r = Runtime.getRuntime();
-
-    try {
-      Process p = r.exec(cmd + bar, argsEnv, new java.io.File(System.getProperty("user.dir")));
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  }
 }

@@ -27,90 +27,94 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/hash-01/BenchmarkTest01167")
 public class BenchmarkTest01167 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01167");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01167");
 
-    try {
-      java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-      byte[] input = {(byte) '?'};
-      Object inputParam = bar;
-      if (inputParam instanceof String) input = ((String) inputParam).getBytes();
-      if (inputParam instanceof java.io.InputStream) {
-        byte[] strInput = new byte[1000];
-        int i = ((java.io.InputStream) inputParam).read(strInput);
-        if (i == -1) {
-          response
-              .getWriter()
-              .println(
-                  "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
-          return;
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
         }
-        input = java.util.Arrays.copyOf(strInput, i);
-      }
-      md.update(input);
 
-      byte[] result = md.digest();
-      java.io.File fileTarget =
-          new java.io.File(
-              new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
-              "passwordFile.txt");
-      java.io.FileWriter fw =
-          new java.io.FileWriter(fileTarget, true); // the true will append the new data
-      fw.write(
-          "hash_value=" + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true) + "\n");
-      fw.close();
-      response
-          .getWriter()
-          .println(
-              "Sensitive value '"
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(new String(input))
-                  + "' hashed and stored<br/>");
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    } catch (java.security.NoSuchAlgorithmException e) {
-      System.out.println("Problem executing hash - TestCase");
-      throw new ServletException(e);
-    }
+        String bar = new Test().doSomething(request, param);
 
-    response
-        .getWriter()
-        .println("Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
-  } // end doPost
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] input = {(byte) '?'};
+            Object inputParam = bar;
+            if (inputParam instanceof String) input = ((String) inputParam).getBytes();
+            if (inputParam instanceof java.io.InputStream) {
+                byte[] strInput = new byte[1000];
+                int i = ((java.io.InputStream) inputParam).read(strInput);
+                if (i == -1) {
+                    response.getWriter()
+                            .println(
+                                    "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
+                    return;
+                }
+                input = java.util.Arrays.copyOf(strInput, i);
+            }
+            md.update(input);
 
-  private class Test {
+            byte[] result = md.digest();
+            java.io.File fileTarget =
+                    new java.io.File(
+                            new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
+                            "passwordFile.txt");
+            java.io.FileWriter fw =
+                    new java.io.FileWriter(fileTarget, true); // the true will append the new data
+            fw.write(
+                    "hash_value="
+                            + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)
+                            + "\n");
+            fw.close();
+            response.getWriter()
+                    .println(
+                            "Sensitive value '"
+                                    + org.owasp
+                                            .esapi
+                                            .ESAPI
+                                            .encoder()
+                                            .encodeForHTML(new String(input))
+                                    + "' hashed and stored<br/>");
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        } catch (java.security.NoSuchAlgorithmException e) {
+            System.out.println("Problem executing hash - TestCase");
+            throw new ServletException(e);
+        }
 
-      String bar = "safe!";
-      java.util.HashMap<String, Object> map70586 = new java.util.HashMap<String, Object>();
-      map70586.put("keyA-70586", "a-Value"); // put some stuff in the collection
-      map70586.put("keyB-70586", param); // put it in a collection
-      map70586.put("keyC", "another-Value"); // put some stuff in the collection
-      bar = (String) map70586.get("keyB-70586"); // get it back out
+        response.getWriter()
+                .println(
+                        "Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
+    } // end doPost
 
-      return bar;
-    }
-  } // end innerclass Test
+    private class Test {
+
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = "safe!";
+            java.util.HashMap<String, Object> map70586 = new java.util.HashMap<String, Object>();
+            map70586.put("keyA-70586", "a-Value"); // put some stuff in the collection
+            map70586.put("keyB-70586", param); // put it in a collection
+            map70586.put("keyC", "another-Value"); // put some stuff in the collection
+            bar = (String) map70586.get("keyB-70586"); // get it back out
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

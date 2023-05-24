@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,78 +28,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01686")
 public class BenchmarkTest01686 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String queryString = request.getQueryString();
-    String paramval = "BenchmarkTest01686" + "=";
-    int paramLoc = -1;
-    if (queryString != null) paramLoc = queryString.indexOf(paramval);
-    if (paramLoc == -1) {
-      response
-          .getWriter()
-          .println(
-              "getQueryString() couldn't find expected parameter '"
-                  + "BenchmarkTest01686"
-                  + "' in query string.");
-      return;
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String param =
-        queryString.substring(
-            paramLoc + paramval.length()); // 1st assume "BenchmarkTest01686" param is last
-    // parameter in query string.
-    // And then check to see if its in the middle of the query string and if so, trim off what
-    // comes after.
-    int ampersandLoc = queryString.indexOf("&", paramLoc);
-    if (ampersandLoc != -1) {
-      param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
-    }
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String queryString = request.getQueryString();
+        String paramval = "BenchmarkTest01686" + "=";
+        int paramLoc = -1;
+        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (paramLoc == -1) {
+            response.getWriter()
+                    .println(
+                            "getQueryString() couldn't find expected parameter '"
+                                    + "BenchmarkTest01686"
+                                    + "' in query string.");
+            return;
+        }
 
-    String cmd =
-        org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-            this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+        String param =
+                queryString.substring(
+                        paramLoc
+                                + paramval
+                                        .length()); // 1st assume "BenchmarkTest01686" param is last
+        // parameter in query string.
+        // And then check to see if its in the middle of the query string and if so, trim off what
+        // comes after.
+        int ampersandLoc = queryString.indexOf("&", paramLoc);
+        if (ampersandLoc != -1) {
+            param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+        }
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    Runtime r = Runtime.getRuntime();
+        @RUntainted String bar = new Test().doSomething(request, param);
 
-    try {
-      Process p = r.exec(args, argsEnv);
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  } // end doPost
+        String cmd =
+                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                        this.getClass().getClassLoader());
+        @RUntainted String[] args = {cmd};
+        @RUntainted String[] argsEnv = {bar};
 
-  private class Test {
+        Runtime r = Runtime.getRuntime();
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        try {
+            Process p = r.exec(args, argsEnv);
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
+    } // end doPost
 
-      String bar;
+    private class Test {
 
-      // Simple ? condition that assigns constant to bar on true condition
-      int num = 106;
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+            String bar;
 
-      return bar;
-    }
-  } // end innerclass Test
+            // Simple ? condition that assigns constant to bar on true condition
+            int num = 106;
+
+            bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,60 +27,60 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-02/BenchmarkTest01347")
 public class BenchmarkTest01347 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01347");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().println(bar);
-  } // end doPost
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest01347");
+            if (values != null) param = values[0];
+        }
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().println(bar);
+    } // end doPost
 
-      // Chain a bunch of propagators in sequence
-      String a81561 = param; // assign
-      StringBuilder b81561 = new StringBuilder(a81561); // stick in stringbuilder
-      b81561.append(" SafeStuff"); // append some safe content
-      b81561.replace(
-          b81561.length() - "Chars".length(),
-          b81561.length(),
-          "Chars"); // replace some of the end content
-      java.util.HashMap<String, Object> map81561 = new java.util.HashMap<String, Object>();
-      map81561.put("key81561", b81561.toString()); // put in a collection
-      String c81561 = (String) map81561.get("key81561"); // get it back out
-      String d81561 = c81561.substring(0, c81561.length() - 1); // extract most of it
-      String e81561 =
-          new String(
-              org.apache.commons.codec.binary.Base64.decodeBase64(
-                  org.apache.commons.codec.binary.Base64.encodeBase64(
-                      d81561.getBytes()))); // B64 encode and decode it
-      String f81561 = e81561.split(" ")[0]; // split it on a space
-      org.owasp.benchmark.helpers.ThingInterface thing =
-          org.owasp.benchmark.helpers.ThingFactory.createThing();
-      String bar = thing.doSomething(f81561); // reflection
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            // Chain a bunch of propagators in sequence
+            String a81561 = param; // assign
+            StringBuilder b81561 = new StringBuilder(a81561); // stick in stringbuilder
+            b81561.append(" SafeStuff"); // append some safe content
+            b81561.replace(
+                    b81561.length() - "Chars".length(),
+                    b81561.length(),
+                    "Chars"); // replace some of the end content
+            java.util.HashMap<String, Object> map81561 = new java.util.HashMap<String, Object>();
+            map81561.put("key81561", b81561.toString()); // put in a collection
+            String c81561 = (String) map81561.get("key81561"); // get it back out
+            String d81561 = c81561.substring(0, c81561.length() - 1); // extract most of it
+            String e81561 =
+                    new String(
+                            org.apache.commons.codec.binary.Base64.decodeBase64(
+                                    org.apache.commons.codec.binary.Base64.encodeBase64(
+                                            d81561.getBytes()))); // B64 encode and decode it
+            String f81561 = e81561.split(" ")[0]; // split it on a space
+            org.owasp.benchmark.helpers.ThingInterface thing =
+                    org.owasp.benchmark.helpers.ThingFactory.createThing();
+            String bar = thing.doSomething(f81561); // reflection
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,73 +27,74 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/securecookie-00/BenchmarkTest01061")
 public class BenchmarkTest01061 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest01061") != null) {
-      param = request.getHeader("BenchmarkTest01061");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        if (request.getHeader("BenchmarkTest01061") != null) {
+            param = request.getHeader("BenchmarkTest01061");
+        }
 
-    byte[] input = new byte[1000];
-    String str = "?";
-    Object inputParam = param;
-    if (inputParam instanceof String) str = ((String) inputParam);
-    if (inputParam instanceof java.io.InputStream) {
-      int i = ((java.io.InputStream) inputParam).read(input);
-      if (i == -1) {
-        response
-            .getWriter()
-            .println(
-                "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
-        return;
-      }
-      str = new String(input, 0, i);
-    }
-    if ("".equals(str)) str = "No cookie value supplied";
-    javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("SomeCookie", str);
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    cookie.setSecure(false);
-    cookie.setHttpOnly(true);
-    cookie.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
-    // e.g., /benchmark/sql-01/BenchmarkTest01001
-    response.addCookie(cookie);
+        String bar = new Test().doSomething(request, param);
 
-    response
-        .getWriter()
-        .println(
-            "Created cookie: 'SomeCookie': with value: '"
-                + org.owasp.esapi.ESAPI.encoder().encodeForHTML(str)
-                + "' and secure flag set to: false");
-  } // end doPost
+        byte[] input = new byte[1000];
+        String str = "?";
+        Object inputParam = param;
+        if (inputParam instanceof String) str = ((String) inputParam);
+        if (inputParam instanceof java.io.InputStream) {
+            int i = ((java.io.InputStream) inputParam).read(input);
+            if (i == -1) {
+                response.getWriter()
+                        .println(
+                                "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
+                return;
+            }
+            str = new String(input, 0, i);
+        }
+        if ("".equals(str)) str = "No cookie value supplied";
+        javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("SomeCookie", str);
 
-  private class Test {
+        cookie.setSecure(false);
+        cookie.setHttpOnly(true);
+        cookie.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
+        // e.g., /benchmark/sql-01/BenchmarkTest01001
+        response.addCookie(cookie);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.getWriter()
+                .println(
+                        "Created cookie: 'SomeCookie': with value: '"
+                                + org.owasp.esapi.ESAPI.encoder().encodeForHTML(str)
+                                + "' and secure flag set to: false");
+    } // end doPost
 
-      String bar = param;
-      if (param != null && param.length() > 1) {
-        StringBuilder sbxyz37461 = new StringBuilder(param);
-        bar = sbxyz37461.replace(param.length() - "Z".length(), param.length(), "Z").toString();
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = param;
+            if (param != null && param.length() > 1) {
+                StringBuilder sbxyz37461 = new StringBuilder(param);
+                bar =
+                        sbxyz37461
+                                .replace(param.length() - "Z".length(), param.length(), "Z")
+                                .toString();
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

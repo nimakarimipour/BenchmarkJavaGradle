@@ -27,63 +27,67 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest01666")
 public class BenchmarkTest01666 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String queryString = request.getQueryString();
-    String paramval = "BenchmarkTest01666" + "=";
-    int paramLoc = -1;
-    if (queryString != null) paramLoc = queryString.indexOf(paramval);
-    if (paramLoc == -1) {
-      response
-          .getWriter()
-          .println(
-              "getQueryString() couldn't find expected parameter '"
-                  + "BenchmarkTest01666"
-                  + "' in query string.");
-      return;
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String param =
-        queryString.substring(
-            paramLoc + paramval.length()); // 1st assume "BenchmarkTest01666" param is last
-    // parameter in query string.
-    // And then check to see if its in the middle of the query string and if so, trim off what
-    // comes after.
-    int ampersandLoc = queryString.indexOf("&", paramLoc);
-    if (ampersandLoc != -1) {
-      param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
-    }
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String queryString = request.getQueryString();
+        String paramval = "BenchmarkTest01666" + "=";
+        int paramLoc = -1;
+        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (paramLoc == -1) {
+            response.getWriter()
+                    .println(
+                            "getQueryString() couldn't find expected parameter '"
+                                    + "BenchmarkTest01666"
+                                    + "' in query string.");
+            return;
+        }
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().println(bar.toCharArray());
-  } // end doPost
+        String param =
+                queryString.substring(
+                        paramLoc
+                                + paramval
+                                        .length()); // 1st assume "BenchmarkTest01666" param is last
+        // parameter in query string.
+        // And then check to see if its in the middle of the query string and if so, trim off what
+        // comes after.
+        int ampersandLoc = queryString.indexOf("&", paramLoc);
+        if (ampersandLoc != -1) {
+            param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+        }
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().println(bar.toCharArray());
+    } // end doPost
 
-      String bar = param;
-      if (param != null && param.length() > 1) {
-        StringBuilder sbxyz41549 = new StringBuilder(param);
-        bar = sbxyz41549.replace(param.length() - "Z".length(), param.length(), "Z").toString();
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = param;
+            if (param != null && param.length() > 1) {
+                StringBuilder sbxyz41549 = new StringBuilder(param);
+                bar =
+                        sbxyz41549
+                                .replace(param.length() - "Z".length(), param.length(), "Z")
+                                .toString();
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

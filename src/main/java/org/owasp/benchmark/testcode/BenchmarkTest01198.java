@@ -27,96 +27,97 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/weakrand-02/BenchmarkTest01198")
 public class BenchmarkTest01198 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01198");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01198");
 
-    try {
-      double rand = java.security.SecureRandom.getInstance("SHA1PRNG").nextDouble();
-
-      String rememberMeKey = Double.toString(rand).substring(2); // Trim off the 0. at the front.
-
-      String user = "SafeDonna";
-      String fullClassName = this.getClass().getName();
-      String testCaseNumber =
-          fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
-      user += testCaseNumber;
-
-      String cookieName = "rememberMe" + testCaseNumber;
-
-      boolean foundUser = false;
-      javax.servlet.http.Cookie[] cookies = request.getCookies();
-      if (cookies != null) {
-        for (int i = 0; !foundUser && i < cookies.length; i++) {
-          javax.servlet.http.Cookie cookie = cookies[i];
-          if (cookieName.equals(cookie.getName())) {
-            if (cookie.getValue().equals(request.getSession().getAttribute(cookieName))) {
-              foundUser = true;
-            }
-          }
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
         }
-      }
 
-      if (foundUser) {
-        response.getWriter().println("Welcome back: " + user + "<br/>");
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-      } else {
-        javax.servlet.http.Cookie rememberMe =
-            new javax.servlet.http.Cookie(cookieName, rememberMeKey);
-        rememberMe.setSecure(true);
-        rememberMe.setHttpOnly(true);
-        rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
-        // e.g., /benchmark/sql-01/BenchmarkTest01001
-        request.getSession().setAttribute(cookieName, rememberMeKey);
-        response.addCookie(rememberMe);
-        response
-            .getWriter()
-            .println(
-                user
-                    + " has been remembered with cookie: "
-                    + rememberMe.getName()
-                    + " whose value is: "
-                    + rememberMe.getValue()
-                    + "<br/>");
-      }
-    } catch (java.security.NoSuchAlgorithmException e) {
-      System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
-      throw new ServletException(e);
-    }
-    response
-        .getWriter()
-        .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        try {
+            double rand = java.security.SecureRandom.getInstance("SHA1PRNG").nextDouble();
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+            String rememberMeKey =
+                    Double.toString(rand).substring(2); // Trim off the 0. at the front.
 
-      String bar = org.apache.commons.lang.StringEscapeUtils.escapeHtml(param);
+            String user = "SafeDonna";
+            String fullClassName = this.getClass().getName();
+            String testCaseNumber =
+                    fullClassName.substring(
+                            fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
+            user += testCaseNumber;
 
-      return bar;
-    }
-  } // end innerclass Test
+            String cookieName = "rememberMe" + testCaseNumber;
+
+            boolean foundUser = false;
+            javax.servlet.http.Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (int i = 0; !foundUser && i < cookies.length; i++) {
+                    javax.servlet.http.Cookie cookie = cookies[i];
+                    if (cookieName.equals(cookie.getName())) {
+                        if (cookie.getValue()
+                                .equals(request.getSession().getAttribute(cookieName))) {
+                            foundUser = true;
+                        }
+                    }
+                }
+            }
+
+            if (foundUser) {
+                response.getWriter().println("Welcome back: " + user + "<br/>");
+
+            } else {
+                javax.servlet.http.Cookie rememberMe =
+                        new javax.servlet.http.Cookie(cookieName, rememberMeKey);
+                rememberMe.setSecure(true);
+                rememberMe.setHttpOnly(true);
+                rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
+                // e.g., /benchmark/sql-01/BenchmarkTest01001
+                request.getSession().setAttribute(cookieName, rememberMeKey);
+                response.addCookie(rememberMe);
+                response.getWriter()
+                        .println(
+                                user
+                                        + " has been remembered with cookie: "
+                                        + rememberMe.getName()
+                                        + " whose value is: "
+                                        + rememberMe.getValue()
+                                        + "<br/>");
+            }
+        } catch (java.security.NoSuchAlgorithmException e) {
+            System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
+            throw new ServletException(e);
+        }
+        response.getWriter()
+                .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
+    } // end doPost
+
+    private class Test {
+
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = org.apache.commons.lang.StringEscapeUtils.escapeHtml(param);
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

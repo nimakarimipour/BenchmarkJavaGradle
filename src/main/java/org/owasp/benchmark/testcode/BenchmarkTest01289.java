@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,61 +28,62 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01289")
 public class BenchmarkTest01289 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = request.getParameter("BenchmarkTest01289");
-    if (param == null) param = "";
-
-    String bar = new Test().doSomething(request, param);
-
-    String cmd = "";
-    String osName = System.getProperty("os.name");
-    if (osName.indexOf("Windows") != -1) {
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String[] argsEnv = {"Foo=bar"};
-    Runtime r = Runtime.getRuntime();
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    try {
-      Process p = r.exec(cmd + bar, argsEnv);
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  } // end doPost
+        String param = request.getParameter("BenchmarkTest01289");
+        if (param == null) param = "";
 
-  private class Test {
+        @RUntainted String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        String cmd = "";
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("Windows") != -1) {
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+        }
 
-      String bar = "alsosafe";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+        @RUntainted String[] argsEnv = {"Foo=bar"};
+        Runtime r = Runtime.getRuntime();
 
-        valuesList.remove(0); // remove the 1st safe value
+        try {
+            Process p = r.exec(cmd + bar, argsEnv);
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
+    } // end doPost
 
-        bar = valuesList.get(1); // get the last 'safe' value
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = "alsosafe";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
+
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(1); // get the last 'safe' value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

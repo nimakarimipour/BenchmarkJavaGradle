@@ -27,33 +27,33 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-01/BenchmarkTest00730")
 public class BenchmarkTest00730 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest00730");
-    String param;
-    if (values != null && values.length > 0) param = values[0];
-    else param = "";
+        String[] values = request.getParameterValues("BenchmarkTest00730");
+        String param;
+        if (values != null && values.length > 0) param = values[0];
+        else param = "";
 
-    String bar = "safe!";
-    java.util.HashMap<String, Object> map29173 = new java.util.HashMap<String, Object>();
-    map29173.put("keyA-29173", "a_Value"); // put some stuff in the collection
-    map29173.put("keyB-29173", param); // put it in a collection
-    map29173.put("keyC", "another_Value"); // put some stuff in the collection
-    bar = (String) map29173.get("keyB-29173"); // get it back out
-    bar = (String) map29173.get("keyA-29173"); // get safe value back out
+        String bar = "safe!";
+        java.util.HashMap<String, Object> map29173 = new java.util.HashMap<String, Object>();
+        map29173.put("keyA-29173", "a_Value"); // put some stuff in the collection
+        map29173.put("keyB-29173", param); // put it in a collection
+        map29173.put("keyC", "another_Value"); // put some stuff in the collection
+        bar = (String) map29173.get("keyB-29173"); // get it back out
+        bar = (String) map29173.get("keyA-29173"); // get safe value back out
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().write(bar.toCharArray());
-  }
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().write(bar.toCharArray());
+    }
 }

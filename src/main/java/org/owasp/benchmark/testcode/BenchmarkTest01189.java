@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,74 +28,75 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01189")
 public class BenchmarkTest01189 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01189");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01189");
 
-    String cmd = "";
-    String a1 = "";
-    String a2 = "";
-    String[] args = null;
-    String osName = System.getProperty("os.name");
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-    if (osName.indexOf("Windows") != -1) {
-      a1 = "cmd.exe";
-      a2 = "/c";
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-      args = new String[] {a1, a2, cmd, bar};
-    } else {
-      a1 = "sh";
-      a2 = "-c";
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-      args = new String[] {a1, a2, cmd + bar};
-    }
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    Runtime r = Runtime.getRuntime();
+        @RUntainted String bar = new Test().doSomething(request, param);
 
-    try {
-      Process p = r.exec(args);
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  } // end doPost
+        String cmd = "";
+        String a1 = "";
+        String a2 = "";
+        @RUntainted String[] args = null;
+        String osName = System.getProperty("os.name");
 
-  private class Test {
+        if (osName.indexOf("Windows") != -1) {
+            a1 = "cmd.exe";
+            a2 = "/c";
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+            args = new @RUntainted String[] {a1, a2, cmd, bar};
+        } else {
+            a1 = "sh";
+            a2 = "-c";
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
+            args = new @RUntainted String[] {a1, a2, cmd + bar};
+        }
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        Runtime r = Runtime.getRuntime();
 
-      String bar;
+        try {
+            Process p = r.exec(args);
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
+    } // end doPost
 
-      // Simple if statement that assigns constant to bar on true condition
-      int num = 86;
-      if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-      else bar = param;
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar;
+
+            // Simple if statement that assigns constant to bar on true condition
+            int num = 86;
+            if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+            else bar = param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

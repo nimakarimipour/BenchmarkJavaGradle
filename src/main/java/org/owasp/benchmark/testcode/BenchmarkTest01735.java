@@ -27,98 +27,99 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xpathi-00/BenchmarkTest01735")
 public class BenchmarkTest01735 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String queryString = request.getQueryString();
-    String paramval = "BenchmarkTest01735" + "=";
-    int paramLoc = -1;
-    if (queryString != null) paramLoc = queryString.indexOf(paramval);
-    if (paramLoc == -1) {
-      response
-          .getWriter()
-          .println(
-              "getQueryString() couldn't find expected parameter '"
-                  + "BenchmarkTest01735"
-                  + "' in query string.");
-      return;
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String param =
-        queryString.substring(
-            paramLoc + paramval.length()); // 1st assume "BenchmarkTest01735" param is last
-    // parameter in query string.
-    // And then check to see if its in the middle of the query string and if so, trim off what
-    // comes after.
-    int ampersandLoc = queryString.indexOf("&", paramLoc);
-    if (ampersandLoc != -1) {
-      param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
-    }
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String queryString = request.getQueryString();
+        String paramval = "BenchmarkTest01735" + "=";
+        int paramLoc = -1;
+        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (paramLoc == -1) {
+            response.getWriter()
+                    .println(
+                            "getQueryString() couldn't find expected parameter '"
+                                    + "BenchmarkTest01735"
+                                    + "' in query string.");
+            return;
+        }
 
-    try {
-      java.io.FileInputStream file =
-          new java.io.FileInputStream(
-              org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                  "employees.xml", this.getClass().getClassLoader()));
-      javax.xml.parsers.DocumentBuilderFactory builderFactory =
-          javax.xml.parsers.DocumentBuilderFactory.newInstance();
-      // Prevent XXE
-      builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-      javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
-      org.w3c.dom.Document xmlDocument = builder.parse(file);
-      javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
-      javax.xml.xpath.XPath xp = xpf.newXPath();
+        String param =
+                queryString.substring(
+                        paramLoc
+                                + paramval
+                                        .length()); // 1st assume "BenchmarkTest01735" param is last
+        // parameter in query string.
+        // And then check to see if its in the middle of the query string and if so, trim off what
+        // comes after.
+        int ampersandLoc = queryString.indexOf("&", paramLoc);
+        if (ampersandLoc != -1) {
+            param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+        }
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-      String expression = "/Employees/Employee[@emplid='" + bar + "']";
-      org.w3c.dom.NodeList nodeList =
-          (org.w3c.dom.NodeList)
-              xp.compile(expression).evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);
+        String bar = new Test().doSomething(request, param);
 
-      response.getWriter().println("Your query results are: <br/>");
+        try {
+            java.io.FileInputStream file =
+                    new java.io.FileInputStream(
+                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                                    "employees.xml", this.getClass().getClassLoader()));
+            javax.xml.parsers.DocumentBuilderFactory builderFactory =
+                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
+            // Prevent XXE
+            builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            org.w3c.dom.Document xmlDocument = builder.parse(file);
+            javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
+            javax.xml.xpath.XPath xp = xpf.newXPath();
 
-      for (int i = 0; i < nodeList.getLength(); i++) {
-        org.w3c.dom.Element value = (org.w3c.dom.Element) nodeList.item(i);
-        response.getWriter().println(value.getTextContent() + "<br/>");
-      }
-    } catch (javax.xml.xpath.XPathExpressionException
-        | javax.xml.parsers.ParserConfigurationException
-        | org.xml.sax.SAXException e) {
-      response
-          .getWriter()
-          .println(
-              "Error parsing XPath input: '"
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
-                  + "'");
-      throw new ServletException(e);
-    }
-  } // end doPost
+            String expression = "/Employees/Employee[@emplid='" + bar + "']";
+            org.w3c.dom.NodeList nodeList =
+                    (org.w3c.dom.NodeList)
+                            xp.compile(expression)
+                                    .evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);
 
-  private class Test {
+            response.getWriter().println("Your query results are: <br/>");
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                org.w3c.dom.Element value = (org.w3c.dom.Element) nodeList.item(i);
+                response.getWriter().println(value.getTextContent() + "<br/>");
+            }
+        } catch (javax.xml.xpath.XPathExpressionException
+                | javax.xml.parsers.ParserConfigurationException
+                | org.xml.sax.SAXException e) {
+            response.getWriter()
+                    .println(
+                            "Error parsing XPath input: '"
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
+                                    + "'");
+            throw new ServletException(e);
+        }
+    } // end doPost
 
-      String bar;
+    private class Test {
 
-      // Simple ? condition that assigns constant to bar on true condition
-      int num = 106;
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+            String bar;
 
-      return bar;
-    }
-  } // end innerclass Test
+            // Simple ? condition that assigns constant to bar on true condition
+            int num = 106;
+
+            bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,57 +27,56 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-01/BenchmarkTest02085")
 public class BenchmarkTest02085 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest02085");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest02085");
 
-    // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
-    request.getSession().setAttribute("userid", bar);
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-    response
-        .getWriter()
-        .println(
-            "Item: 'userid' with value: '"
-                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                + "' saved in session.");
-  } // end doPost
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+        String bar = doSomething(request, param);
 
-    String bar = "alsosafe";
-    if (param != null) {
-      java.util.List<String> valuesList = new java.util.ArrayList<String>();
-      valuesList.add("safe");
-      valuesList.add(param);
-      valuesList.add("moresafe");
+        // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
+        request.getSession().setAttribute("userid", bar);
 
-      valuesList.remove(0); // remove the 1st safe value
+        response.getWriter()
+                .println(
+                        "Item: 'userid' with value: '"
+                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                                + "' saved in session.");
+    } // end doPost
 
-      bar = valuesList.get(1); // get the last 'safe' value
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        String bar = "alsosafe";
+        if (param != null) {
+            java.util.List<String> valuesList = new java.util.ArrayList<String>();
+            valuesList.add("safe");
+            valuesList.add(param);
+            valuesList.add("moresafe");
+
+            valuesList.remove(0); // remove the 1st safe value
+
+            bar = valuesList.get(1); // get the last 'safe' value
+        }
+
+        return bar;
     }
-
-    return bar;
-  }
 }

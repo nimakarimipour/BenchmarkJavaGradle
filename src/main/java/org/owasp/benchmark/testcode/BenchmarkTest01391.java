@@ -27,55 +27,56 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-03/BenchmarkTest01391")
 public class BenchmarkTest01391 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01391");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest01391");
+            if (values != null) param = values[0];
+        }
 
-    try {
-      java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-      java.sql.ResultSet rs = statement.executeQuery(sql);
-      org.owasp.benchmark.helpers.DatabaseHelper.printResults(rs, sql, response);
-    } catch (java.sql.SQLException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
-    }
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        try {
+            java.sql.Statement statement =
+                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
+            java.sql.ResultSet rs = statement.executeQuery(sql);
+            org.owasp.benchmark.helpers.DatabaseHelper.printResults(rs, sql, response);
+        } catch (java.sql.SQLException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
+    } // end doPost
 
-      String bar = "safe!";
-      java.util.HashMap<String, Object> map24596 = new java.util.HashMap<String, Object>();
-      map24596.put("keyA-24596", "a-Value"); // put some stuff in the collection
-      map24596.put("keyB-24596", param); // put it in a collection
-      map24596.put("keyC", "another-Value"); // put some stuff in the collection
-      bar = (String) map24596.get("keyB-24596"); // get it back out
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = "safe!";
+            java.util.HashMap<String, Object> map24596 = new java.util.HashMap<String, Object>();
+            map24596.put("keyA-24596", "a-Value"); // put some stuff in the collection
+            map24596.put("keyB-24596", param); // put it in a collection
+            map24596.put("keyC", "another-Value"); // put some stuff in the collection
+            bar = (String) map24596.get("keyB-24596"); // get it back out
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

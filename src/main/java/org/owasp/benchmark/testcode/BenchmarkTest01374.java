@@ -27,53 +27,53 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-00/BenchmarkTest01374")
 public class BenchmarkTest01374 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01374");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    // javax.servlet.http.HttpSession.putValue(java.lang.String^,java.lang.Object)
-    request.getSession().putValue(bar, "10340");
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest01374");
+            if (values != null) param = values[0];
+        }
 
-    response
-        .getWriter()
-        .println(
-            "Item: '"
-                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                + "' with value: 10340 saved in session.");
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        // javax.servlet.http.HttpSession.putValue(java.lang.String^,java.lang.Object)
+        request.getSession().putValue(bar, "10340");
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.getWriter()
+                .println(
+                        "Item: '"
+                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                                + "' with value: 10340 saved in session.");
+    } // end doPost
 
-      String bar = "";
-      if (param != null) {
-        bar =
-            new String(
-                org.apache.commons.codec.binary.Base64.decodeBase64(
-                    org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = "";
+            if (param != null) {
+                bar =
+                        new String(
+                                org.apache.commons.codec.binary.Base64.decodeBase64(
+                                        org.apache.commons.codec.binary.Base64.encodeBase64(
+                                                param.getBytes())));
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

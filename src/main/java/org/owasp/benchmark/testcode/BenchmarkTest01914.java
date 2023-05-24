@@ -27,47 +27,47 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest01914")
 public class BenchmarkTest01914 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("Referer") != null) {
-      param = request.getHeader("Referer");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = doSomething(request, param);
+        String param = "";
+        if (request.getHeader("Referer") != null) {
+            param = request.getHeader("Referer");
+        }
 
-    response.setHeader("X-XSS-Protection", "0");
-    Object[] obj = {"a", bar};
-    java.io.PrintWriter out = response.getWriter();
-    out.write("<!DOCTYPE html>\n<html>\n<body>\n<p>");
-    out.format(java.util.Locale.US, "Formatted like: %1$s and %2$s.", obj);
-    out.write("\n</p>\n</body>\n</html>");
-  } // end doPost
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+        String bar = doSomething(request, param);
 
-    String bar;
+        response.setHeader("X-XSS-Protection", "0");
+        Object[] obj = {"a", bar};
+        java.io.PrintWriter out = response.getWriter();
+        out.write("<!DOCTYPE html>\n<html>\n<body>\n<p>");
+        out.format(java.util.Locale.US, "Formatted like: %1$s and %2$s.", obj);
+        out.write("\n</p>\n</body>\n</html>");
+    } // end doPost
 
-    // Simple if statement that assigns constant to bar on true condition
-    int num = 86;
-    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-    else bar = param;
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
 
-    return bar;
-  }
+        String bar;
+
+        // Simple if statement that assigns constant to bar on true condition
+        int num = 86;
+        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+        else bar = param;
+
+        return bar;
+    }
 }

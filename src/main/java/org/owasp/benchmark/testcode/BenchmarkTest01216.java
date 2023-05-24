@@ -27,64 +27,65 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01216")
 public class BenchmarkTest01216 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01216");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01216");
 
-    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-    try {
-      java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-      statement.addBatch(sql);
-      int[] counts = statement.executeBatch();
-      org.owasp.benchmark.helpers.DatabaseHelper.printResults(sql, counts, response);
-    } catch (java.sql.SQLException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
-    }
-  } // end doPost
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
-      String bar = "alsosafe";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+        try {
+            java.sql.Statement statement =
+                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
+            statement.addBatch(sql);
+            int[] counts = statement.executeBatch();
+            org.owasp.benchmark.helpers.DatabaseHelper.printResults(sql, counts, response);
+        } catch (java.sql.SQLException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
+    } // end doPost
 
-        valuesList.remove(0); // remove the 1st safe value
+    private class Test {
 
-        bar = valuesList.get(1); // get the last 'safe' value
-      }
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      return bar;
-    }
-  } // end innerclass Test
+            String bar = "alsosafe";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
+
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(1); // get the last 'safe' value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

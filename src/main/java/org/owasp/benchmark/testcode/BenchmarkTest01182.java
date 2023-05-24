@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,73 +28,73 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01182")
 public class BenchmarkTest01182 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01182");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01182");
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-    String osName = System.getProperty("os.name");
-    if (osName.indexOf("Windows") != -1) {
-      argList.add("cmd.exe");
-      argList.add("/c");
-    } else {
-      argList.add("sh");
-      argList.add("-c");
-    }
-    argList.add("echo " + bar);
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    ProcessBuilder pb = new ProcessBuilder(argList);
+        String bar = new Test().doSomething(request, param);
 
-    try {
-      Process p = pb.start();
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println(
-          "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
-      throw new ServletException(e);
-    }
-  } // end doPost
+        java.util.List<@RUntainted String> argList = new java.util.ArrayList<@RUntainted String>();
 
-  private class Test {
+        String osName = System.getProperty("os.name");
+        if (osName.indexOf("Windows") != -1) {
+            argList.add("cmd.exe");
+            argList.add("/c");
+        } else {
+            argList.add("sh");
+            argList.add("-c");
+        }
+        argList.add("echo " + bar);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        ProcessBuilder pb = new ProcessBuilder(argList);
 
-      String bar = "alsosafe";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+        try {
+            Process p = pb.start();
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println(
+                    "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
+            throw new ServletException(e);
+        }
+    } // end doPost
 
-        valuesList.remove(0); // remove the 1st safe value
+    private class Test {
 
-        bar = valuesList.get(1); // get the last 'safe' value
-      }
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      return bar;
-    }
-  } // end innerclass Test
+            String bar = "alsosafe";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
+
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(1); // get the last 'safe' value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,68 +27,68 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-06/BenchmarkTest02733")
 public class BenchmarkTest02733 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    org.owasp.benchmark.helpers.SeparateClassRequest scr =
-        new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest02733");
-
-    String bar = doSomething(request, param);
-
-    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-    try {
-      java.util.List<java.util.Map<String, Object>> list =
-          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForList(sql);
-      response.getWriter().println("Your results are: <br>");
-
-      //		System.out.println("Your results are");
-
-      for (Object o : list) {
-        response
-            .getWriter()
-            .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(o.toString()) + "<br>");
-        //			System.out.println(o.toString());
-      }
-    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-      response
-          .getWriter()
-          .println(
-              "No results returned for query: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-    } catch (org.springframework.dao.DataAccessException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
-    }
-  } // end doPost
-
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
-
-    String bar = "alsosafe";
-    if (param != null) {
-      java.util.List<String> valuesList = new java.util.ArrayList<String>();
-      valuesList.add("safe");
-      valuesList.add(param);
-      valuesList.add("moresafe");
-
-      valuesList.remove(0); // remove the 1st safe value
-
-      bar = valuesList.get(1); // get the last 'safe' value
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    return bar;
-  }
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        org.owasp.benchmark.helpers.SeparateClassRequest scr =
+                new org.owasp.benchmark.helpers.SeparateClassRequest(request);
+        String param = scr.getTheValue("BenchmarkTest02733");
+
+        String bar = doSomething(request, param);
+
+        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        try {
+            java.util.List<java.util.Map<String, Object>> list =
+                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForList(sql);
+            response.getWriter().println("Your results are: <br>");
+
+            //		System.out.println("Your results are");
+
+            for (Object o : list) {
+                response.getWriter()
+                        .println(
+                                org.owasp.esapi.ESAPI.encoder().encodeForHTML(o.toString())
+                                        + "<br>");
+                //			System.out.println(o.toString());
+            }
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+            response.getWriter()
+                    .println(
+                            "No results returned for query: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+        } catch (org.springframework.dao.DataAccessException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
+    } // end doPost
+
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        String bar = "alsosafe";
+        if (param != null) {
+            java.util.List<String> valuesList = new java.util.ArrayList<String>();
+            valuesList.add("safe");
+            valuesList.add(param);
+            valuesList.add("moresafe");
+
+            valuesList.remove(0); // remove the 1st safe value
+
+            bar = valuesList.get(1); // get the last 'safe' value
+        }
+
+        return bar;
+    }
 }

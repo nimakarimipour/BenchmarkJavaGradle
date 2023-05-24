@@ -27,64 +27,63 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01087")
 public class BenchmarkTest01087 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest01087") != null) {
-      param = request.getHeader("BenchmarkTest01087");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        if (request.getHeader("BenchmarkTest01087") != null) {
+            param = request.getHeader("BenchmarkTest01087");
+        }
 
-    String sql = "SELECT userid from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-    try {
-      // int results =
-      // org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForInt(sql);
-      Integer results =
-          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
-              sql, Integer.class);
-      response.getWriter().println("Your results are: " + results);
-      //		System.out.println("Your results are: " + results);
-    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-      response
-          .getWriter()
-          .println(
-              "No results returned for query: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-    } catch (org.springframework.dao.DataAccessException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-      } else throw new ServletException(e);
-    }
-  } // end doPost
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        String sql = "SELECT userid from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        try {
+            // int results =
+            // org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForInt(sql);
+            Integer results =
+                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
+                            sql, Integer.class);
+            response.getWriter().println("Your results are: " + results);
+            //		System.out.println("Your results are: " + results);
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+            response.getWriter()
+                    .println(
+                            "No results returned for query: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+        } catch (org.springframework.dao.DataAccessException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+            } else throw new ServletException(e);
+        }
+    } // end doPost
 
-      String bar;
+    private class Test {
 
-      // Simple ? condition that assigns param to bar on false condition
-      int num = 106;
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      bar = (7 * 42) - num > 200 ? "This should never happen" : param;
+            String bar;
 
-      return bar;
-    }
-  } // end innerclass Test
+            // Simple ? condition that assigns param to bar on false condition
+            int num = 106;
+
+            bar = (7 * 42) - num > 200 ? "This should never happen" : param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

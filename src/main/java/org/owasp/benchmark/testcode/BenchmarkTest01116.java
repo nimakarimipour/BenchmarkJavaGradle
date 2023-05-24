@@ -27,81 +27,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-01/BenchmarkTest01116")
 public class BenchmarkTest01116 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> names = request.getHeaderNames();
-    while (names.hasMoreElements()) {
-      String name = (String) names.nextElement();
-
-      if (org.owasp.benchmark.helpers.Utils.commonHeaders.contains(name)) {
-        continue; // If standard header, move on to next one
-      }
-
-      java.util.Enumeration<String> values = request.getHeaders(name);
-      if (values != null && values.hasMoreElements()) {
-        param = name; // Grabs the name of the first non-standard header as the parameter
-        // value
-        break;
-      }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
-    // Note: We don't URL decode header names because people don't normally do that
 
-    String bar = new Test().doSomething(request, param);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
+        String param = "";
+        java.util.Enumeration<String> names = request.getHeaderNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
 
-    try (
-    // Create the file first so the test won't throw an exception if it doesn't exist.
-    // Note: Don't actually do this because this method signature could cause a tool to find
-    // THIS file constructor
-    // as a vuln, rather than the File signature we are trying to actually test.
-    // If necessary, just run the benchmark twice. The 1st run should create all the necessary
-    // files.
-    // new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar).createNewFile();
+            if (org.owasp.benchmark.helpers.Utils.commonHeaders.contains(name)) {
+                continue; // If standard header, move on to next one
+            }
 
-    java.io.FileOutputStream fos =
-        new java.io.FileOutputStream(new java.io.FileInputStream(fileName).getFD()); ) {
-      response
-          .getWriter()
-          .println(
-              "Now ready to write to file: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
+            java.util.Enumeration<String> values = request.getHeaders(name);
+            if (values != null && values.hasMoreElements()) {
+                param = name; // Grabs the name of the first non-standard header as the parameter
+                // value
+                break;
+            }
+        }
+        // Note: We don't URL decode header names because people don't normally do that
 
-    } catch (Exception e) {
-      System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
-    }
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        String fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        try (
+        // Create the file first so the test won't throw an exception if it doesn't exist.
+        // Note: Don't actually do this because this method signature could cause a tool to find
+        // THIS file constructor
+        // as a vuln, rather than the File signature we are trying to actually test.
+        // If necessary, just run the benchmark twice. The 1st run should create all the necessary
+        // files.
+        // new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar).createNewFile();
 
-      String bar = "";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+        java.io.FileOutputStream fos =
+                new java.io.FileOutputStream(new java.io.FileInputStream(fileName).getFD()); ) {
+            response.getWriter()
+                    .println(
+                            "Now ready to write to file: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
 
-        valuesList.remove(0); // remove the 1st safe value
+        } catch (Exception e) {
+            System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
+        }
+    } // end doPost
 
-        bar = valuesList.get(0); // get the param value
-      }
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar = "";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
+
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(0); // get the param value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,30 +27,30 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-00/BenchmarkTest00393")
 public class BenchmarkTest00393 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest00393");
-    if (param == null) param = "";
+        String param = request.getParameter("BenchmarkTest00393");
+        if (param == null) param = "";
 
-    String bar;
+        String bar;
 
-    // Simple ? condition that assigns constant to bar on true condition
-    int num = 106;
+        // Simple ? condition that assigns constant to bar on true condition
+        int num = 106;
 
-    bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+        bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().write(bar);
-  }
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().write(bar);
+    }
 }

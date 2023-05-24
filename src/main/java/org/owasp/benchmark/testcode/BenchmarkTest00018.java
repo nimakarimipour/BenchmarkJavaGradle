@@ -27,41 +27,42 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-00/BenchmarkTest00018")
 public class BenchmarkTest00018 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    // some code
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00018");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // some code
+        response.setContentType("text/html;charset=UTF-8");
 
-    String sql = "INSERT INTO users (username, password) VALUES ('foo','" + param + "')";
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00018");
 
-    try {
-      java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-      int count = statement.executeUpdate(sql);
-      org.owasp.benchmark.helpers.DatabaseHelper.outputUpdateComplete(sql, response);
-    } catch (java.sql.SQLException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
+
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
+
+        String sql = "INSERT INTO users (username, password) VALUES ('foo','" + param + "')";
+
+        try {
+            java.sql.Statement statement =
+                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
+            int count = statement.executeUpdate(sql);
+            org.owasp.benchmark.helpers.DatabaseHelper.outputUpdateComplete(sql, response);
+        } catch (java.sql.SQLException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
     }
-  }
 }

@@ -27,44 +27,45 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest01927")
 public class BenchmarkTest01927 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("Referer") != null) {
-      param = request.getHeader("Referer");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = doSomething(request, param);
+        String param = "";
+        if (request.getHeader("Referer") != null) {
+            param = request.getHeader("Referer");
+        }
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().write(bar);
-  } // end doPost
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+        String bar = doSomething(request, param);
 
-    String bar = "";
-    if (param != null) {
-      bar =
-          new String(
-              org.apache.commons.codec.binary.Base64.decodeBase64(
-                  org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().write(bar);
+    } // end doPost
+
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        String bar = "";
+        if (param != null) {
+            bar =
+                    new String(
+                            org.apache.commons.codec.binary.Base64.decodeBase64(
+                                    org.apache.commons.codec.binary.Base64.encodeBase64(
+                                            param.getBytes())));
+        }
+
+        return bar;
     }
-
-    return bar;
-  }
 }

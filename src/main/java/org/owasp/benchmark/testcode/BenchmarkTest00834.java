@@ -27,61 +27,62 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-00/BenchmarkTest00834")
 public class BenchmarkTest00834 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String queryString = request.getQueryString();
-    String paramval = "BenchmarkTest00834" + "=";
-    int paramLoc = -1;
-    if (queryString != null) paramLoc = queryString.indexOf(paramval);
-    if (paramLoc == -1) {
-      response
-          .getWriter()
-          .println(
-              "getQueryString() couldn't find expected parameter '"
-                  + "BenchmarkTest00834"
-                  + "' in query string.");
-      return;
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String param =
-        queryString.substring(
-            paramLoc + paramval.length()); // 1st assume "BenchmarkTest00834" param is last
-    // parameter in query string.
-    // And then check to see if its in the middle of the query string and if so, trim off what
-    // comes after.
-    int ampersandLoc = queryString.indexOf("&", paramLoc);
-    if (ampersandLoc != -1) {
-      param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        String queryString = request.getQueryString();
+        String paramval = "BenchmarkTest00834" + "=";
+        int paramLoc = -1;
+        if (queryString != null) paramLoc = queryString.indexOf(paramval);
+        if (paramLoc == -1) {
+            response.getWriter()
+                    .println(
+                            "getQueryString() couldn't find expected parameter '"
+                                    + "BenchmarkTest00834"
+                                    + "' in query string.");
+            return;
+        }
+
+        String param =
+                queryString.substring(
+                        paramLoc
+                                + paramval
+                                        .length()); // 1st assume "BenchmarkTest00834" param is last
+        // parameter in query string.
+        // And then check to see if its in the middle of the query string and if so, trim off what
+        // comes after.
+        int ampersandLoc = queryString.indexOf("&", paramLoc);
+        if (ampersandLoc != -1) {
+            param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+        }
+        param = java.net.URLDecoder.decode(param, "UTF-8");
+
+        String bar = "";
+        if (param != null) {
+            bar =
+                    new String(
+                            org.apache.commons.codec.binary.Base64.decodeBase64(
+                                    org.apache.commons.codec.binary.Base64.encodeBase64(
+                                            param.getBytes())));
+        }
+
+        // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
+        request.getSession().setAttribute("userid", bar);
+
+        response.getWriter()
+                .println(
+                        "Item: 'userid' with value: '"
+                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                                + "' saved in session.");
     }
-    param = java.net.URLDecoder.decode(param, "UTF-8");
-
-    String bar = "";
-    if (param != null) {
-      bar =
-          new String(
-              org.apache.commons.codec.binary.Base64.decodeBase64(
-                  org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
-    }
-
-    // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
-    request.getSession().setAttribute("userid", bar);
-
-    response
-        .getWriter()
-        .println(
-            "Item: 'userid' with value: '"
-                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                + "' saved in session.");
-  }
 }

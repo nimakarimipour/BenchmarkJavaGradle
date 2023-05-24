@@ -27,54 +27,54 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-00/BenchmarkTest00433")
 public class BenchmarkTest00433 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = request.getParameter("BenchmarkTest00433");
-    if (param == null) param = "";
-
-    String bar;
-
-    // Simple if statement that assigns param to bar on true condition
-    int num = 196;
-    if ((500 / 42) + num > 200) bar = param;
-    else bar = "This should never happen";
-
-    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-    try {
-      java.util.List<java.util.Map<String, Object>> list =
-          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForList(sql);
-      response.getWriter().println("Your results are: <br>");
-
-      //		System.out.println("Your results are");
-
-      for (Object o : list) {
-        response
-            .getWriter()
-            .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(o.toString()) + "<br>");
-        //			System.out.println(o.toString());
-      }
-    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-      response
-          .getWriter()
-          .println(
-              "No results returned for query: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-    } catch (org.springframework.dao.DataAccessException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
-  }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        String param = request.getParameter("BenchmarkTest00433");
+        if (param == null) param = "";
+
+        String bar;
+
+        // Simple if statement that assigns param to bar on true condition
+        int num = 196;
+        if ((500 / 42) + num > 200) bar = param;
+        else bar = "This should never happen";
+
+        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        try {
+            java.util.List<java.util.Map<String, Object>> list =
+                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForList(sql);
+            response.getWriter().println("Your results are: <br>");
+
+            //		System.out.println("Your results are");
+
+            for (Object o : list) {
+                response.getWriter()
+                        .println(
+                                org.owasp.esapi.ESAPI.encoder().encodeForHTML(o.toString())
+                                        + "<br>");
+                //			System.out.println(o.toString());
+            }
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+            response.getWriter()
+                    .println(
+                            "No results returned for query: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+        } catch (org.springframework.dao.DataAccessException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
+    }
 }

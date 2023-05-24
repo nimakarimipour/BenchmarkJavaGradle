@@ -27,52 +27,52 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-02/BenchmarkTest01049")
 public class BenchmarkTest01049 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("Referer") != null) {
-      param = request.getHeader("Referer");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        if (request.getHeader("Referer") != null) {
+            param = request.getHeader("Referer");
+        }
 
-    response.setHeader("X-XSS-Protection", "0");
-    Object[] obj = {"a", bar};
-    response.getWriter().format("Formatted like: %1$s and %2$s.", obj);
-  } // end doPost
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        response.setHeader("X-XSS-Protection", "0");
+        Object[] obj = {"a", bar};
+        response.getWriter().format("Formatted like: %1$s and %2$s.", obj);
+    } // end doPost
 
-      String bar = "";
-      if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
-        valuesList.add("safe");
-        valuesList.add(param);
-        valuesList.add("moresafe");
+    private class Test {
 
-        valuesList.remove(0); // remove the 1st safe value
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-        bar = valuesList.get(0); // get the param value
-      }
+            String bar = "";
+            if (param != null) {
+                java.util.List<String> valuesList = new java.util.ArrayList<String>();
+                valuesList.add("safe");
+                valuesList.add(param);
+                valuesList.add("moresafe");
 
-      return bar;
-    }
-  } // end innerclass Test
+                valuesList.remove(0); // remove the 1st safe value
+
+                bar = valuesList.get(0); // get the param value
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

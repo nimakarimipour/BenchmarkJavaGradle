@@ -27,59 +27,59 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-00/BenchmarkTest00542")
 public class BenchmarkTest00542 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    boolean flag = true;
-    java.util.Enumeration<String> names = request.getParameterNames();
-    while (names.hasMoreElements() && flag) {
-      String name = (String) names.nextElement();
-      String[] values = request.getParameterValues(name);
-      if (values != null) {
-        for (int i = 0; i < values.length && flag; i++) {
-          String value = values[i];
-          if (value.equals("BenchmarkTest00542")) {
-            param = name;
-            flag = false;
-          }
+        String param = "";
+        boolean flag = true;
+        java.util.Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements() && flag) {
+            String name = (String) names.nextElement();
+            String[] values = request.getParameterValues(name);
+            if (values != null) {
+                for (int i = 0; i < values.length && flag; i++) {
+                    String value = values[i];
+                    if (value.equals("BenchmarkTest00542")) {
+                        param = name;
+                        flag = false;
+                    }
+                }
+            }
         }
-      }
+
+        String bar;
+        String guess = "ABC";
+        char switchTarget = guess.charAt(2);
+
+        // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+        switch (switchTarget) {
+            case 'A':
+                bar = param;
+                break;
+            case 'B':
+                bar = "bobs_your_uncle";
+                break;
+            case 'C':
+            case 'D':
+                bar = param;
+                break;
+            default:
+                bar = "bobs_your_uncle";
+                break;
+        }
+
+        response.setHeader("X-XSS-Protection", "0");
+        Object[] obj = {"a", "b"};
+        response.getWriter().format(java.util.Locale.US, bar, obj);
     }
-
-    String bar;
-    String guess = "ABC";
-    char switchTarget = guess.charAt(2);
-
-    // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-    switch (switchTarget) {
-      case 'A':
-        bar = param;
-        break;
-      case 'B':
-        bar = "bobs_your_uncle";
-        break;
-      case 'C':
-      case 'D':
-        bar = param;
-        break;
-      default:
-        bar = "bobs_your_uncle";
-        break;
-    }
-
-    response.setHeader("X-XSS-Protection", "0");
-    Object[] obj = {"a", "b"};
-    response.getWriter().format(java.util.Locale.US, bar, obj);
-  }
 }

@@ -27,62 +27,63 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01192")
 public class BenchmarkTest01192 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01192");
-
-    if (headers != null && headers.hasMoreElements()) {
-      param = headers.nextElement(); // just grab first element
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01192");
 
-    String cmd =
-        org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-            this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+        if (headers != null && headers.hasMoreElements()) {
+            param = headers.nextElement(); // just grab first element
+        }
 
-    Runtime r = Runtime.getRuntime();
+        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    try {
-      Process p = r.exec(args, argsEnv);
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  } // end doPost
+        String bar = new Test().doSomething(request, param);
 
-  private class Test {
+        String cmd =
+                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+                        this.getClass().getClassLoader());
+        String[] args = {cmd};
+        String[] argsEnv = {bar};
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        Runtime r = Runtime.getRuntime();
 
-      String bar;
+        try {
+            Process p = r.exec(args, argsEnv);
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
+    } // end doPost
 
-      // Simple if statement that assigns param to bar on true condition
-      int num = 196;
-      if ((500 / 42) + num > 200) bar = param;
-      else bar = "This should never happen";
+    private class Test {
 
-      return bar;
-    }
-  } // end innerclass Test
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar;
+
+            // Simple if statement that assigns param to bar on true condition
+            int num = 196;
+            if ((500 / 42) + num > 200) bar = param;
+            else bar = "This should never happen";
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

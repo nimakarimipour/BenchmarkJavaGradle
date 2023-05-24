@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,72 +28,73 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01065")
 public class BenchmarkTest01065 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest01065") != null) {
-      param = request.getHeader("BenchmarkTest01065");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+        String param = "";
+        if (request.getHeader("BenchmarkTest01065") != null) {
+            param = request.getHeader("BenchmarkTest01065");
+        }
 
-    String cmd = "";
-    String a1 = "";
-    String a2 = "";
-    String[] args = null;
-    String osName = System.getProperty("os.name");
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    if (osName.indexOf("Windows") != -1) {
-      a1 = "cmd.exe";
-      a2 = "/c";
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-      args = new String[] {a1, a2, cmd, bar};
-    } else {
-      a1 = "sh";
-      a2 = "-c";
-      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-      args = new String[] {a1, a2, cmd + bar};
-    }
+        String bar = new Test().doSomething(request, param);
 
-    Runtime r = Runtime.getRuntime();
+        String cmd = "";
+        String a1 = "";
+        String a2 = "";
+        @RUntainted String[] args = null;
+        String osName = System.getProperty("os.name");
 
-    try {
-      Process p = r.exec(args);
-      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-    } catch (IOException e) {
-      System.out.println("Problem executing cmdi - TestCase");
-      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-      return;
-    }
-  } // end doPost
+        if (osName.indexOf("Windows") != -1) {
+            a1 = "cmd.exe";
+            a2 = "/c";
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+            args = new @RUntainted String[] {a1, a2, cmd, bar};
+        } else {
+            a1 = "sh";
+            a2 = "-c";
+            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
+            args = new @RUntainted String[] {a1, a2, cmd + bar};
+        }
 
-  private class Test {
+        Runtime r = Runtime.getRuntime();
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        try {
+            Process p = r.exec(args);
+            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+        } catch (IOException e) {
+            System.out.println("Problem executing cmdi - TestCase");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+            return;
+        }
+    } // end doPost
 
-      String bar;
+    private class Test {
 
-      // Simple if statement that assigns constant to bar on true condition
-      int num = 86;
-      if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-      else bar = param;
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
 
-      return bar;
-    }
-  } // end innerclass Test
+            String bar;
+
+            // Simple if statement that assigns constant to bar on true condition
+            int num = 86;
+            if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+            else bar = param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,69 +27,67 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/securecookie-00/BenchmarkTest01280")
 public class BenchmarkTest01280 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = request.getParameter("BenchmarkTest01280");
-    if (param == null) param = "";
-
-    String bar = new Test().doSomething(request, param);
-
-    byte[] input = new byte[1000];
-    String str = "?";
-    Object inputParam = param;
-    if (inputParam instanceof String) str = ((String) inputParam);
-    if (inputParam instanceof java.io.InputStream) {
-      int i = ((java.io.InputStream) inputParam).read(input);
-      if (i == -1) {
-        response
-            .getWriter()
-            .println(
-                "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
-        return;
-      }
-      str = new String(input, 0, i);
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
-    if ("".equals(str)) str = "No cookie value supplied";
-    javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("SomeCookie", str);
 
-    cookie.setSecure(false);
-    cookie.setHttpOnly(true);
-    cookie.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
-    // e.g., /benchmark/sql-01/BenchmarkTest01001
-    response.addCookie(cookie);
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    response
-        .getWriter()
-        .println(
-            "Created cookie: 'SomeCookie': with value: '"
-                + org.owasp.esapi.ESAPI.encoder().encodeForHTML(str)
-                + "' and secure flag set to: false");
-  } // end doPost
+        String param = request.getParameter("BenchmarkTest01280");
+        if (param == null) param = "";
 
-  private class Test {
+        String bar = new Test().doSomething(request, param);
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        byte[] input = new byte[1000];
+        String str = "?";
+        Object inputParam = param;
+        if (inputParam instanceof String) str = ((String) inputParam);
+        if (inputParam instanceof java.io.InputStream) {
+            int i = ((java.io.InputStream) inputParam).read(input);
+            if (i == -1) {
+                response.getWriter()
+                        .println(
+                                "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
+                return;
+            }
+            str = new String(input, 0, i);
+        }
+        if ("".equals(str)) str = "No cookie value supplied";
+        javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("SomeCookie", str);
 
-      String bar;
+        cookie.setSecure(false);
+        cookie.setHttpOnly(true);
+        cookie.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
+        // e.g., /benchmark/sql-01/BenchmarkTest01001
+        response.addCookie(cookie);
 
-      // Simple if statement that assigns constant to bar on true condition
-      int num = 86;
-      if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-      else bar = param;
+        response.getWriter()
+                .println(
+                        "Created cookie: 'SomeCookie': with value: '"
+                                + org.owasp.esapi.ESAPI.encoder().encodeForHTML(str)
+                                + "' and secure flag set to: false");
+    } // end doPost
 
-      return bar;
-    }
-  } // end innerclass Test
+    private class Test {
+
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar;
+
+            // Simple if statement that assigns constant to bar on true condition
+            int num = 86;
+            if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+            else bar = param;
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

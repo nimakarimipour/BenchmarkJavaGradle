@@ -27,38 +27,38 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-04/BenchmarkTest02133")
 public class BenchmarkTest02133 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest02133");
-    if (param == null) param = "";
+        String param = request.getParameter("BenchmarkTest02133");
+        if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+        String bar = doSomething(request, param);
 
-    response.setHeader("X-XSS-Protection", "0");
-    response.getWriter().println(bar);
-  } // end doPost
+        response.setHeader("X-XSS-Protection", "0");
+        response.getWriter().println(bar);
+    } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
 
-    String bar;
+        String bar;
 
-    // Simple ? condition that assigns param to bar on false condition
-    int num = 106;
+        // Simple ? condition that assigns param to bar on false condition
+        int num = 106;
 
-    bar = (7 * 42) - num > 200 ? "This should never happen" : param;
+        bar = (7 * 42) - num > 200 ? "This should never happen" : param;
 
-    return bar;
-  }
+        return bar;
+    }
 }

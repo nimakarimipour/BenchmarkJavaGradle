@@ -27,72 +27,71 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-03/BenchmarkTest01806")
 public class BenchmarkTest01806 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    org.owasp.benchmark.helpers.SeparateClassRequest scr =
-        new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest01806");
-
-    String bar = new Test().doSomething(request, param);
-
-    try {
-      String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-
-      org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
-      response
-          .getWriter()
-          .println(
-              "No results can be displayed for query: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
-                  + "<br>"
-                  + " because the Spring batchUpdate method doesn't return results.");
-      //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
-      // method doesn't return results.");
-    } catch (org.springframework.dao.DataAccessException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-      } else throw new ServletException(e);
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
-  } // end doPost
 
-  private class Test {
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    public String doSomething(HttpServletRequest request, String param)
-        throws ServletException, IOException {
+        org.owasp.benchmark.helpers.SeparateClassRequest scr =
+                new org.owasp.benchmark.helpers.SeparateClassRequest(request);
+        String param = scr.getTheValue("BenchmarkTest01806");
 
-      String bar;
-      String guess = "ABC";
-      char switchTarget = guess.charAt(1); // condition 'B', which is safe
+        String bar = new Test().doSomething(request, param);
 
-      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-      switch (switchTarget) {
-        case 'A':
-          bar = param;
-          break;
-        case 'B':
-          bar = "bob";
-          break;
-        case 'C':
-        case 'D':
-          bar = param;
-          break;
-        default:
-          bar = "bob's your uncle";
-          break;
-      }
+        try {
+            String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
-      return bar;
-    }
-  } // end innerclass Test
+            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
+            response.getWriter()
+                    .println(
+                            "No results can be displayed for query: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
+                                    + "<br>"
+                                    + " because the Spring batchUpdate method doesn't return results.");
+            //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
+            // method doesn't return results.");
+        } catch (org.springframework.dao.DataAccessException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+            } else throw new ServletException(e);
+        }
+    } // end doPost
+
+    private class Test {
+
+        public String doSomething(HttpServletRequest request, String param)
+                throws ServletException, IOException {
+
+            String bar;
+            String guess = "ABC";
+            char switchTarget = guess.charAt(1); // condition 'B', which is safe
+
+            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+            switch (switchTarget) {
+                case 'A':
+                    bar = param;
+                    break;
+                case 'B':
+                    bar = "bob";
+                    break;
+                case 'C':
+                case 'D':
+                    bar = param;
+                    break;
+                default:
+                    bar = "bob's your uncle";
+                    break;
+            }
+
+            return bar;
+        }
+    } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,44 +27,45 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-01/BenchmarkTest00517")
 public class BenchmarkTest00517 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
-    if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest00517");
-      if (values != null) param = values[0];
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    String bar;
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    // Simple ? condition that assigns constant to bar on true condition
-    int num = 106;
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        String param = "";
+        if (!map.isEmpty()) {
+            String[] values = map.get("BenchmarkTest00517");
+            if (values != null) param = values[0];
+        }
 
-    bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+        String bar;
 
-    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        // Simple ? condition that assigns constant to bar on true condition
+        int num = 106;
 
-    try {
-      java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-      statement.execute(sql, new String[] {"username", "password"});
-      org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
-    } catch (java.sql.SQLException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
+        bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+
+        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+
+        try {
+            java.sql.Statement statement =
+                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
+            statement.execute(sql, new String[] {"username", "password"});
+            org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
+        } catch (java.sql.SQLException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
     }
-  }
 }

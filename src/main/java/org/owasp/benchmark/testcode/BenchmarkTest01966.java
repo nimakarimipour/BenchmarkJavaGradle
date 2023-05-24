@@ -27,64 +27,63 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-04/BenchmarkTest01966")
 public class BenchmarkTest01966 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = "";
-    if (request.getHeader("BenchmarkTest01966") != null) {
-      param = request.getHeader("BenchmarkTest01966");
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-    param = java.net.URLDecoder.decode(param, "UTF-8");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
-    String bar = doSomething(request, param);
+        String param = "";
+        if (request.getHeader("BenchmarkTest01966") != null) {
+            param = request.getHeader("BenchmarkTest01966");
+        }
 
-    String sql = "SELECT TOP 1 USERNAME from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-    try {
-      Object results =
-          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
-              sql, new Object[] {}, String.class);
-      response.getWriter().println("Your results are: ");
+        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+        param = java.net.URLDecoder.decode(param, "UTF-8");
 
-      //		System.out.println("Your results are");
-      response
-          .getWriter()
-          .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
-      //		System.out.println(results.toString());
-    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-      response
-          .getWriter()
-          .println(
-              "No results returned for query: "
-                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-    } catch (org.springframework.dao.DataAccessException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-      } else throw new ServletException(e);
+        String bar = doSomething(request, param);
+
+        String sql =
+                "SELECT TOP 1 USERNAME from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+        try {
+            Object results =
+                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
+                            sql, new Object[] {}, String.class);
+            response.getWriter().println("Your results are: ");
+
+            //		System.out.println("Your results are");
+            response.getWriter()
+                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
+            //		System.out.println(results.toString());
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+            response.getWriter()
+                    .println(
+                            "No results returned for query: "
+                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+        } catch (org.springframework.dao.DataAccessException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+            } else throw new ServletException(e);
+        }
+    } // end doPost
+
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        String bar;
+
+        // Simple if statement that assigns constant to bar on true condition
+        int num = 86;
+        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+        else bar = param;
+
+        return bar;
     }
-  } // end doPost
-
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
-
-    String bar;
-
-    // Simple if statement that assigns constant to bar on true condition
-    int num = 86;
-    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-    else bar = param;
-
-    return bar;
-  }
 }

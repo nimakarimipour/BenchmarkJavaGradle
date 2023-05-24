@@ -27,54 +27,57 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-04/BenchmarkTest02171")
 public class BenchmarkTest02171 extends HttpServlet {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-
-    String param = request.getParameter("BenchmarkTest02171");
-    if (param == null) param = "";
-
-    String bar = doSomething(request, param);
-
-    String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
-
-    try {
-      java.sql.Connection connection =
-          org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-      java.sql.PreparedStatement statement =
-          connection.prepareStatement(
-              sql, java.sql.ResultSet.TYPE_FORWARD_ONLY, java.sql.ResultSet.CONCUR_READ_ONLY);
-      statement.setString(1, "foo");
-      statement.execute();
-      org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
-    } catch (java.sql.SQLException e) {
-      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-        response.getWriter().println("Error processing request.");
-        return;
-      } else throw new ServletException(e);
-    }
-  } // end doPost
-
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
-
-    String bar = "";
-    if (param != null) {
-      bar =
-          new String(
-              org.apache.commons.codec.binary.Base64.decodeBase64(
-                  org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
 
-    return bar;
-  }
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        String param = request.getParameter("BenchmarkTest02171");
+        if (param == null) param = "";
+
+        String bar = doSomething(request, param);
+
+        String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
+
+        try {
+            java.sql.Connection connection =
+                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+            java.sql.PreparedStatement statement =
+                    connection.prepareStatement(
+                            sql,
+                            java.sql.ResultSet.TYPE_FORWARD_ONLY,
+                            java.sql.ResultSet.CONCUR_READ_ONLY);
+            statement.setString(1, "foo");
+            statement.execute();
+            org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
+        } catch (java.sql.SQLException e) {
+            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+                response.getWriter().println("Error processing request.");
+                return;
+            } else throw new ServletException(e);
+        }
+    } // end doPost
+
+    private static String doSomething(HttpServletRequest request, String param)
+            throws ServletException, IOException {
+
+        String bar = "";
+        if (param != null) {
+            bar =
+                    new String(
+                            org.apache.commons.codec.binary.Base64.decodeBase64(
+                                    org.apache.commons.codec.binary.Base64.encodeBase64(
+                                            param.getBytes())));
+        }
+
+        return bar;
+    }
 }
