@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RPolyTainted;
 import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -73,8 +74,8 @@ public class BenchmarkTest02698 extends HttpServlet {
     }
   } // end doPost
 
-  private static @RUntainted String doSomething(
-      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
+  private static @RPolyTainted String doSomething(
+      HttpServletRequest request, @RPolyTainted String param) throws ServletException, IOException {
 
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();

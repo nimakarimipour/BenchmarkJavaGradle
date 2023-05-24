@@ -58,7 +58,7 @@ public class BenchmarkTest02341 extends HttpServlet {
       }
     }
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(

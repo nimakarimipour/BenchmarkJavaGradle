@@ -43,9 +43,9 @@ public class BenchmarkTest00906 extends HttpServlet {
 
     org.owasp.benchmark.helpers.SeparateClassRequest scr =
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest00906");
+    @RUntainted String param = scr.getTheValue("BenchmarkTest00906");
 
-    String bar = "";
+    @RUntainted String bar = "";
     if (param != null) {
       bar =
           new String(
@@ -63,12 +63,12 @@ public class BenchmarkTest00906 extends HttpServlet {
       a1 = "cmd.exe";
       a2 = "/c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-      args = new String[] {a1, a2, cmd, bar};
+      args = new @RUntainted String[] {a1, a2, cmd, bar};
     } else {
       a1 = "sh";
       a2 = "-c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-      args = new String[] {a1, a2, cmd + bar};
+      args = new @RUntainted String[] {a1, a2, cmd + bar};
     }
 
     Runtime r = Runtime.getRuntime();

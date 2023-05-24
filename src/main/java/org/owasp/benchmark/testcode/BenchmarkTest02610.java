@@ -67,7 +67,7 @@ public class BenchmarkTest02610 extends HttpServlet {
     }
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String cmd = "";
     String a1 = "";
@@ -79,12 +79,12 @@ public class BenchmarkTest02610 extends HttpServlet {
       a1 = "cmd.exe";
       a2 = "/c";
       cmd = "echo ";
-      args = new String[] {a1, a2, cmd, bar};
+      args = new @RUntainted String[] {a1, a2, cmd, bar};
     } else {
       a1 = "sh";
       a2 = "-c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
-      args = new String[] {a1, a2, cmd + bar};
+      args = new @RUntainted String[] {a1, a2, cmd + bar};
     }
 
     @RUntainted String[] argsEnv = {"foo=bar"};

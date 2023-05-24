@@ -44,7 +44,7 @@ public class BenchmarkTest02153 extends HttpServlet {
     String param = request.getParameter("BenchmarkTest02153");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
@@ -64,7 +64,7 @@ public class BenchmarkTest02153 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     // Chain a bunch of propagators in sequence
@@ -88,7 +88,7 @@ public class BenchmarkTest02153 extends HttpServlet {
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
     String g82592 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-    String bar = thing.doSomething(g82592); // reflection
+    @RUntainted String bar = thing.doSomething(g82592); // reflection
 
     return bar;
   }

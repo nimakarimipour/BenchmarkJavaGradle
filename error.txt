@@ -1,0 +1,851 @@
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00970.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00970.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00970.java:60: error: [assignment] incompatible types in assignment.
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00970.java:68: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00177.java:46: error: [assignment] incompatible types in assignment.
+      param = request.getHeader("BenchmarkTest00177");
+                               ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02058.java:68: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(argList);
+                                           ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00570.java:77: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00570.java:77: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01530.java:61: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01530.java:66: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00090.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00090.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00090.java:60: error: [assignment] incompatible types in assignment.
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01793.java:54: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01793.java:54: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01269.java:63: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00481.java:70: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(argList);
+                                           ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01290.java:53: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01290.java:53: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01443.java:48: error: [assignment] incompatible types in assignment.
+      @RUntainted String name = (String) names.nextElement();
+                                ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01068.java:46: error: [assignment] incompatible types in assignment.
+      param = request.getHeader("BenchmarkTest01068");
+                               ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01182.java:45: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest01182");
+                                                                                      ^
+  found   : @RTainted Enumeration<@RTainted String>
+  required: @RUntainted Enumeration<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01182.java:56: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01182.java:87: error: [assignment] incompatible types in assignment.
+        java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                                    ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00814.java:91: error: [argument] incompatible argument for parameter command of command.
+    pb.command(argList);
+               ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02242.java:53: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00896.java:55: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01792.java:60: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01792.java:65: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02413.java:65: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01065.java:75: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00571.java:72: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00571.java:72: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01687.java:82: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01687.java:87: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02697.java:50: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01795.java:54: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01795.java:54: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02156.java:52: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02156.java:52: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01516.java:65: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00307.java:46: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest00307");
+                                                                                      ^
+  found   : @RTainted Enumeration<@RTainted String>
+  required: @RUntainted Enumeration<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00307.java:57: error: [assignment] incompatible types in assignment.
+      @RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                        ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02510.java:55: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02510.java:55: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01445.java:67: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01445.java:67: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00741.java:45: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest00741");
+                                                            ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00741.java:52: error: [assignment] incompatible types in assignment.
+      @RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                        ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01941.java:58: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01941.java:58: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01193.java:66: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01193.java:71: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02068.java:60: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02068.java:60: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02341.java:67: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02341.java:67: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02253.java:63: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02253.java:68: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02336.java:77: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01672.java:86: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01865.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01865.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01865.java:99: error: [assignment] incompatible types in assignment.
+      bar = valuesList.get(1); // get the last 'safe' value
+                          ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01189.java:77: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00408.java:64: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00408.java:69: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01608.java:55: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01608.java:55: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01937.java:84: error: [assignment] incompatible types in assignment.
+      bar = valuesList.get(1); // get the last 'safe' value
+                          ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02252.java:63: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02252.java:68: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02340.java:73: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02340.java:78: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02069.java:45: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest02069");
+                                                                                      ^
+  found   : @RTainted Enumeration<@RTainted String>
+  required: @RUntainted Enumeration<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00412.java:62: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00412.java:62: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00982.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00982.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00982.java:72: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00982.java:72: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01444.java:67: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01444.java:67: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00310.java:45: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest00310");
+                                                                                      ^
+  found   : @RTainted Enumeration<@RTainted String>
+  required: @RUntainted Enumeration<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01794.java:60: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01794.java:65: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01686.java:76: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01686.java:76: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02713.java:54: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02713.java:54: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01353.java:44: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map = request.getParameterMap();
+                                                                                                     ^
+  found   : @RTainted Map<@RTainted String, @RTainted String @RTainted []>
+  required: @RUntainted Map<@RUntainted String, @RUntainted String @RTainted []>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01353.java:53: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00738.java:66: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00738.java:71: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01607.java:72: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01693.java:70: error: [argument] incompatible argument for parameter param of doSomething.
+    @RUntainted String bar = new Test().doSomething(request, param);
+                                                             ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00743.java:73: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00743.java:73: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01778.java:64: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00978.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00978.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00978.java:89: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00558.java:85: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(argList);
+                                           ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01365.java:44: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map = request.getParameterMap();
+                                                                                                     ^
+  found   : @RTainted Map<@RTainted String, @RTainted String @RTainted []>
+  required: @RUntainted Map<@RUntainted String, @RUntainted String @RTainted []>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00827.java:85: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00827.java:85: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02699.java:62: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(args);
+                                           ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02698.java:50: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01688.java:70: error: [argument] incompatible argument for parameter param of doSomething.
+    @RUntainted String bar = new Test().doSomething(request, param);
+                                                             ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00308.java:45: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest00308");
+                                                                                      ^
+  found   : @RTainted Enumeration<@RTainted String>
+  required: @RUntainted Enumeration<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02335.java:77: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01364.java:57: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01364.java:57: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00826.java:59: error: [assignment] incompatible types in assignment.
+        queryString.substring(
+                             ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00826.java:66: error: [assignment] incompatible types in assignment.
+      param = queryString.substring(paramLoc + paramval.length(), ampersandLoc);
+                                   ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00559.java:84: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02067.java:66: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02067.java:71: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01779.java:64: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01796.java:54: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01796.java:54: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02513.java:55: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02513.java:55: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01780.java:62: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(args);
+                                           ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00980.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00980.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00980.java:72: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00980.java:72: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01606.java:44: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest01606");
+                                                            ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01939.java:58: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01939.java:58: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00739.java:66: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00739.java:71: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00406.java:75: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00572.java:48: error: [assignment] incompatible types in assignment.
+      @RUntainted String name = (String) names.nextElement();
+                                ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02148.java:59: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02148.java:64: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02518.java:54: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02518.java:54: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00895.java:72: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(argList);
+                                           ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00093.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00093.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00093.java:60: error: [assignment] incompatible types in assignment.
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00093.java:68: error: [assignment] incompatible types in assignment.
+      java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                                  ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02153.java:53: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02153.java:53: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00494.java:84: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01440.java:48: error: [assignment] incompatible types in assignment.
+      @RUntainted String name = (String) names.nextElement();
+                                ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00969.java:41: error: [argument] incompatible argument for parameter uri of setPath.
+    userCookie.setPath(request.getRequestURI());
+                                            ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00969.java:42: error: [argument] incompatible argument for parameter domain of setDomain.
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+                                                                                     ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00969.java:68: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01600.java:44: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest01600");
+                                                            ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01600.java:51: error: [assignment] incompatible types in assignment.
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
+                                                             ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01600.java:84: error: [assignment] incompatible types in assignment.
+        java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                                    ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02610.java:82: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02610.java:87: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01529.java:72: error: [argument] incompatible argument for parameter cmdarray of exec.
+      Process p = r.exec(args);
+                         ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00396.java:68: error: [argument] incompatible argument for parameter command of command.
+    pb.command(args);
+               ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02714.java:53: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02714.java:53: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01289.java:44: error: [assignment] incompatible types in assignment.
+    @RUntainted String param = request.getParameter("BenchmarkTest01289");
+                                                   ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01289.java:75: error: [assignment] incompatible types in assignment.
+        java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+                                                                    ^
+  found   : @RUntainted ArrayList<@RTainted String>
+  required: @RUntainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02149.java:59: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd, bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02149.java:64: error: [assignment] incompatible types in assignment.
+      args = new String[] {a1, a2, cmd + bar};
+             ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00158.java:71: error: [argument] incompatible argument for parameter command of ProcessBuilder.
+    ProcessBuilder pb = new ProcessBuilder(argList);
+                                           ^
+  found   : @RUntainted List<@RTainted String>
+  required: @RTainted List<@RUntainted String>
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01067.java:58: error: [array.initializer] incompatible types in array initializer.
+    @RUntainted String[] argsEnv = {bar};
+                                    ^
+  found   : @RTainted String
+  required: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01067.java:58: error: [assignment] incompatible types in assignment.
+    @RUntainted String[] argsEnv = {bar};
+                                   ^
+  found   : @RTainted String @RTainted []
+  required: @RUntainted String @RTainted []
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/helpers/Utils.java:196: error: [return] incompatible types in return.
+    return command;
+           ^
+  type of expression: @RTainted String
+  method return type: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/helpers/SeparateClassRequest.java:32: error: [return] incompatible types in return.
+    return request.getParameter(p);
+                               ^
+  type of expression: @RTainted String
+  method return type: @RUntainted String
+/Users/nima/Developer/BenchmarkJavaGradle/src/main/java/org/owasp/benchmark/helpers/Thing2.java:26: error: [assignment] incompatible types in assignment.
+    @RUntainted String r = new StringBuilder(i).toString();
+                                                        ^
+  found   : @RTainted String
+  required: @RUntainted String
+170 errors

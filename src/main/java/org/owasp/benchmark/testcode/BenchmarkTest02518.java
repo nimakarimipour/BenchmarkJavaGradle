@@ -46,7 +46,7 @@ public class BenchmarkTest02518 extends HttpServlet {
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     @RUntainted
     String cmd =

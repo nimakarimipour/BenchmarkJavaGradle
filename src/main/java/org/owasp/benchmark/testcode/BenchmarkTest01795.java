@@ -45,7 +45,7 @@ public class BenchmarkTest01795 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest01795");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(

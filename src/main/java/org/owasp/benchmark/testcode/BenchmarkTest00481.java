@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,7 +55,7 @@ public class BenchmarkTest00481 extends HttpServlet {
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.List<@RUntainted String> argList = new java.util.ArrayList<@RUntainted String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {

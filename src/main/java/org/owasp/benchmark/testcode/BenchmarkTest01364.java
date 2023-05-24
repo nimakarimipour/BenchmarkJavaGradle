@@ -48,7 +48,7 @@ public class BenchmarkTest01364 extends HttpServlet {
       if (values != null) param = values[0];
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
     @RUntainted
     String cmd =
