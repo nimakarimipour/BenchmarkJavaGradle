@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01182")
 public class BenchmarkTest01182 extends HttpServlet {
@@ -42,7 +42,8 @@ public class BenchmarkTest01182 extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     @RUntainted String param = "";
-    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest01182");
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest01182");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -84,7 +85,8 @@ public class BenchmarkTest01182 extends HttpServlet {
 
       @RUntainted String bar = "alsosafe";
       if (param != null) {
-        java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
+        java.util.@RUntainted List<@RUntainted String> valuesList =
+            new java.util.ArrayList<String>();
         valuesList.add("safe");
         valuesList.add(param);
         valuesList.add("moresafe");

@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00826")
 public class BenchmarkTest00826 extends HttpServlet {
@@ -55,7 +55,8 @@ public class BenchmarkTest00826 extends HttpServlet {
       return;
     }
 
-    @RUntainted String param =
+    @RUntainted
+    String param =
         queryString.substring(
             paramLoc + paramval.length()); // 1st assume "BenchmarkTest00826" param is last
     // parameter in query string.
