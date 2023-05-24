@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,7 +58,7 @@ public class BenchmarkTest00895 extends HttpServlet {
       bar = valuesList.get(0); // get the param value
     }
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.List<@RUntainted String> argList = new java.util.ArrayList<@RUntainted String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {

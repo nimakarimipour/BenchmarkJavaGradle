@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -115,7 +116,7 @@ public class BenchmarkTest00969 extends HttpServlet {
       org.owasp.benchmark.helpers.ThingInterface thing =
           org.owasp.benchmark.helpers.ThingFactory.createThing();
       String g10263 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-      String bar = thing.doSomething(g10263); // reflection
+      @RUntainted String bar = thing.doSomething(g10263); // reflection
 
       return bar;
     }

@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,12 +58,12 @@ public class BenchmarkTest00905 extends HttpServlet {
       a1 = "cmd.exe";
       a2 = "/c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-      args = new String[] {a1, a2, cmd, bar};
+      args = new @RUntainted String[] {a1, a2, cmd, bar};
     } else {
       a1 = "sh";
       a2 = "-c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-      args = new String[] {a1, a2, cmd + bar};
+      args = new @RUntainted String[] {a1, a2, cmd + bar};
     }
 
     Runtime r = Runtime.getRuntime();
