@@ -27,45 +27,45 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest02047")
 public class BenchmarkTest02047 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("Referer");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("Referer");
+    String bar = doSomething(request, param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    response.setHeader("X-XSS-Protection", "0");
+    response.getWriter().print(bar.toCharArray());
+  } // end doPost
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        String bar = doSomething(request, param);
+    String bar;
 
-        response.setHeader("X-XSS-Protection", "0");
-        response.getWriter().print(bar.toCharArray());
-    } // end doPost
+    // Simple if statement that assigns param to bar on true condition
+    int num = 196;
+    if ((500 / 42) + num > 200) bar = param;
+    else bar = "This should never happen";
 
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-
-        // Simple if statement that assigns param to bar on true condition
-        int num = 196;
-        if ((500 / 42) + num > 200) bar = param;
-        else bar = "This should never happen";
-
-        return bar;
-    }
+    return bar;
+  }
 }

@@ -27,103 +27,100 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-01/BenchmarkTest01110")
 public class BenchmarkTest01110 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> names = request.getHeaderNames();
+    while (names.hasMoreElements()) {
+      String name = (String) names.nextElement();
+
+      if (org.owasp.benchmark.helpers.Utils.commonHeaders.contains(name)) {
+        continue; // If standard header, move on to next one
+      }
+
+      java.util.Enumeration<String> values = request.getHeaders(name);
+      if (values != null && values.hasMoreElements()) {
+        param = name; // Grabs the name of the first non-standard header as the parameter
+        // value
+        break;
+      }
     }
+    // Note: We don't URL decode header names because people don't normally do that
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        String param = "";
-        java.util.Enumeration<String> names = request.getHeaderNames();
-        while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
+    // FILE URIs are tricky because they are different between Mac and Windows because of lack
+    // of standardization.
+    // Mac requires an extra slash for some reason.
+    String startURIslashes = "";
+    if (System.getProperty("os.name").indexOf("Windows") != -1)
+      if (System.getProperty("os.name").indexOf("Windows") != -1) startURIslashes = "/";
+      else startURIslashes = "//";
 
-            if (org.owasp.benchmark.helpers.Utils.commonHeaders.contains(name)) {
-                continue; // If standard header, move on to next one
-            }
+    try {
+      java.net.URI fileURI =
+          new java.net.URI(
+              "file:"
+                  + startURIslashes
+                  + org.owasp.benchmark.helpers.Utils.TESTFILES_DIR
+                      .replace('\\', '/')
+                      .replace(' ', '_')
+                  + bar);
+      java.io.File fileTarget = new java.io.File(fileURI);
+      response
+          .getWriter()
+          .println(
+              "Access to file: '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileTarget.toString())
+                  + "' created.");
+      if (fileTarget.exists()) {
+        response.getWriter().println(" And file already exists.");
+      } else {
+        response.getWriter().println(" But file doesn't exist yet.");
+      }
+    } catch (java.net.URISyntaxException e) {
+      throw new ServletException(e);
+    }
+  } // end doPost
 
-            java.util.Enumeration<String> values = request.getHeaders(name);
-            if (values != null && values.hasMoreElements()) {
-                param = name; // Grabs the name of the first non-standard header as the parameter
-                // value
-                break;
-            }
-        }
-        // Note: We don't URL decode header names because people don't normally do that
+  private class Test {
 
-        String bar = new Test().doSomething(request, param);
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        // FILE URIs are tricky because they are different between Mac and Windows because of lack
-        // of standardization.
-        // Mac requires an extra slash for some reason.
-        String startURIslashes = "";
-        if (System.getProperty("os.name").indexOf("Windows") != -1)
-            if (System.getProperty("os.name").indexOf("Windows") != -1) startURIslashes = "/";
-            else startURIslashes = "//";
+      String bar;
+      String guess = "ABC";
+      char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
-        try {
-            java.net.URI fileURI =
-                    new java.net.URI(
-                            "file:"
-                                    + startURIslashes
-                                    + org.owasp.benchmark.helpers.Utils.TESTFILES_DIR
-                                            .replace('\\', '/')
-                                            .replace(' ', '_')
-                                    + bar);
-            java.io.File fileTarget = new java.io.File(fileURI);
-            response.getWriter()
-                    .println(
-                            "Access to file: '"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
-                                            .encoder()
-                                            .encodeForHTML(fileTarget.toString())
-                                    + "' created.");
-            if (fileTarget.exists()) {
-                response.getWriter().println(" And file already exists.");
-            } else {
-                response.getWriter().println(" But file doesn't exist yet.");
-            }
-        } catch (java.net.URISyntaxException e) {
-            throw new ServletException(e);
-        }
-    } // end doPost
+      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+      switch (switchTarget) {
+        case 'A':
+          bar = param;
+          break;
+        case 'B':
+          bar = "bob";
+          break;
+        case 'C':
+        case 'D':
+          bar = param;
+          break;
+        default:
+          bar = "bob's your uncle";
+          break;
+      }
 
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-            String guess = "ABC";
-            char switchTarget = guess.charAt(1); // condition 'B', which is safe
-
-            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-            switch (switchTarget) {
-                case 'A':
-                    bar = param;
-                    break;
-                case 'B':
-                    bar = "bob";
-                    break;
-                case 'C':
-                case 'D':
-                    bar = param;
-                    break;
-                default:
-                    bar = "bob's your uncle";
-                    break;
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

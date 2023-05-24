@@ -27,103 +27,102 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/weakrand-03/BenchmarkTest01537")
 public class BenchmarkTest01537 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    org.owasp.benchmark.helpers.SeparateClassRequest scr =
+        new org.owasp.benchmark.helpers.SeparateClassRequest(request);
+    String param = scr.getTheParameter("BenchmarkTest01537");
+    if (param == null) param = "";
+
+    String bar = new Test().doSomething(request, param);
+
+    try {
+      java.util.Random numGen = java.security.SecureRandom.getInstance("SHA1PRNG");
+      double rand = getNextNumber(numGen);
+
+      String rememberMeKey = Double.toString(rand).substring(2); // Trim off the 0. at the front.
+
+      String user = "SafeDonatella";
+      String fullClassName = this.getClass().getName();
+      String testCaseNumber =
+          fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
+      user += testCaseNumber;
+
+      String cookieName = "rememberMe" + testCaseNumber;
+
+      boolean foundUser = false;
+      javax.servlet.http.Cookie[] cookies = request.getCookies();
+      if (cookies != null) {
+        for (int i = 0; !foundUser && i < cookies.length; i++) {
+          javax.servlet.http.Cookie cookie = cookies[i];
+          if (cookieName.equals(cookie.getName())) {
+            if (cookie.getValue().equals(request.getSession().getAttribute(cookieName))) {
+              foundUser = true;
+            }
+          }
+        }
+      }
+
+      if (foundUser) {
+        response.getWriter().println("Welcome back: " + user + "<br/>");
+      } else {
+        javax.servlet.http.Cookie rememberMe =
+            new javax.servlet.http.Cookie(cookieName, rememberMeKey);
+        rememberMe.setSecure(true);
+        rememberMe.setHttpOnly(true);
+        rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
+        // e.g., /benchmark/sql-01/BenchmarkTest01001
+        request.getSession().setAttribute(cookieName, rememberMeKey);
+        response.addCookie(rememberMe);
+        response
+            .getWriter()
+            .println(
+                user
+                    + " has been remembered with cookie: "
+                    + rememberMe.getName()
+                    + " whose value is: "
+                    + rememberMe.getValue()
+                    + "<br/>");
+      }
+    } catch (java.security.NoSuchAlgorithmException e) {
+      System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
+      throw new ServletException(e);
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    response
+        .getWriter()
+        .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
+  } // end doPost
 
-        org.owasp.benchmark.helpers.SeparateClassRequest scr =
-                new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-        String param = scr.getTheParameter("BenchmarkTest01537");
-        if (param == null) param = "";
+  double getNextNumber(java.util.Random generator) {
+    return generator.nextDouble();
+  }
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        try {
-            java.util.Random numGen = java.security.SecureRandom.getInstance("SHA1PRNG");
-            double rand = getNextNumber(numGen);
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            String rememberMeKey =
-                    Double.toString(rand).substring(2); // Trim off the 0. at the front.
+      String bar = "safe!";
+      java.util.HashMap<String, Object> map7472 = new java.util.HashMap<String, Object>();
+      map7472.put("keyA-7472", "a_Value"); // put some stuff in the collection
+      map7472.put("keyB-7472", param); // put it in a collection
+      map7472.put("keyC", "another_Value"); // put some stuff in the collection
+      bar = (String) map7472.get("keyB-7472"); // get it back out
+      bar = (String) map7472.get("keyA-7472"); // get safe value back out
 
-            String user = "SafeDonatella";
-            String fullClassName = this.getClass().getName();
-            String testCaseNumber =
-                    fullClassName.substring(
-                            fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
-            user += testCaseNumber;
-
-            String cookieName = "rememberMe" + testCaseNumber;
-
-            boolean foundUser = false;
-            javax.servlet.http.Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (int i = 0; !foundUser && i < cookies.length; i++) {
-                    javax.servlet.http.Cookie cookie = cookies[i];
-                    if (cookieName.equals(cookie.getName())) {
-                        if (cookie.getValue()
-                                .equals(request.getSession().getAttribute(cookieName))) {
-                            foundUser = true;
-                        }
-                    }
-                }
-            }
-
-            if (foundUser) {
-                response.getWriter().println("Welcome back: " + user + "<br/>");
-            } else {
-                javax.servlet.http.Cookie rememberMe =
-                        new javax.servlet.http.Cookie(cookieName, rememberMeKey);
-                rememberMe.setSecure(true);
-                rememberMe.setHttpOnly(true);
-                rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
-                // e.g., /benchmark/sql-01/BenchmarkTest01001
-                request.getSession().setAttribute(cookieName, rememberMeKey);
-                response.addCookie(rememberMe);
-                response.getWriter()
-                        .println(
-                                user
-                                        + " has been remembered with cookie: "
-                                        + rememberMe.getName()
-                                        + " whose value is: "
-                                        + rememberMe.getValue()
-                                        + "<br/>");
-            }
-        } catch (java.security.NoSuchAlgorithmException e) {
-            System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
-            throw new ServletException(e);
-        }
-
-        response.getWriter()
-                .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
-    } // end doPost
-
-    double getNextNumber(java.util.Random generator) {
-        return generator.nextDouble();
+      return bar;
     }
-
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = "safe!";
-            java.util.HashMap<String, Object> map7472 = new java.util.HashMap<String, Object>();
-            map7472.put("keyA-7472", "a_Value"); // put some stuff in the collection
-            map7472.put("keyB-7472", param); // put it in a collection
-            map7472.put("keyC", "another_Value"); // put some stuff in the collection
-            bar = (String) map7472.get("keyB-7472"); // get it back out
-            bar = (String) map7472.get("keyA-7472"); // get safe value back out
-
-            return bar;
-        }
-    } // end innerclass Test
+  } // end innerclass Test
 } // end DataflowThruInnerClass

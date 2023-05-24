@@ -27,48 +27,49 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-00/BenchmarkTest01081")
 public class BenchmarkTest01081 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    if (request.getHeader("BenchmarkTest01081") != null) {
+      param = request.getHeader("BenchmarkTest01081");
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        if (request.getHeader("BenchmarkTest01081") != null) {
-            param = request.getHeader("BenchmarkTest01081");
-        }
+    String bar = new Test().doSomething(request, param);
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    // javax.servlet.http.HttpSession.setAttribute(java.lang.String^,java.lang.Object)
+    request.getSession().setAttribute(bar, "10340");
 
-        String bar = new Test().doSomething(request, param);
+    response
+        .getWriter()
+        .println(
+            "Item: '"
+                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                + "' with value: '10340' saved in session.");
+  } // end doPost
 
-        // javax.servlet.http.HttpSession.setAttribute(java.lang.String^,java.lang.Object)
-        request.getSession().setAttribute(bar, "10340");
+  private class Test {
 
-        response.getWriter()
-                .println(
-                        "Item: '"
-                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                                + "' with value: '10340' saved in session.");
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      StringBuilder sbxyz55141 = new StringBuilder(param);
+      String bar = sbxyz55141.append("_SafeStuff").toString();
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            StringBuilder sbxyz55141 = new StringBuilder(param);
-            String bar = sbxyz55141.append("_SafeStuff").toString();
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

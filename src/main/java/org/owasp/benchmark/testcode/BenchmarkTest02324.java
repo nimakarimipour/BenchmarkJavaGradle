@@ -27,52 +27,52 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-04/BenchmarkTest02324")
 public class BenchmarkTest02324 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    boolean flag = true;
+    java.util.Enumeration<String> names = request.getParameterNames();
+    while (names.hasMoreElements() && flag) {
+      String name = (String) names.nextElement();
+      String[] values = request.getParameterValues(name);
+      if (values != null) {
+        for (int i = 0; i < values.length && flag; i++) {
+          String value = values[i];
+          if (value.equals("BenchmarkTest02324")) {
+            param = name;
+            flag = false;
+          }
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = doSomething(request, param);
 
-        String param = "";
-        boolean flag = true;
-        java.util.Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements() && flag) {
-            String name = (String) names.nextElement();
-            String[] values = request.getParameterValues(name);
-            if (values != null) {
-                for (int i = 0; i < values.length && flag; i++) {
-                    String value = values[i];
-                    if (value.equals("BenchmarkTest02324")) {
-                        param = name;
-                        flag = false;
-                    }
-                }
-            }
-        }
+    response.setHeader("X-XSS-Protection", "0");
+    Object[] obj = {bar, "b"};
+    response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
+  } // end doPost
 
-        String bar = doSomething(request, param);
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {bar, "b"};
-        response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
-    } // end doPost
-
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar = param;
-        if (param != null && param.length() > 1) {
-            StringBuilder sbxyz12198 = new StringBuilder(param);
-            bar = sbxyz12198.replace(param.length() - "Z".length(), param.length(), "Z").toString();
-        }
-
-        return bar;
+    String bar = param;
+    if (param != null && param.length() > 1) {
+      StringBuilder sbxyz12198 = new StringBuilder(param);
+      bar = sbxyz12198.replace(param.length() - "Z".length(), param.length(), "Z").toString();
     }
+
+    return bar;
+  }
 }

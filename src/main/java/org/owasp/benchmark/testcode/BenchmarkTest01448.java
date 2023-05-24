@@ -27,109 +27,108 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/weakrand-03/BenchmarkTest01448")
 public class BenchmarkTest01448 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    boolean flag = true;
+    java.util.Enumeration<String> names = request.getParameterNames();
+    while (names.hasMoreElements() && flag) {
+      String name = (String) names.nextElement();
+      String[] values = request.getParameterValues(name);
+      if (values != null) {
+        for (int i = 0; i < values.length && flag; i++) {
+          String value = values[i];
+          if (value.equals("BenchmarkTest01448")) {
+            param = name;
+            flag = false;
+          }
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        String param = "";
-        boolean flag = true;
-        java.util.Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements() && flag) {
-            String name = (String) names.nextElement();
-            String[] values = request.getParameterValues(name);
-            if (values != null) {
-                for (int i = 0; i < values.length && flag; i++) {
-                    String value = values[i];
-                    if (value.equals("BenchmarkTest01448")) {
-                        param = name;
-                        flag = false;
-                    }
-                }
+    try {
+      double rand = java.security.SecureRandom.getInstance("SHA1PRNG").nextDouble();
+
+      String rememberMeKey = Double.toString(rand).substring(2); // Trim off the 0. at the front.
+
+      String user = "SafeDonna";
+      String fullClassName = this.getClass().getName();
+      String testCaseNumber =
+          fullClassName.substring(fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
+      user += testCaseNumber;
+
+      String cookieName = "rememberMe" + testCaseNumber;
+
+      boolean foundUser = false;
+      javax.servlet.http.Cookie[] cookies = request.getCookies();
+      if (cookies != null) {
+        for (int i = 0; !foundUser && i < cookies.length; i++) {
+          javax.servlet.http.Cookie cookie = cookies[i];
+          if (cookieName.equals(cookie.getName())) {
+            if (cookie.getValue().equals(request.getSession().getAttribute(cookieName))) {
+              foundUser = true;
             }
+          }
         }
+      }
 
-        String bar = new Test().doSomething(request, param);
+      if (foundUser) {
+        response.getWriter().println("Welcome back: " + user + "<br/>");
 
-        try {
-            double rand = java.security.SecureRandom.getInstance("SHA1PRNG").nextDouble();
+      } else {
+        javax.servlet.http.Cookie rememberMe =
+            new javax.servlet.http.Cookie(cookieName, rememberMeKey);
+        rememberMe.setSecure(true);
+        rememberMe.setHttpOnly(true);
+        rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
+        // e.g., /benchmark/sql-01/BenchmarkTest01001
+        request.getSession().setAttribute(cookieName, rememberMeKey);
+        response.addCookie(rememberMe);
+        response
+            .getWriter()
+            .println(
+                user
+                    + " has been remembered with cookie: "
+                    + rememberMe.getName()
+                    + " whose value is: "
+                    + rememberMe.getValue()
+                    + "<br/>");
+      }
+    } catch (java.security.NoSuchAlgorithmException e) {
+      System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
+      throw new ServletException(e);
+    }
+    response
+        .getWriter()
+        .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
+  } // end doPost
 
-            String rememberMeKey =
-                    Double.toString(rand).substring(2); // Trim off the 0. at the front.
+  private class Test {
 
-            String user = "SafeDonna";
-            String fullClassName = this.getClass().getName();
-            String testCaseNumber =
-                    fullClassName.substring(
-                            fullClassName.lastIndexOf('.') + 1 + "BenchmarkTest".length());
-            user += testCaseNumber;
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            String cookieName = "rememberMe" + testCaseNumber;
+      String bar;
 
-            boolean foundUser = false;
-            javax.servlet.http.Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (int i = 0; !foundUser && i < cookies.length; i++) {
-                    javax.servlet.http.Cookie cookie = cookies[i];
-                    if (cookieName.equals(cookie.getName())) {
-                        if (cookie.getValue()
-                                .equals(request.getSession().getAttribute(cookieName))) {
-                            foundUser = true;
-                        }
-                    }
-                }
-            }
+      // Simple if statement that assigns param to bar on true condition
+      int num = 196;
+      if ((500 / 42) + num > 200) bar = param;
+      else bar = "This should never happen";
 
-            if (foundUser) {
-                response.getWriter().println("Welcome back: " + user + "<br/>");
-
-            } else {
-                javax.servlet.http.Cookie rememberMe =
-                        new javax.servlet.http.Cookie(cookieName, rememberMeKey);
-                rememberMe.setSecure(true);
-                rememberMe.setHttpOnly(true);
-                rememberMe.setPath(request.getRequestURI()); // i.e., set path to JUST this servlet
-                // e.g., /benchmark/sql-01/BenchmarkTest01001
-                request.getSession().setAttribute(cookieName, rememberMeKey);
-                response.addCookie(rememberMe);
-                response.getWriter()
-                        .println(
-                                user
-                                        + " has been remembered with cookie: "
-                                        + rememberMe.getName()
-                                        + " whose value is: "
-                                        + rememberMe.getValue()
-                                        + "<br/>");
-            }
-        } catch (java.security.NoSuchAlgorithmException e) {
-            System.out.println("Problem executing SecureRandom.nextDouble() - TestCase");
-            throw new ServletException(e);
-        }
-        response.getWriter()
-                .println("Weak Randomness Test java.security.SecureRandom.nextDouble() executed");
-    } // end doPost
-
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-
-            // Simple if statement that assigns param to bar on true condition
-            int num = 196;
-            if ((500 / 42) + num > 200) bar = param;
-            else bar = "This should never happen";
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

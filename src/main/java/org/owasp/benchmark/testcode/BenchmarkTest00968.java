@@ -27,75 +27,75 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest00968")
 public class BenchmarkTest00968 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00968", "ECHOOO");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/cmdi-01/BenchmarkTest00968.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest00968", "ECHOOO");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/cmdi-01/BenchmarkTest00968.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest00968")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    java.util.List<String> argList = new java.util.ArrayList<String>();
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest00968")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+    String osName = System.getProperty("os.name");
+    if (osName.indexOf("Windows") != -1) {
+      argList.add("cmd.exe");
+      argList.add("/c");
+    } else {
+      argList.add("sh");
+      argList.add("-c");
+    }
+    argList.add("echo " + bar);
 
-        String bar = new Test().doSomething(request, param);
+    ProcessBuilder pb = new ProcessBuilder(argList);
 
-        java.util.List<String> argList = new java.util.ArrayList<String>();
+    try {
+      Process p = pb.start();
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println(
+          "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
+      throw new ServletException(e);
+    }
+  } // end doPost
 
-        String osName = System.getProperty("os.name");
-        if (osName.indexOf("Windows") != -1) {
-            argList.add("cmd.exe");
-            argList.add("/c");
-        } else {
-            argList.add("sh");
-            argList.add("-c");
-        }
-        argList.add("echo " + bar);
+  private class Test {
 
-        ProcessBuilder pb = new ProcessBuilder(argList);
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        try {
-            Process p = pb.start();
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println(
-                    "Problem executing cmdi - java.lang.ProcessBuilder(java.util.List) Test Case");
-            throw new ServletException(e);
-        }
-    } // end doPost
+      String bar = param;
 
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = param;
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

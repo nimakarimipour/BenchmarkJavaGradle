@@ -27,84 +27,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/hash-00/BenchmarkTest00466")
 public class BenchmarkTest00466 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest00466");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = "safe!";
+    java.util.HashMap<String, Object> map46344 = new java.util.HashMap<String, Object>();
+    map46344.put("keyA-46344", "a-Value"); // put some stuff in the collection
+    map46344.put("keyB-46344", param); // put it in a collection
+    map46344.put("keyC", "another-Value"); // put some stuff in the collection
+    bar = (String) map46344.get("keyB-46344"); // get it back out
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest00466");
-            if (values != null) param = values[0];
+    try {
+      java.util.Properties benchmarkprops = new java.util.Properties();
+      benchmarkprops.load(
+          this.getClass().getClassLoader().getResourceAsStream("benchmark.properties"));
+      String algorithm = benchmarkprops.getProperty("hashAlg2", "SHA5");
+      java.security.MessageDigest md = java.security.MessageDigest.getInstance(algorithm);
+      byte[] input = {(byte) '?'};
+      Object inputParam = bar;
+      if (inputParam instanceof String) input = ((String) inputParam).getBytes();
+      if (inputParam instanceof java.io.InputStream) {
+        byte[] strInput = new byte[1000];
+        int i = ((java.io.InputStream) inputParam).read(strInput);
+        if (i == -1) {
+          response
+              .getWriter()
+              .println(
+                  "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
+          return;
         }
+        input = java.util.Arrays.copyOf(strInput, i);
+      }
+      md.update(input);
 
-        String bar = "safe!";
-        java.util.HashMap<String, Object> map46344 = new java.util.HashMap<String, Object>();
-        map46344.put("keyA-46344", "a-Value"); // put some stuff in the collection
-        map46344.put("keyB-46344", param); // put it in a collection
-        map46344.put("keyC", "another-Value"); // put some stuff in the collection
-        bar = (String) map46344.get("keyB-46344"); // get it back out
+      byte[] result = md.digest();
+      java.io.File fileTarget =
+          new java.io.File(
+              new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
+              "passwordFile.txt");
+      java.io.FileWriter fw =
+          new java.io.FileWriter(fileTarget, true); // the true will append the new data
+      fw.write(
+          "hash_value=" + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true) + "\n");
+      fw.close();
+      response
+          .getWriter()
+          .println(
+              "Sensitive value '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(new String(input))
+                  + "' hashed and stored<br/>");
 
-        try {
-            java.util.Properties benchmarkprops = new java.util.Properties();
-            benchmarkprops.load(
-                    this.getClass().getClassLoader().getResourceAsStream("benchmark.properties"));
-            String algorithm = benchmarkprops.getProperty("hashAlg2", "SHA5");
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance(algorithm);
-            byte[] input = {(byte) '?'};
-            Object inputParam = bar;
-            if (inputParam instanceof String) input = ((String) inputParam).getBytes();
-            if (inputParam instanceof java.io.InputStream) {
-                byte[] strInput = new byte[1000];
-                int i = ((java.io.InputStream) inputParam).read(strInput);
-                if (i == -1) {
-                    response.getWriter()
-                            .println(
-                                    "This input source requires a POST, not a GET. Incompatible UI for the InputStream source.");
-                    return;
-                }
-                input = java.util.Arrays.copyOf(strInput, i);
-            }
-            md.update(input);
-
-            byte[] result = md.digest();
-            java.io.File fileTarget =
-                    new java.io.File(
-                            new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR),
-                            "passwordFile.txt");
-            java.io.FileWriter fw =
-                    new java.io.FileWriter(fileTarget, true); // the true will append the new data
-            fw.write(
-                    "hash_value="
-                            + org.owasp.esapi.ESAPI.encoder().encodeForBase64(result, true)
-                            + "\n");
-            fw.close();
-            response.getWriter()
-                    .println(
-                            "Sensitive value '"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
-                                            .encoder()
-                                            .encodeForHTML(new String(input))
-                                    + "' hashed and stored<br/>");
-
-        } catch (java.security.NoSuchAlgorithmException e) {
-            System.out.println("Problem executing hash - TestCase");
-            throw new ServletException(e);
-        }
-
-        response.getWriter()
-                .println(
-                        "Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
+    } catch (java.security.NoSuchAlgorithmException e) {
+      System.out.println("Problem executing hash - TestCase");
+      throw new ServletException(e);
     }
+
+    response
+        .getWriter()
+        .println("Hash Test java.security.MessageDigest.getInstance(java.lang.String) executed");
+  }
 }

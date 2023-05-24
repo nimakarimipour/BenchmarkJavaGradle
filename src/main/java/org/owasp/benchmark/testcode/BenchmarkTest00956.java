@@ -27,79 +27,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-01/BenchmarkTest00956")
 public class BenchmarkTest00956 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00956", "FileName");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/pathtraver-01/BenchmarkTest00956.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest00956", "FileName");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/pathtraver-01/BenchmarkTest00956.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest00956")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    String fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest00956")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+    try (
+    // Create the file first so the test won't throw an exception if it doesn't exist.
+    // Note: Don't actually do this because this method signature could cause a tool to find
+    // THIS file constructor
+    // as a vuln, rather than the File signature we are trying to actually test.
+    // If necessary, just run the benchmark twice. The 1st run should create all the necessary
+    // files.
+    // new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar).createNewFile();
 
-        String bar = new Test().doSomething(request, param);
+    java.io.FileOutputStream fos =
+        new java.io.FileOutputStream(new java.io.FileInputStream(fileName).getFD()); ) {
+      response
+          .getWriter()
+          .println(
+              "Now ready to write to file: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
 
-        String fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
+    } catch (Exception e) {
+      System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
+    }
+  } // end doPost
 
-        try (
-        // Create the file first so the test won't throw an exception if it doesn't exist.
-        // Note: Don't actually do this because this method signature could cause a tool to find
-        // THIS file constructor
-        // as a vuln, rather than the File signature we are trying to actually test.
-        // If necessary, just run the benchmark twice. The 1st run should create all the necessary
-        // files.
-        // new java.io.File(org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar).createNewFile();
+  private class Test {
 
-        java.io.FileOutputStream fos =
-                new java.io.FileOutputStream(new java.io.FileInputStream(fileName).getFD()); ) {
-            response.getWriter()
-                    .println(
-                            "Now ready to write to file: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        } catch (Exception e) {
-            System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
-        }
-    } // end doPost
+      String bar;
 
-    private class Test {
+      // Simple if statement that assigns param to bar on true condition
+      int num = 196;
+      if ((500 / 42) + num > 200) bar = param;
+      else bar = "This should never happen";
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-
-            // Simple if statement that assigns param to bar on true condition
-            int num = 196;
-            if ((500 / 42) + num > 200) bar = param;
-            else bar = "This should never happen";
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

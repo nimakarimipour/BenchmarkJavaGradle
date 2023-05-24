@@ -27,55 +27,54 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01361")
 public class BenchmarkTest01361 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest01361");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest01361");
-            if (values != null) param = values[0];
-        }
+    String cmd =
+        org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+            this.getClass().getClassLoader());
+    String[] args = {cmd};
+    String[] argsEnv = {bar};
 
-        String bar = new Test().doSomething(request, param);
+    Runtime r = Runtime.getRuntime();
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
-        String[] args = {cmd};
-        String[] argsEnv = {bar};
+    try {
+      Process p = r.exec(args, argsEnv);
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
+    }
+  } // end doPost
 
-        Runtime r = Runtime.getRuntime();
+  private class Test {
 
-        try {
-            Process p = r.exec(args, argsEnv);
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = param;
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = param;
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

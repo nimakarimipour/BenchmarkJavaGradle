@@ -27,52 +27,52 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-02/BenchmarkTest01049")
 public class BenchmarkTest01049 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    if (request.getHeader("Referer") != null) {
+      param = request.getHeader("Referer");
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        if (request.getHeader("Referer") != null) {
-            param = request.getHeader("Referer");
-        }
+    String bar = new Test().doSomething(request, param);
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    response.setHeader("X-XSS-Protection", "0");
+    Object[] obj = {"a", bar};
+    response.getWriter().format("Formatted like: %1$s and %2$s.", obj);
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {"a", bar};
-        response.getWriter().format("Formatted like: %1$s and %2$s.", obj);
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = "";
+      if (param != null) {
+        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        valuesList.add("safe");
+        valuesList.add(param);
+        valuesList.add("moresafe");
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
+        valuesList.remove(0); // remove the 1st safe value
 
-            String bar = "";
-            if (param != null) {
-                java.util.List<String> valuesList = new java.util.ArrayList<String>();
-                valuesList.add("safe");
-                valuesList.add(param);
-                valuesList.add("moresafe");
+        bar = valuesList.get(0); // get the param value
+      }
 
-                valuesList.remove(0); // remove the 1st safe value
-
-                bar = valuesList.get(0); // get the param value
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

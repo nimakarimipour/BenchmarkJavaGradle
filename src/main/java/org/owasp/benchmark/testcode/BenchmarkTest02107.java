@@ -27,51 +27,48 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-02/BenchmarkTest02107")
 public class BenchmarkTest02107 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = request.getParameter("BenchmarkTest02107");
+    if (param == null) param = "";
+
+    String bar = doSomething(request, param);
+
+    java.io.File fileTarget = new java.io.File(bar);
+    response
+        .getWriter()
+        .println(
+            "Access to file: '"
+                + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileTarget.toString())
+                + "' created.");
+    if (fileTarget.exists()) {
+      response.getWriter().println(" And file already exists.");
+    } else {
+      response.getWriter().println(" But file doesn't exist yet.");
     }
+  } // end doPost
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        String param = request.getParameter("BenchmarkTest02107");
-        if (param == null) param = "";
+    String bar;
 
-        String bar = doSomething(request, param);
+    // Simple if statement that assigns constant to bar on true condition
+    int num = 86;
+    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+    else bar = param;
 
-        java.io.File fileTarget = new java.io.File(bar);
-        response.getWriter()
-                .println(
-                        "Access to file: '"
-                                + org.owasp
-                                        .esapi
-                                        .ESAPI
-                                        .encoder()
-                                        .encodeForHTML(fileTarget.toString())
-                                + "' created.");
-        if (fileTarget.exists()) {
-            response.getWriter().println(" And file already exists.");
-        } else {
-            response.getWriter().println(" But file doesn't exist yet.");
-        }
-    } // end doPost
-
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-
-        // Simple if statement that assigns constant to bar on true condition
-        int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
-
-        return bar;
-    }
+    return bar;
+  }
 }

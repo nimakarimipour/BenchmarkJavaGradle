@@ -27,68 +27,68 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-00/BenchmarkTest00101")
 public class BenchmarkTest00101 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00101", "bar");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/sqli-00/BenchmarkTest00101.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest00101", "bar");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/sqli-00/BenchmarkTest00101.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest00101")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = "";
+    if (param != null) {
+      java.util.List<String> valuesList = new java.util.ArrayList<String>();
+      valuesList.add("safe");
+      valuesList.add(param);
+      valuesList.add("moresafe");
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+      valuesList.remove(0); // remove the 1st safe value
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest00101")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
-
-        String bar = "";
-        if (param != null) {
-            java.util.List<String> valuesList = new java.util.ArrayList<String>();
-            valuesList.add("safe");
-            valuesList.add(param);
-            valuesList.add("moresafe");
-
-            valuesList.remove(0); // remove the 1st safe value
-
-            bar = valuesList.get(0); // get the param value
-        }
-
-        String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
-
-        try {
-            java.sql.Connection connection =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-            java.sql.PreparedStatement statement =
-                    connection.prepareStatement(sql, new String[] {"Column1", "Column2"});
-            statement.setString(1, "foo");
-            statement.execute();
-            org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
-        } catch (java.sql.SQLException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-                return;
-            } else throw new ServletException(e);
-        }
+      bar = valuesList.get(0); // get the param value
     }
+
+    String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
+
+    try {
+      java.sql.Connection connection =
+          org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+      java.sql.PreparedStatement statement =
+          connection.prepareStatement(sql, new String[] {"Column1", "Column2"});
+      statement.setString(1, "foo");
+      statement.execute();
+      org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
+    } catch (java.sql.SQLException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+        return;
+      } else throw new ServletException(e);
+    }
+  }
 }

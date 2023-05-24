@@ -27,72 +27,73 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-00/BenchmarkTest00064")
 public class BenchmarkTest00064 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest00064", "FileName");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00064.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest00064", "FileName");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/pathtraver-00/BenchmarkTest00064.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest00064")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar;
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    // Simple ? condition that assigns constant to bar on true condition
+    int num = 106;
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest00064")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+    bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-        String bar;
+    String fileName = null;
+    java.io.FileOutputStream fos = null;
 
-        // Simple ? condition that assigns constant to bar on true condition
-        int num = 106;
+    try {
+      fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
 
-        bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+      fos = new java.io.FileOutputStream(fileName);
+      response
+          .getWriter()
+          .println(
+              "Now ready to write to file: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
 
-        String fileName = null;
-        java.io.FileOutputStream fos = null;
-
+    } catch (Exception e) {
+      System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
+      //			System.out.println("File exception caught and swallowed: " + e.getMessage());
+    } finally {
+      if (fos != null) {
         try {
-            fileName = org.owasp.benchmark.helpers.Utils.TESTFILES_DIR + bar;
-
-            fos = new java.io.FileOutputStream(fileName);
-            response.getWriter()
-                    .println(
-                            "Now ready to write to file: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileName));
-
+          fos.close();
+          fos = null;
         } catch (Exception e) {
-            System.out.println("Couldn't open FileOutputStream on file: '" + fileName + "'");
-            //			System.out.println("File exception caught and swallowed: " + e.getMessage());
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                    fos = null;
-                } catch (Exception e) {
-                    // we tried...
-                }
-            }
+          // we tried...
         }
+      }
     }
+  }
 }

@@ -27,96 +27,96 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xpathi-00/BenchmarkTest01223")
 public class BenchmarkTest01223 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01223");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01223");
+    String bar = new Test().doSomething(request, param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    try {
+      java.io.FileInputStream file =
+          new java.io.FileInputStream(
+              org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                  "employees.xml", this.getClass().getClassLoader()));
+      javax.xml.parsers.DocumentBuilderFactory builderFactory =
+          javax.xml.parsers.DocumentBuilderFactory.newInstance();
+      // Prevent XXE
+      builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+      javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
+      org.w3c.dom.Document xmlDocument = builder.parse(file);
+      javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
+      javax.xml.xpath.XPath xp = xpf.newXPath();
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+      String expression = "/Employees/Employee[@emplid='" + bar + "']";
+      org.w3c.dom.NodeList nodeList =
+          (org.w3c.dom.NodeList)
+              xp.compile(expression).evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);
 
-        String bar = new Test().doSomething(request, param);
+      response.getWriter().println("Your query results are: <br/>");
 
-        try {
-            java.io.FileInputStream file =
-                    new java.io.FileInputStream(
-                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                                    "employees.xml", this.getClass().getClassLoader()));
-            javax.xml.parsers.DocumentBuilderFactory builderFactory =
-                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
-            // Prevent XXE
-            builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            org.w3c.dom.Document xmlDocument = builder.parse(file);
-            javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
-            javax.xml.xpath.XPath xp = xpf.newXPath();
+      for (int i = 0; i < nodeList.getLength(); i++) {
+        org.w3c.dom.Element value = (org.w3c.dom.Element) nodeList.item(i);
+        response.getWriter().println(value.getTextContent() + "<br/>");
+      }
+    } catch (javax.xml.xpath.XPathExpressionException
+        | javax.xml.parsers.ParserConfigurationException
+        | org.xml.sax.SAXException e) {
+      response
+          .getWriter()
+          .println(
+              "Error parsing XPath input: '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
+                  + "'");
+      throw new ServletException(e);
+    }
+  } // end doPost
 
-            String expression = "/Employees/Employee[@emplid='" + bar + "']";
-            org.w3c.dom.NodeList nodeList =
-                    (org.w3c.dom.NodeList)
-                            xp.compile(expression)
-                                    .evaluate(xmlDocument, javax.xml.xpath.XPathConstants.NODESET);
+  private class Test {
 
-            response.getWriter().println("Your query results are: <br/>");
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                org.w3c.dom.Element value = (org.w3c.dom.Element) nodeList.item(i);
-                response.getWriter().println(value.getTextContent() + "<br/>");
-            }
-        } catch (javax.xml.xpath.XPathExpressionException
-                | javax.xml.parsers.ParserConfigurationException
-                | org.xml.sax.SAXException e) {
-            response.getWriter()
-                    .println(
-                            "Error parsing XPath input: '"
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
-                                    + "'");
-            throw new ServletException(e);
-        }
-    } // end doPost
+      String bar;
+      String guess = "ABC";
+      char switchTarget = guess.charAt(2);
 
-    private class Test {
+      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+      switch (switchTarget) {
+        case 'A':
+          bar = param;
+          break;
+        case 'B':
+          bar = "bobs_your_uncle";
+          break;
+        case 'C':
+        case 'D':
+          bar = param;
+          break;
+        default:
+          bar = "bobs_your_uncle";
+          break;
+      }
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-            String guess = "ABC";
-            char switchTarget = guess.charAt(2);
-
-            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-            switch (switchTarget) {
-                case 'A':
-                    bar = param;
-                    break;
-                case 'B':
-                    bar = "bobs_your_uncle";
-                    break;
-                case 'C':
-                case 'D':
-                    bar = param;
-                    break;
-                default:
-                    bar = "bobs_your_uncle";
-                    break;
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

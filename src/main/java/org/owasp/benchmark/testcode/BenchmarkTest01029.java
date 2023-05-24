@@ -27,79 +27,76 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/pathtraver-01/BenchmarkTest01029")
 public class BenchmarkTest01029 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    if (request.getHeader("BenchmarkTest01029") != null) {
+      param = request.getHeader("BenchmarkTest01029");
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        if (request.getHeader("BenchmarkTest01029") != null) {
-            param = request.getHeader("BenchmarkTest01029");
-        }
+    String bar = new Test().doSomething(request, param);
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    // FILE URIs are tricky because they are different between Mac and Windows because of lack
+    // of standardization.
+    // Mac requires an extra slash for some reason.
+    String startURIslashes = "";
+    if (System.getProperty("os.name").indexOf("Windows") != -1)
+      if (System.getProperty("os.name").indexOf("Windows") != -1) startURIslashes = "/";
+      else startURIslashes = "//";
 
-        String bar = new Test().doSomething(request, param);
+    try {
+      java.net.URI fileURI =
+          new java.net.URI(
+              "file",
+              null,
+              startURIslashes
+                  + org.owasp.benchmark.helpers.Utils.TESTFILES_DIR
+                      .replace('\\', java.io.File.separatorChar)
+                      .replace(' ', '_')
+                  + bar,
+              null,
+              null);
+      java.io.File fileTarget = new java.io.File(fileURI);
+      response
+          .getWriter()
+          .println(
+              "Access to file: '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(fileTarget.toString())
+                  + "' created.");
+      if (fileTarget.exists()) {
+        response.getWriter().println(" And file already exists.");
+      } else {
+        response.getWriter().println(" But file doesn't exist yet.");
+      }
+    } catch (java.net.URISyntaxException e) {
+      throw new ServletException(e);
+    }
+  } // end doPost
 
-        // FILE URIs are tricky because they are different between Mac and Windows because of lack
-        // of standardization.
-        // Mac requires an extra slash for some reason.
-        String startURIslashes = "";
-        if (System.getProperty("os.name").indexOf("Windows") != -1)
-            if (System.getProperty("os.name").indexOf("Windows") != -1) startURIslashes = "/";
-            else startURIslashes = "//";
+  private class Test {
 
-        try {
-            java.net.URI fileURI =
-                    new java.net.URI(
-                            "file",
-                            null,
-                            startURIslashes
-                                    + org.owasp.benchmark.helpers.Utils.TESTFILES_DIR
-                                            .replace('\\', java.io.File.separatorChar)
-                                            .replace(' ', '_')
-                                    + bar,
-                            null,
-                            null);
-            java.io.File fileTarget = new java.io.File(fileURI);
-            response.getWriter()
-                    .println(
-                            "Access to file: '"
-                                    + org.owasp
-                                            .esapi
-                                            .ESAPI
-                                            .encoder()
-                                            .encodeForHTML(fileTarget.toString())
-                                    + "' created.");
-            if (fileTarget.exists()) {
-                response.getWriter().println(" And file already exists.");
-            } else {
-                response.getWriter().println(" But file doesn't exist yet.");
-            }
-        } catch (java.net.URISyntaxException e) {
-            throw new ServletException(e);
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      org.owasp.benchmark.helpers.ThingInterface thing =
+          org.owasp.benchmark.helpers.ThingFactory.createThing();
+      String bar = thing.doSomething(param);
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            org.owasp.benchmark.helpers.ThingInterface thing =
-                    org.owasp.benchmark.helpers.ThingFactory.createThing();
-            String bar = thing.doSomething(param);
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

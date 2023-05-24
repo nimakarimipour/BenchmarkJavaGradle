@@ -27,68 +27,69 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xpathi-00/BenchmarkTest01316")
 public class BenchmarkTest01316 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = request.getParameter("BenchmarkTest01316");
+    if (param == null) param = "";
+
+    String bar = new Test().doSomething(request, param);
+
+    try {
+      java.io.FileInputStream file =
+          new java.io.FileInputStream(
+              org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                  "employees.xml", this.getClass().getClassLoader()));
+      javax.xml.parsers.DocumentBuilderFactory builderFactory =
+          javax.xml.parsers.DocumentBuilderFactory.newInstance();
+      // Prevent XXE
+      builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+      javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
+      org.w3c.dom.Document xmlDocument = builder.parse(file);
+      javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
+      javax.xml.xpath.XPath xp = xpf.newXPath();
+
+      String expression = "/Employees/Employee[@emplid='" + bar + "']";
+      String result = xp.evaluate(expression, xmlDocument);
+
+      response.getWriter().println("Your query results are: " + result + "<br/>");
+
+    } catch (javax.xml.xpath.XPathExpressionException
+        | javax.xml.parsers.ParserConfigurationException
+        | org.xml.sax.SAXException e) {
+      response
+          .getWriter()
+          .println(
+              "Error parsing XPath input: '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
+                  + "'");
+      throw new ServletException(e);
     }
+  } // end doPost
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+  private class Test {
 
-        String param = request.getParameter("BenchmarkTest01316");
-        if (param == null) param = "";
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        String bar = new Test().doSomething(request, param);
+      String bar;
 
-        try {
-            java.io.FileInputStream file =
-                    new java.io.FileInputStream(
-                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                                    "employees.xml", this.getClass().getClassLoader()));
-            javax.xml.parsers.DocumentBuilderFactory builderFactory =
-                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
-            // Prevent XXE
-            builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            org.w3c.dom.Document xmlDocument = builder.parse(file);
-            javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
-            javax.xml.xpath.XPath xp = xpf.newXPath();
+      // Simple if statement that assigns param to bar on true condition
+      int num = 196;
+      if ((500 / 42) + num > 200) bar = param;
+      else bar = "This should never happen";
 
-            String expression = "/Employees/Employee[@emplid='" + bar + "']";
-            String result = xp.evaluate(expression, xmlDocument);
-
-            response.getWriter().println("Your query results are: " + result + "<br/>");
-
-        } catch (javax.xml.xpath.XPathExpressionException
-                | javax.xml.parsers.ParserConfigurationException
-                | org.xml.sax.SAXException e) {
-            response.getWriter()
-                    .println(
-                            "Error parsing XPath input: '"
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
-                                    + "'");
-            throw new ServletException(e);
-        }
-    } // end doPost
-
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-
-            // Simple if statement that assigns param to bar on true condition
-            int num = 196;
-            if ((500 / 42) + num > 200) bar = param;
-            else bar = "This should never happen";
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

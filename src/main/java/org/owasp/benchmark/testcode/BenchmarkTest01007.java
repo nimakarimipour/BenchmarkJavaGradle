@@ -27,93 +27,94 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01007")
 public class BenchmarkTest01007 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest01007", "bar");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/sqli-02/BenchmarkTest01007.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest01007", "bar");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/sqli-02/BenchmarkTest01007.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest01007")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    String sql = "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+    try {
+      java.util.Map<String, Object> results =
+          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForMap(sql);
+      response.getWriter().println("Your results are: ");
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest01007")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+      //		System.out.println("Your results are");
+      response
+          .getWriter()
+          .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
+      //		System.out.println(results.toString());
+    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+      response
+          .getWriter()
+          .println(
+              "No results returned for query: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+    } catch (org.springframework.dao.DataAccessException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        String sql =
-                "SELECT TOP 1 userid from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-        try {
-            java.util.Map<String, Object> results =
-                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForMap(sql);
-            response.getWriter().println("Your results are: ");
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            //		System.out.println("Your results are");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
-            //		System.out.println(results.toString());
-        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-            response.getWriter()
-                    .println(
-                            "No results returned for query: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-        } catch (org.springframework.dao.DataAccessException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+      String bar;
+      String guess = "ABC";
+      char switchTarget = guess.charAt(2);
 
-    private class Test {
+      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+      switch (switchTarget) {
+        case 'A':
+          bar = param;
+          break;
+        case 'B':
+          bar = "bobs_your_uncle";
+          break;
+        case 'C':
+        case 'D':
+          bar = param;
+          break;
+        default:
+          bar = "bobs_your_uncle";
+          break;
+      }
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-            String guess = "ABC";
-            char switchTarget = guess.charAt(2);
-
-            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-            switch (switchTarget) {
-                case 'A':
-                    bar = param;
-                    break;
-                case 'B':
-                    bar = "bobs_your_uncle";
-                    break;
-                case 'C':
-                case 'D':
-                    bar = param;
-                    break;
-                default:
-                    bar = "bobs_your_uncle";
-                    break;
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

@@ -27,73 +27,72 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01286")
 public class BenchmarkTest01286 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = request.getParameter("BenchmarkTest01286");
+    if (param == null) param = "";
+
+    String bar = new Test().doSomething(request, param);
+
+    String cmd = "";
+    String a1 = "";
+    String a2 = "";
+    String[] args = null;
+    String osName = System.getProperty("os.name");
+
+    if (osName.indexOf("Windows") != -1) {
+      a1 = "cmd.exe";
+      a2 = "/c";
+      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
+      args = new String[] {a1, a2, cmd, bar};
+    } else {
+      a1 = "sh";
+      a2 = "-c";
+      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
+      args = new String[] {a1, a2, cmd + bar};
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    Runtime r = Runtime.getRuntime();
 
-        String param = request.getParameter("BenchmarkTest01286");
-        if (param == null) param = "";
+    try {
+      Process p = r.exec(args);
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
+    }
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        String cmd = "";
-        String a1 = "";
-        String a2 = "";
-        String[] args = null;
-        String osName = System.getProperty("os.name");
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        if (osName.indexOf("Windows") != -1) {
-            a1 = "cmd.exe";
-            a2 = "/c";
-            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
-            args = new String[] {a1, a2, cmd, bar};
-        } else {
-            a1 = "sh";
-            a2 = "-c";
-            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ping -c1 ");
-            args = new String[] {a1, a2, cmd + bar};
-        }
+      String bar = "";
+      if (param != null) {
+        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        valuesList.add("safe");
+        valuesList.add(param);
+        valuesList.add("moresafe");
 
-        Runtime r = Runtime.getRuntime();
+        valuesList.remove(0); // remove the 1st safe value
 
-        try {
-            Process p = r.exec(args);
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
-    } // end doPost
+        bar = valuesList.get(0); // get the param value
+      }
 
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = "";
-            if (param != null) {
-                java.util.List<String> valuesList = new java.util.ArrayList<String>();
-                valuesList.add("safe");
-                valuesList.add(param);
-                valuesList.add("moresafe");
-
-                valuesList.remove(0); // remove the 1st safe value
-
-                bar = valuesList.get(0); // get the param value
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

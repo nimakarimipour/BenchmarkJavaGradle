@@ -27,40 +27,40 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-02/BenchmarkTest01352")
 public class BenchmarkTest01352 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest01352");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest01352");
-            if (values != null) param = values[0];
-        }
+    response.setHeader("X-XSS-Protection", "0");
+    response.getWriter().write(bar);
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        response.setHeader("X-XSS-Protection", "0");
-        response.getWriter().write(bar);
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = org.springframework.web.util.HtmlUtils.htmlEscape(param);
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = org.springframework.web.util.HtmlUtils.htmlEscape(param);
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

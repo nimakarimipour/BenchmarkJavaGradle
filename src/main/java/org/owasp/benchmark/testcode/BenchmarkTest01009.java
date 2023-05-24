@@ -27,88 +27,84 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01009")
 public class BenchmarkTest01009 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest01009", "bar");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/sqli-02/BenchmarkTest01009.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest01009", "bar");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/sqli-02/BenchmarkTest01009.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest01009")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    String sql = "SELECT  * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+    try {
+      org.springframework.jdbc.support.rowset.SqlRowSet results =
+          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForRowSet(sql);
+      response.getWriter().println("Your results are: ");
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest01009")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+      //		System.out.println("Your results are");
+      while (results.next()) {
+        response
+            .getWriter()
+            .println(
+                org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.getString("USERNAME")) + " ");
+        //			System.out.println(results.getString("USERNAME"));
+      }
+    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+      response
+          .getWriter()
+          .println(
+              "No results returned for query: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+    } catch (org.springframework.dao.DataAccessException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        String sql = "SELECT  * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-        try {
-            org.springframework.jdbc.support.rowset.SqlRowSet results =
-                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForRowSet(sql);
-            response.getWriter().println("Your results are: ");
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            //		System.out.println("Your results are");
-            while (results.next()) {
-                response.getWriter()
-                        .println(
-                                org.owasp
-                                                .esapi
-                                                .ESAPI
-                                                .encoder()
-                                                .encodeForHTML(results.getString("USERNAME"))
-                                        + " ");
-                //			System.out.println(results.getString("USERNAME"));
-            }
-        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-            response.getWriter()
-                    .println(
-                            "No results returned for query: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-        } catch (org.springframework.dao.DataAccessException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+      String bar = "";
+      if (param != null) {
+        bar =
+            new String(
+                org.apache.commons.codec.binary.Base64.decodeBase64(
+                    org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
+      }
 
-    private class Test {
-
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = "";
-            if (param != null) {
-                bar =
-                        new String(
-                                org.apache.commons.codec.binary.Base64.decodeBase64(
-                                        org.apache.commons.codec.binary.Base64.encodeBase64(
-                                                param.getBytes())));
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

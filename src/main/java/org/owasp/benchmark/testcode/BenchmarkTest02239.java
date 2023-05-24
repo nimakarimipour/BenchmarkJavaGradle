@@ -27,47 +27,47 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-04/BenchmarkTest02239")
 public class BenchmarkTest02239 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest02239");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest02239");
-            if (values != null) param = values[0];
-        }
+    response.setHeader("X-XSS-Protection", "0");
+    response.getWriter().write(bar.toCharArray());
+  } // end doPost
 
-        String bar = doSomething(request, param);
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        response.setHeader("X-XSS-Protection", "0");
-        response.getWriter().write(bar.toCharArray());
-    } // end doPost
+    String bar = "alsosafe";
+    if (param != null) {
+      java.util.List<String> valuesList = new java.util.ArrayList<String>();
+      valuesList.add("safe");
+      valuesList.add(param);
+      valuesList.add("moresafe");
 
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
+      valuesList.remove(0); // remove the 1st safe value
 
-        String bar = "alsosafe";
-        if (param != null) {
-            java.util.List<String> valuesList = new java.util.ArrayList<String>();
-            valuesList.add("safe");
-            valuesList.add(param);
-            valuesList.add("moresafe");
-
-            valuesList.remove(0); // remove the 1st safe value
-
-            bar = valuesList.get(1); // get the last 'safe' value
-        }
-
-        return bar;
+      bar = valuesList.get(1); // get the last 'safe' value
     }
+
+    return bar;
+  }
 }

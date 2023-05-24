@@ -27,62 +27,62 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01213")
 public class BenchmarkTest01213 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01213");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01213");
+    String bar = new Test().doSomething(request, param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    try {
+      java.sql.Connection connection =
+          org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+      java.sql.PreparedStatement statement =
+          connection.prepareStatement(sql, new String[] {"Column1", "Column2"});
+      statement.setString(1, "foo");
+      statement.execute();
+      org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
+    } catch (java.sql.SQLException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+        return;
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        String sql = "SELECT * from USERS where USERNAME=? and PASSWORD='" + bar + "'";
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-        try {
-            java.sql.Connection connection =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-            java.sql.PreparedStatement statement =
-                    connection.prepareStatement(sql, new String[] {"Column1", "Column2"});
-            statement.setString(1, "foo");
-            statement.execute();
-            org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
-        } catch (java.sql.SQLException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-                return;
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+      String bar;
 
-    private class Test {
+      // Simple if statement that assigns constant to bar on true condition
+      int num = 86;
+      if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+      else bar = param;
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar;
-
-            // Simple if statement that assigns constant to bar on true condition
-            int num = 86;
-            if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-            else bar = param;
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

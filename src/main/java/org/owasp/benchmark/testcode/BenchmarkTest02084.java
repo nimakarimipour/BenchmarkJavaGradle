@@ -27,48 +27,49 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-01/BenchmarkTest02084")
 public class BenchmarkTest02084 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest02084");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest02084");
+    String bar = doSomething(request, param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
+    request.getSession().setAttribute("userid", bar);
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    response
+        .getWriter()
+        .println(
+            "Item: 'userid' with value: '"
+                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                + "' saved in session.");
+  } // end doPost
 
-        String bar = doSomething(request, param);
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        // javax.servlet.http.HttpSession.setAttribute(java.lang.String,java.lang.Object^)
-        request.getSession().setAttribute("userid", bar);
+    org.owasp.benchmark.helpers.ThingInterface thing =
+        org.owasp.benchmark.helpers.ThingFactory.createThing();
+    String bar = thing.doSomething(param);
 
-        response.getWriter()
-                .println(
-                        "Item: 'userid' with value: '"
-                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                                + "' saved in session.");
-    } // end doPost
-
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        org.owasp.benchmark.helpers.ThingInterface thing =
-                org.owasp.benchmark.helpers.ThingFactory.createThing();
-        String bar = thing.doSomething(param);
-
-        return bar;
-    }
+    return bar;
+  }
 }

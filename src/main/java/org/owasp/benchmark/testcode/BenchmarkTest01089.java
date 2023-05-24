@@ -27,67 +27,68 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01089")
 public class BenchmarkTest01089 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    if (request.getHeader("BenchmarkTest01089") != null) {
+      param = request.getHeader("BenchmarkTest01089");
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        if (request.getHeader("BenchmarkTest01089") != null) {
-            param = request.getHeader("BenchmarkTest01089");
-        }
+    String bar = new Test().doSomething(request, param);
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    String sql = "SELECT TOP 1 USERNAME from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+    try {
+      Object results =
+          org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
+              sql, new Object[] {}, String.class);
+      response.getWriter().println("Your results are: ");
 
-        String bar = new Test().doSomething(request, param);
+      //		System.out.println("Your results are");
+      response
+          .getWriter()
+          .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
+      //		System.out.println(results.toString());
+    } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+      response
+          .getWriter()
+          .println(
+              "No results returned for query: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
+    } catch (org.springframework.dao.DataAccessException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String sql =
-                "SELECT TOP 1 USERNAME from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-        try {
-            Object results =
-                    org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForObject(
-                            sql, new Object[] {}, String.class);
-            response.getWriter().println("Your results are: ");
+  private class Test {
 
-            //		System.out.println("Your results are");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(results.toString()));
-            //		System.out.println(results.toString());
-        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-            response.getWriter()
-                    .println(
-                            "No results returned for query: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql));
-        } catch (org.springframework.dao.DataAccessException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = "safe!";
+      java.util.HashMap<String, Object> map11607 = new java.util.HashMap<String, Object>();
+      map11607.put("keyA-11607", "a_Value"); // put some stuff in the collection
+      map11607.put("keyB-11607", param); // put it in a collection
+      map11607.put("keyC", "another_Value"); // put some stuff in the collection
+      bar = (String) map11607.get("keyB-11607"); // get it back out
+      bar = (String) map11607.get("keyA-11607"); // get safe value back out
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = "safe!";
-            java.util.HashMap<String, Object> map11607 = new java.util.HashMap<String, Object>();
-            map11607.put("keyA-11607", "a_Value"); // put some stuff in the collection
-            map11607.put("keyB-11607", param); // put it in a collection
-            map11607.put("keyC", "another_Value"); // put some stuff in the collection
-            bar = (String) map11607.get("keyB-11607"); // get it back out
-            bar = (String) map11607.get("keyA-11607"); // get safe value back out
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

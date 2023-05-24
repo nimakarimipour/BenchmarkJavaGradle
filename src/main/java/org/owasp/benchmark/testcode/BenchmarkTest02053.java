@@ -27,46 +27,46 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest02053")
 public class BenchmarkTest02053 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("Referer");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("Referer");
+    String bar = doSomething(request, param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    response.setHeader("X-XSS-Protection", "0");
+    Object[] obj = {bar, "b"};
+    response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
+  } // end doPost
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        String bar = doSomething(request, param);
+    String bar;
 
-        response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {bar, "b"};
-        response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
-    } // end doPost
+    // Simple if statement that assigns constant to bar on true condition
+    int num = 86;
+    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+    else bar = param;
 
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-
-        // Simple if statement that assigns constant to bar on true condition
-        int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
-
-        return bar;
-    }
+    return bar;
+  }
 }

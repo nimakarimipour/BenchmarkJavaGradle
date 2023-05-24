@@ -27,88 +27,87 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01362")
 public class BenchmarkTest01362 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest01362");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest01362");
-            if (values != null) param = values[0];
-        }
+    String cmd = "";
+    String a1 = "";
+    String a2 = "";
+    String[] args = null;
+    String osName = System.getProperty("os.name");
 
-        String bar = new Test().doSomething(request, param);
+    if (osName.indexOf("Windows") != -1) {
+      a1 = "cmd.exe";
+      a2 = "/c";
+      cmd = "echo ";
+      args = new String[] {a1, a2, cmd, bar};
+    } else {
+      a1 = "sh";
+      a2 = "-c";
+      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
+      args = new String[] {a1, a2, cmd + bar};
+    }
 
-        String cmd = "";
-        String a1 = "";
-        String a2 = "";
-        String[] args = null;
-        String osName = System.getProperty("os.name");
+    String[] argsEnv = {"foo=bar"};
 
-        if (osName.indexOf("Windows") != -1) {
-            a1 = "cmd.exe";
-            a2 = "/c";
-            cmd = "echo ";
-            args = new String[] {a1, a2, cmd, bar};
-        } else {
-            a1 = "sh";
-            a2 = "-c";
-            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
-            args = new String[] {a1, a2, cmd + bar};
-        }
+    Runtime r = Runtime.getRuntime();
 
-        String[] argsEnv = {"foo=bar"};
+    try {
+      Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
+    }
+  } // end doPost
 
-        Runtime r = Runtime.getRuntime();
+  private class Test {
 
-        try {
-            Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar;
+      String guess = "ABC";
+      char switchTarget = guess.charAt(2);
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
+      // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+      switch (switchTarget) {
+        case 'A':
+          bar = param;
+          break;
+        case 'B':
+          bar = "bobs_your_uncle";
+          break;
+        case 'C':
+        case 'D':
+          bar = param;
+          break;
+        default:
+          bar = "bobs_your_uncle";
+          break;
+      }
 
-            String bar;
-            String guess = "ABC";
-            char switchTarget = guess.charAt(2);
-
-            // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-            switch (switchTarget) {
-                case 'A':
-                    bar = param;
-                    break;
-                case 'B':
-                    bar = "bobs_your_uncle";
-                    break;
-                case 'C':
-                case 'D':
-                    bar = param;
-                    break;
-                default:
-                    bar = "bobs_your_uncle";
-                    break;
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

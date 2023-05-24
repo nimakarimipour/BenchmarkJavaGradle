@@ -28,74 +28,73 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-01/BenchmarkTest01444")
 public class BenchmarkTest01444 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    boolean flag = true;
+    java.util.Enumeration<String> names = request.getParameterNames();
+    while (names.hasMoreElements() && flag) {
+      String name = (String) names.nextElement();
+      String[] values = request.getParameterValues(name);
+      if (values != null) {
+        for (int i = 0; i < values.length && flag; i++) {
+          String value = values[i];
+          if (value.equals("BenchmarkTest01444")) {
+            param = name;
+            flag = false;
+          }
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-        String param = "";
-        boolean flag = true;
-        java.util.Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements() && flag) {
-            String name = (String) names.nextElement();
-            String[] values = request.getParameterValues(name);
-            if (values != null) {
-                for (int i = 0; i < values.length && flag; i++) {
-                    String value = values[i];
-                    if (value.equals("BenchmarkTest01444")) {
-                        param = name;
-                        flag = false;
-                    }
-                }
-            }
-        }
+    String cmd =
+        org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+            this.getClass().getClassLoader());
 
-        @RUntainted String bar = new Test().doSomething(request, param);
+    @RUntainted String[] argsEnv = {bar};
+    Runtime r = Runtime.getRuntime();
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
+    try {
+      Process p = r.exec(cmd, argsEnv);
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
+    }
+  } // end doPost
 
-        @RUntainted String[] argsEnv = {bar};
-        Runtime r = Runtime.getRuntime();
+  private class Test {
 
-        try {
-            Process p = r.exec(cmd, argsEnv);
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = "alsosafe";
+      if (param != null) {
+        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        valuesList.add("safe");
+        valuesList.add(param);
+        valuesList.add("moresafe");
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
+        valuesList.remove(0); // remove the 1st safe value
 
-            String bar = "alsosafe";
-            if (param != null) {
-                java.util.List<String> valuesList = new java.util.ArrayList<String>();
-                valuesList.add("safe");
-                valuesList.add(param);
-                valuesList.add("moresafe");
+        bar = valuesList.get(1); // get the last 'safe' value
+      }
 
-                valuesList.remove(0); // remove the 1st safe value
-
-                bar = valuesList.get(1); // get the last 'safe' value
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

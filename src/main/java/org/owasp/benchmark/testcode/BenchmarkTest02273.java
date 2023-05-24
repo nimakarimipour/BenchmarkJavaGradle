@@ -27,71 +27,72 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-04/BenchmarkTest02273")
 public class BenchmarkTest02273 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest02273");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest02273");
-            if (values != null) param = values[0];
-        }
+    try {
+      String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
-        String bar = doSomething(request, param);
-
-        try {
-            String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
-
-            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
-            response.getWriter()
-                    .println(
-                            "No results can be displayed for query: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
-                                    + "<br>"
-                                    + " because the Spring batchUpdate method doesn't return results.");
-            //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
-            // method doesn't return results.");
-        } catch (org.springframework.dao.DataAccessException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-            } else throw new ServletException(e);
-        }
-    } // end doPost
-
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-        String guess = "ABC";
-        char switchTarget = guess.charAt(2);
-
-        // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-        switch (switchTarget) {
-            case 'A':
-                bar = param;
-                break;
-            case 'B':
-                bar = "bobs_your_uncle";
-                break;
-            case 'C':
-            case 'D':
-                bar = param;
-                break;
-            default:
-                bar = "bobs_your_uncle";
-                break;
-        }
-
-        return bar;
+      org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
+      response
+          .getWriter()
+          .println(
+              "No results can be displayed for query: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
+                  + "<br>"
+                  + " because the Spring batchUpdate method doesn't return results.");
+      //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
+      // method doesn't return results.");
+    } catch (org.springframework.dao.DataAccessException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+      } else throw new ServletException(e);
     }
+  } // end doPost
+
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
+
+    String bar;
+    String guess = "ABC";
+    char switchTarget = guess.charAt(2);
+
+    // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+    switch (switchTarget) {
+      case 'A':
+        bar = param;
+        break;
+      case 'B':
+        bar = "bobs_your_uncle";
+        break;
+      case 'C':
+      case 'D':
+        bar = param;
+        break;
+      default:
+        bar = "bobs_your_uncle";
+        break;
+    }
+
+    return bar;
+  }
 }

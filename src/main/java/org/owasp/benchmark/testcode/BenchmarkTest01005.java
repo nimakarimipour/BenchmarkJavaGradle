@@ -27,80 +27,81 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-02/BenchmarkTest01005")
 public class BenchmarkTest01005 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.Cookie userCookie =
-                new javax.servlet.http.Cookie("BenchmarkTest01005", "bar");
-        userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
-        userCookie.setSecure(true);
-        userCookie.setPath(request.getRequestURI());
-        userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
-        response.addCookie(userCookie);
-        javax.servlet.RequestDispatcher rd =
-                request.getRequestDispatcher("/sqli-02/BenchmarkTest01005.html");
-        rd.include(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    javax.servlet.http.Cookie userCookie =
+        new javax.servlet.http.Cookie("BenchmarkTest01005", "bar");
+    userCookie.setMaxAge(60 * 3); // Store cookie for 3 minutes
+    userCookie.setSecure(true);
+    userCookie.setPath(request.getRequestURI());
+    userCookie.setDomain(new java.net.URL(request.getRequestURL().toString()).getHost());
+    response.addCookie(userCookie);
+    javax.servlet.RequestDispatcher rd =
+        request.getRequestDispatcher("/sqli-02/BenchmarkTest01005.html");
+    rd.include(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    javax.servlet.http.Cookie[] theCookies = request.getCookies();
+
+    String param = "noCookieValueSupplied";
+    if (theCookies != null) {
+      for (javax.servlet.http.Cookie theCookie : theCookies) {
+        if (theCookie.getName().equals("BenchmarkTest01005")) {
+          param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
+          break;
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+    try {
+      String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
 
-        String param = "noCookieValueSupplied";
-        if (theCookies != null) {
-            for (javax.servlet.http.Cookie theCookie : theCookies) {
-                if (theCookie.getName().equals("BenchmarkTest01005")) {
-                    param = java.net.URLDecoder.decode(theCookie.getValue(), "UTF-8");
-                    break;
-                }
-            }
-        }
+      org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
+      response
+          .getWriter()
+          .println(
+              "No results can be displayed for query: "
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
+                  + "<br>"
+                  + " because the Spring batchUpdate method doesn't return results.");
+      //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
+      // method doesn't return results.");
+    } catch (org.springframework.dao.DataAccessException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String bar = new Test().doSomething(request, param);
+  private class Test {
 
-        try {
-            String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.batchUpdate(sql);
-            response.getWriter()
-                    .println(
-                            "No results can be displayed for query: "
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(sql)
-                                    + "<br>"
-                                    + " because the Spring batchUpdate method doesn't return results.");
-            //		System.out.println("no results for query: " + sql + " because the Spring batchUpdate
-            // method doesn't return results.");
-        } catch (org.springframework.dao.DataAccessException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+      String bar = "";
+      if (param != null) {
+        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        valuesList.add("safe");
+        valuesList.add(param);
+        valuesList.add("moresafe");
 
-    private class Test {
+        valuesList.remove(0); // remove the 1st safe value
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
+        bar = valuesList.get(0); // get the param value
+      }
 
-            String bar = "";
-            if (param != null) {
-                java.util.List<String> valuesList = new java.util.ArrayList<String>();
-                valuesList.add("safe");
-                valuesList.add(param);
-                valuesList.add("moresafe");
-
-                valuesList.remove(0); // remove the 1st safe value
-
-                bar = valuesList.get(0); // get the param value
-            }
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

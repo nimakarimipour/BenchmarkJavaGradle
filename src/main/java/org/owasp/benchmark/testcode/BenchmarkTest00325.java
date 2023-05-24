@@ -27,38 +27,39 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/trustbound-00/BenchmarkTest00325")
 public class BenchmarkTest00325 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00325");
+
+    if (headers != null && headers.hasMoreElements()) {
+      param = headers.nextElement(); // just grab first element
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00325");
+    String bar = org.apache.commons.lang.StringEscapeUtils.escapeHtml(param);
 
-        if (headers != null && headers.hasMoreElements()) {
-            param = headers.nextElement(); // just grab first element
-        }
+    // javax.servlet.http.HttpSession.putValue(java.lang.String,java.lang.Object^)
+    request.getSession().putValue("userid", bar);
 
-        // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
-
-        String bar = org.apache.commons.lang.StringEscapeUtils.escapeHtml(param);
-
-        // javax.servlet.http.HttpSession.putValue(java.lang.String,java.lang.Object^)
-        request.getSession().putValue("userid", bar);
-
-        response.getWriter()
-                .println(
-                        "Item: 'userid' with value: '"
-                                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
-                                + "' saved in session.");
-    }
+    response
+        .getWriter()
+        .println(
+            "Item: 'userid' with value: '"
+                + org.owasp.benchmark.helpers.Utils.encodeForHTML(bar)
+                + "' saved in session.");
+  }
 }

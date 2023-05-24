@@ -27,61 +27,62 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xpathi-00/BenchmarkTest00520")
 public class BenchmarkTest00520 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest00520");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar;
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest00520");
-            if (values != null) param = values[0];
-        }
+    // Simple ? condition that assigns constant to bar on true condition
+    int num = 106;
 
-        String bar;
+    bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-        // Simple ? condition that assigns constant to bar on true condition
-        int num = 106;
+    try {
+      java.io.FileInputStream file =
+          new java.io.FileInputStream(
+              org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
+                  "employees.xml", this.getClass().getClassLoader()));
+      javax.xml.parsers.DocumentBuilderFactory builderFactory =
+          javax.xml.parsers.DocumentBuilderFactory.newInstance();
+      // Prevent XXE
+      builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+      javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
+      org.w3c.dom.Document xmlDocument = builder.parse(file);
+      javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
+      javax.xml.xpath.XPath xp = xpf.newXPath();
 
-        bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
+      String expression = "/Employees/Employee[@emplid='" + bar + "']";
+      String result = xp.evaluate(expression, xmlDocument);
 
-        try {
-            java.io.FileInputStream file =
-                    new java.io.FileInputStream(
-                            org.owasp.benchmark.helpers.Utils.getFileFromClasspath(
-                                    "employees.xml", this.getClass().getClassLoader()));
-            javax.xml.parsers.DocumentBuilderFactory builderFactory =
-                    javax.xml.parsers.DocumentBuilderFactory.newInstance();
-            // Prevent XXE
-            builderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            javax.xml.parsers.DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            org.w3c.dom.Document xmlDocument = builder.parse(file);
-            javax.xml.xpath.XPathFactory xpf = javax.xml.xpath.XPathFactory.newInstance();
-            javax.xml.xpath.XPath xp = xpf.newXPath();
+      response.getWriter().println("Your query results are: " + result + "<br/>");
 
-            String expression = "/Employees/Employee[@emplid='" + bar + "']";
-            String result = xp.evaluate(expression, xmlDocument);
-
-            response.getWriter().println("Your query results are: " + result + "<br/>");
-
-        } catch (javax.xml.xpath.XPathExpressionException
-                | javax.xml.parsers.ParserConfigurationException
-                | org.xml.sax.SAXException e) {
-            response.getWriter()
-                    .println(
-                            "Error parsing XPath input: '"
-                                    + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
-                                    + "'");
-            throw new ServletException(e);
-        }
+    } catch (javax.xml.xpath.XPathExpressionException
+        | javax.xml.parsers.ParserConfigurationException
+        | org.xml.sax.SAXException e) {
+      response
+          .getWriter()
+          .println(
+              "Error parsing XPath input: '"
+                  + org.owasp.esapi.ESAPI.encoder().encodeForHTML(bar)
+                  + "'");
+      throw new ServletException(e);
     }
+  }
 }

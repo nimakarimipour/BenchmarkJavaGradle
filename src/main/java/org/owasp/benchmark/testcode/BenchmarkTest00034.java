@@ -27,39 +27,38 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-00/BenchmarkTest00034")
 public class BenchmarkTest00034 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // some code
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest00034");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // some code
-        response.setContentType("text/html;charset=UTF-8");
+    String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + param + "'";
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest00034");
-            if (values != null) param = values[0];
-        }
-
-        String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + param + "'";
-
-        try {
-            java.sql.Statement statement =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
-            statement.execute(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
-            org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
-        } catch (java.sql.SQLException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-                return;
-            } else throw new ServletException(e);
-        }
+    try {
+      java.sql.Statement statement = org.owasp.benchmark.helpers.DatabaseHelper.getSqlStatement();
+      statement.execute(sql, java.sql.Statement.RETURN_GENERATED_KEYS);
+      org.owasp.benchmark.helpers.DatabaseHelper.printResults(statement, sql, response);
+    } catch (java.sql.SQLException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+        return;
+      } else throw new ServletException(e);
     }
+  }
 }

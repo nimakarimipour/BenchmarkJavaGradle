@@ -27,67 +27,67 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/sqli-03/BenchmarkTest01462")
 public class BenchmarkTest01462 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    boolean flag = true;
+    java.util.Enumeration<String> names = request.getParameterNames();
+    while (names.hasMoreElements() && flag) {
+      String name = (String) names.nextElement();
+      String[] values = request.getParameterValues(name);
+      if (values != null) {
+        for (int i = 0; i < values.length && flag; i++) {
+          String value = values[i];
+          if (value.equals("BenchmarkTest01462")) {
+            param = name;
+            flag = false;
+          }
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar = new Test().doSomething(request, param);
 
-        String param = "";
-        boolean flag = true;
-        java.util.Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements() && flag) {
-            String name = (String) names.nextElement();
-            String[] values = request.getParameterValues(name);
-            if (values != null) {
-                for (int i = 0; i < values.length && flag; i++) {
-                    String value = values[i];
-                    if (value.equals("BenchmarkTest01462")) {
-                        param = name;
-                        flag = false;
-                    }
-                }
-            }
-        }
+    String sql = "{call " + bar + "}";
 
-        String bar = new Test().doSomething(request, param);
+    try {
+      java.sql.Connection connection =
+          org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
+      java.sql.CallableStatement statement =
+          connection.prepareCall(
+              sql,
+              java.sql.ResultSet.TYPE_FORWARD_ONLY,
+              java.sql.ResultSet.CONCUR_READ_ONLY,
+              java.sql.ResultSet.CLOSE_CURSORS_AT_COMMIT);
+      java.sql.ResultSet rs = statement.executeQuery();
+      org.owasp.benchmark.helpers.DatabaseHelper.printResults(rs, sql, response);
+    } catch (java.sql.SQLException e) {
+      if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
+        response.getWriter().println("Error processing request.");
+        return;
+      } else throw new ServletException(e);
+    }
+  } // end doPost
 
-        String sql = "{call " + bar + "}";
+  private class Test {
 
-        try {
-            java.sql.Connection connection =
-                    org.owasp.benchmark.helpers.DatabaseHelper.getSqlConnection();
-            java.sql.CallableStatement statement =
-                    connection.prepareCall(
-                            sql,
-                            java.sql.ResultSet.TYPE_FORWARD_ONLY,
-                            java.sql.ResultSet.CONCUR_READ_ONLY,
-                            java.sql.ResultSet.CLOSE_CURSORS_AT_COMMIT);
-            java.sql.ResultSet rs = statement.executeQuery();
-            org.owasp.benchmark.helpers.DatabaseHelper.printResults(rs, sql, response);
-        } catch (java.sql.SQLException e) {
-            if (org.owasp.benchmark.helpers.DatabaseHelper.hideSQLErrors) {
-                response.getWriter().println("Error processing request.");
-                return;
-            } else throw new ServletException(e);
-        }
-    } // end doPost
+    public String doSomething(HttpServletRequest request, String param)
+        throws ServletException, IOException {
 
-    private class Test {
+      String bar = param;
 
-        public String doSomething(HttpServletRequest request, String param)
-                throws ServletException, IOException {
-
-            String bar = param;
-
-            return bar;
-        }
-    } // end innerclass Test
+      return bar;
+    }
+  } // end innerclass Test
 } // end DataflowThruInnerClass

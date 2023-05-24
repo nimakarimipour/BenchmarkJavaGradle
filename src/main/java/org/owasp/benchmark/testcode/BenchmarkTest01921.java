@@ -27,58 +27,58 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/xss-03/BenchmarkTest01921")
 public class BenchmarkTest01921 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    if (request.getHeader("Referer") != null) {
+      param = request.getHeader("Referer");
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
+    param = java.net.URLDecoder.decode(param, "UTF-8");
 
-        String param = "";
-        if (request.getHeader("Referer") != null) {
-            param = request.getHeader("Referer");
-        }
+    String bar = doSomething(request, param);
 
-        // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
-        param = java.net.URLDecoder.decode(param, "UTF-8");
+    response.setHeader("X-XSS-Protection", "0");
+    Object[] obj = {bar, "b"};
+    response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
+  } // end doPost
 
-        String bar = doSomething(request, param);
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
 
-        response.setHeader("X-XSS-Protection", "0");
-        Object[] obj = {bar, "b"};
-        response.getWriter().printf("Formatted like: %1$s and %2$s.", obj);
-    } // end doPost
+    String bar;
+    String guess = "ABC";
+    char switchTarget = guess.charAt(2);
 
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-        String guess = "ABC";
-        char switchTarget = guess.charAt(2);
-
-        // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
-        switch (switchTarget) {
-            case 'A':
-                bar = param;
-                break;
-            case 'B':
-                bar = "bobs_your_uncle";
-                break;
-            case 'C':
-            case 'D':
-                bar = param;
-                break;
-            default:
-                bar = "bobs_your_uncle";
-                break;
-        }
-
-        return bar;
+    // Simple case statement that assigns param to bar on conditions 'A', 'C', or 'D'
+    switch (switchTarget) {
+      case 'A':
+        bar = param;
+        break;
+      case 'B':
+        bar = "bobs_your_uncle";
+        break;
+      case 'C':
+      case 'D':
+        bar = param;
+        break;
+      default:
+        bar = "bobs_your_uncle";
+        break;
     }
+
+    return bar;
+  }
 }
