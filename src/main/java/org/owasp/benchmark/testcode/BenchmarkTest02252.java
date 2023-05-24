@@ -28,71 +28,70 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-02/BenchmarkTest02252")
 public class BenchmarkTest02252 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    java.util.Map<String, String[]> map = request.getParameterMap();
+    String param = "";
+    if (!map.isEmpty()) {
+      String[] values = map.get("BenchmarkTest02252");
+      if (values != null) param = values[0];
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    @RUntainted String bar = doSomething(request, param);
 
-        java.util.Map<String, String[]> map = request.getParameterMap();
-        String param = "";
-        if (!map.isEmpty()) {
-            String[] values = map.get("BenchmarkTest02252");
-            if (values != null) param = values[0];
-        }
+    String cmd = "";
+    String a1 = "";
+    String a2 = "";
+    @RUntainted String[] args = null;
+    String osName = System.getProperty("os.name");
 
-        @RUntainted String bar = doSomething(request, param);
-
-        String cmd = "";
-        String a1 = "";
-        String a2 = "";
-        @RUntainted String[] args = null;
-        String osName = System.getProperty("os.name");
-
-        if (osName.indexOf("Windows") != -1) {
-            a1 = "cmd.exe";
-            a2 = "/c";
-            cmd = "echo ";
-            args = new @RUntainted String[] {a1, a2, cmd, bar};
-        } else {
-            a1 = "sh";
-            a2 = "-c";
-            cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
-            args = new @RUntainted String[] {a1, a2, cmd + bar};
-        }
-
-        @RUntainted String[] argsEnv = {"foo=bar"};
-
-        Runtime r = Runtime.getRuntime();
-
-        try {
-            Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
-    } // end doPost
-
-    private static String doSomething(HttpServletRequest request, String param)
-            throws ServletException, IOException {
-
-        String bar;
-
-        // Simple if statement that assigns constant to bar on true condition
-        int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
-
-        return bar;
+    if (osName.indexOf("Windows") != -1) {
+      a1 = "cmd.exe";
+      a2 = "/c";
+      cmd = "echo ";
+      args = new @RUntainted String[] {a1, a2, cmd, bar};
+    } else {
+      a1 = "sh";
+      a2 = "-c";
+      cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
+      args = new @RUntainted String[] {a1, a2, cmd + bar};
     }
+
+    @RUntainted String[] argsEnv = {"foo=bar"};
+
+    Runtime r = Runtime.getRuntime();
+
+    try {
+      Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
+    }
+  } // end doPost
+
+  private static String doSomething(HttpServletRequest request, String param)
+      throws ServletException, IOException {
+
+    String bar;
+
+    // Simple if statement that assigns constant to bar on true condition
+    int num = 86;
+    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+    else bar = param;
+
+    return bar;
+  }
 }

@@ -28,59 +28,58 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/cmdi-00/BenchmarkTest00571")
 public class BenchmarkTest00571 extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    doPost(request, response);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+
+    String param = "";
+    boolean flag = true;
+    java.util.Enumeration<String> names = request.getParameterNames();
+    while (names.hasMoreElements() && flag) {
+      String name = (String) names.nextElement();
+      String[] values = request.getParameterValues(name);
+      if (values != null) {
+        for (int i = 0; i < values.length && flag; i++) {
+          String value = values[i];
+          if (value.equals("BenchmarkTest00571")) {
+            param = name;
+            flag = false;
+          }
+        }
+      }
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+    String bar;
 
-        String param = "";
-        boolean flag = true;
-        java.util.Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements() && flag) {
-            String name = (String) names.nextElement();
-            String[] values = request.getParameterValues(name);
-            if (values != null) {
-                for (int i = 0; i < values.length && flag; i++) {
-                    String value = values[i];
-                    if (value.equals("BenchmarkTest00571")) {
-                        param = name;
-                        flag = false;
-                    }
-                }
-            }
-        }
+    // Simple if statement that assigns constant to bar on true condition
+    int num = 86;
+    if ((7 * 42) - num > 200) bar = "This_should_always_happen";
+    else bar = param;
 
-        String bar;
+    String cmd =
+        org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
+            this.getClass().getClassLoader());
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
-        // Simple if statement that assigns constant to bar on true condition
-        int num = 86;
-        if ((7 * 42) - num > 200) bar = "This_should_always_happen";
-        else bar = param;
+    Runtime r = Runtime.getRuntime();
 
-        String cmd =
-                org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
-                        this.getClass().getClassLoader());
-        @RUntainted String[] args = {cmd};
-        @RUntainted String[] argsEnv = {bar};
-
-        Runtime r = Runtime.getRuntime();
-
-        try {
-            Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
-            org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
-        } catch (IOException e) {
-            System.out.println("Problem executing cmdi - TestCase");
-            response.getWriter()
-                    .println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
-            return;
-        }
+    try {
+      Process p = r.exec(args, argsEnv, new java.io.File(System.getProperty("user.dir")));
+      org.owasp.benchmark.helpers.Utils.printOSCommandResults(p, response);
+    } catch (IOException e) {
+      System.out.println("Problem executing cmdi - TestCase");
+      response.getWriter().println(org.owasp.esapi.ESAPI.encoder().encodeForHTML(e.getMessage()));
+      return;
     }
+  }
 }
