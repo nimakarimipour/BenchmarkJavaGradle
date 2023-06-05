@@ -41,7 +41,7 @@ public class BenchmarkTest01289 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest01289");
+    @RUntainted String param = request.getParameter("BenchmarkTest01289");
     if (param == null) param = "";
 
     @RUntainted String bar = new Test().doSomething(request, param);
@@ -72,7 +72,8 @@ public class BenchmarkTest01289 extends HttpServlet {
 
       @RUntainted String bar = "alsosafe";
       if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        java.util.@RUntainted List<@RUntainted String> valuesList =
+            new java.util.ArrayList<String>();
         valuesList.add("safe");
         valuesList.add(param);
         valuesList.add("moresafe");

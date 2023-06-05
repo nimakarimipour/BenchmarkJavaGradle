@@ -46,7 +46,7 @@ public class BenchmarkTest00742 extends HttpServlet {
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = "safe!";
+    @RUntainted String bar = "safe!";
     java.util.HashMap<String, Object> map62435 = new java.util.HashMap<String, Object>();
     map62435.put("keyA-62435", "a_Value"); // put some stuff in the collection
     map62435.put("keyB-62435", param); // put it in a collection

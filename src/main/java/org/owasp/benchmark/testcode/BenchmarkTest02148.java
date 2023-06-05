@@ -56,12 +56,12 @@ public class BenchmarkTest02148 extends HttpServlet {
       a1 = "cmd.exe";
       a2 = "/c";
       cmd = "echo ";
-      args = new String[] {a1, a2, cmd, bar};
+      args = new @RUntainted String[] {a1, a2, cmd, bar};
     } else {
       a1 = "sh";
       a2 = "-c";
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("ls ");
-      args = new String[] {a1, a2, cmd + bar};
+      args = new @RUntainted String[] {a1, a2, cmd + bar};
     }
 
     @RUntainted String[] argsEnv = {"foo=bar"};
@@ -78,7 +78,7 @@ public class BenchmarkTest02148 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     // Chain a bunch of propagators in sequence

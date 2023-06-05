@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,9 @@ public class BenchmarkTest01182 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01182");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest01182");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -50,9 +52,9 @@ public class BenchmarkTest01182 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -78,12 +80,13 @@ public class BenchmarkTest01182 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar = "alsosafe";
+      @RUntainted String bar = "alsosafe";
       if (param != null) {
-        java.util.List<String> valuesList = new java.util.ArrayList<String>();
+        java.util.@RUntainted List<@RUntainted String> valuesList =
+            new java.util.ArrayList<String>();
         valuesList.add("safe");
         valuesList.add(param);
         valuesList.add("moresafe");

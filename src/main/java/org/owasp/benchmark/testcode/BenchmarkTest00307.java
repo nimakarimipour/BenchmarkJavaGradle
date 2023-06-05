@@ -42,8 +42,9 @@ public class BenchmarkTest00307 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00307");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest00307");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -54,7 +55,7 @@ public class BenchmarkTest00307 extends HttpServlet {
 
     @RUntainted String bar = "alsosafe";
     if (param != null) {
-      List<String> valuesList = new java.util.ArrayList<String>();
+      @RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
       valuesList.add(param);
       valuesList.add("moresafe");

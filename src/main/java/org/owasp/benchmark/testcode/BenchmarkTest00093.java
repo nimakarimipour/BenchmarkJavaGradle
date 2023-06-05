@@ -53,7 +53,7 @@ public class BenchmarkTest00093 extends HttpServlet {
 
     javax.servlet.http.Cookie[] theCookies = request.getCookies();
 
-    String param = "noCookieValueSupplied";
+    @RUntainted String param = "noCookieValueSupplied";
     if (theCookies != null) {
       for (javax.servlet.http.Cookie theCookie : theCookies) {
         if (theCookie.getName().equals("BenchmarkTest00093")) {
@@ -65,7 +65,7 @@ public class BenchmarkTest00093 extends HttpServlet {
 
     @RUntainted String bar = "alsosafe";
     if (param != null) {
-      java.util.List<String> valuesList = new java.util.ArrayList<String>();
+      java.util.@RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
       valuesList.add(param);
       valuesList.add("moresafe");

@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,16 +41,17 @@ public class BenchmarkTest01353 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map =
+        request.getParameterMap();
+    @RUntainted String param = "";
     if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01353");
+      @RUntainted String[] values = map.get("BenchmarkTest01353");
       if (values != null) param = values[0];
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    java.util.List<String> argList = new java.util.ArrayList<String>();
+    java.util.@RUntainted List<@RUntainted String> argList = new java.util.ArrayList<String>();
 
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -77,10 +79,10 @@ public class BenchmarkTest01353 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
       String guess = "ABC";
       char switchTarget = guess.charAt(1); // condition 'B', which is safe
 

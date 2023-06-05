@@ -42,14 +42,14 @@ public class BenchmarkTest00741 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest00741");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest00741");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
     @RUntainted String bar = "alsosafe";
     if (param != null) {
-      List<String> valuesList = new java.util.ArrayList<String>();
+      @RUntainted List<@RUntainted String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
       valuesList.add(param);
       valuesList.add("moresafe");

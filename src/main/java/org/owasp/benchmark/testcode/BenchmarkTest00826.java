@@ -55,6 +55,7 @@ public class BenchmarkTest00826 extends HttpServlet {
       return;
     }
 
+    @RUntainted
     String param =
         queryString.substring(
             paramLoc + paramval.length()); // 1st assume "BenchmarkTest00826" param is last
