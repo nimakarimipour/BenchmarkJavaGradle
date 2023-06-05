@@ -67,7 +67,7 @@ public class BenchmarkTest01289 extends HttpServlet {
 
   private class Test {
 
-    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
+    public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
       @RUntainted String bar = "alsosafe";

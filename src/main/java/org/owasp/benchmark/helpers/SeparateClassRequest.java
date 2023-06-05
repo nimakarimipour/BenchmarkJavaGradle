@@ -22,9 +22,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 public class SeparateClassRequest {
-  private HttpServletRequest request;
+  private @RUntainted HttpServletRequest request;
 
-  public SeparateClassRequest(HttpServletRequest request) {
+  public SeparateClassRequest(@RUntainted HttpServletRequest request) {
     this.request = request;
   }
 

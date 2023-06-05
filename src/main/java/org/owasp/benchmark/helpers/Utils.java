@@ -186,7 +186,7 @@ public class Utils {
   }
 
   public static @RUntainted String getInsecureOSCommandString(ClassLoader classLoader) {
-    String command = null;
+    @RUntainted String command = null;
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       command = Utils.getFileFromClasspath("insecureCmd.bat", classLoader).getAbsolutePath();
@@ -290,8 +290,8 @@ public class Utils {
     }
   }
 
-  public static File getFileFromClasspath(String fileName, ClassLoader classLoader) {
-    URL url = classLoader.getResource(fileName);
+  public static @RUntainted File getFileFromClasspath(String fileName, ClassLoader classLoader) {
+    @RUntainted URL url = classLoader.getResource(fileName);
     if (url != null) {
       try {
         return new File(url.toURI().getPath());

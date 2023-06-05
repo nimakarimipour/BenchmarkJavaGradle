@@ -77,7 +77,8 @@ checkerFramework {
     ]
 
     extraJavacArgs = [
-            '-AannotatedPackages=' + 'org.owasp'
+            '-AannotatedPackages=' + 'org.owasp',
+            '-AenableCustomCheck=true'
     ]
 }
 
