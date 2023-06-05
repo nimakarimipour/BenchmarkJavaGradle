@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-03/BenchmarkTest02698")
 public class BenchmarkTest02698 extends HttpServlet {
@@ -72,7 +73,7 @@ public class BenchmarkTest02698 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static String doSomething(HttpServletRequest request, @RUntainted String param)
       throws ServletException, IOException {
 
     org.owasp.benchmark.helpers.ThingInterface thing =

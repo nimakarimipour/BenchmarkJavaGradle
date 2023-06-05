@@ -56,6 +56,7 @@ import org.apache.hc.client5.http.ssl.TrustSelfSignedStrategy;
 import org.apache.hc.core5.ssl.SSLContexts;
 import org.owasp.benchmark.service.pojo.XMLMessage;
 import org.owasp.esapi.ESAPI;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class Utils {
 
@@ -171,9 +172,9 @@ public class Utils {
     return param;
   }
 
-  public static String getOSCommandString(String append) {
+  public static @RUntainted String getOSCommandString(@RUntainted String append) {
 
-    String command = null;
+    @RUntainted String command = null;
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       command = "cmd.exe /c " + append + " ";
@@ -184,8 +185,8 @@ public class Utils {
     return command;
   }
 
-  public static String getInsecureOSCommandString(ClassLoader classLoader) {
-    String command = null;
+  public static @RUntainted String getInsecureOSCommandString(ClassLoader classLoader) {
+    @RUntainted String command = null;
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       command = Utils.getFileFromClasspath("insecureCmd.bat", classLoader).getAbsolutePath();
@@ -289,8 +290,8 @@ public class Utils {
     }
   }
 
-  public static File getFileFromClasspath(String fileName, ClassLoader classLoader) {
-    URL url = classLoader.getResource(fileName);
+  public static @RUntainted File getFileFromClasspath(String fileName, ClassLoader classLoader) {
+    @RUntainted URL url = classLoader.getResource(fileName);
     if (url != null) {
       try {
         return new File(url.toURI().getPath());
@@ -368,7 +369,7 @@ public class Utils {
     return ESAPI.encoder().encodeForHTML(value);
   }
 
-  public static boolean writeLineToFile(Path pathToFileDir, String completeName, String line) {
+  public static boolean writeLineToFile(@RUntainted Path pathToFileDir, String completeName, String line) {
     boolean result = true;
     PrintStream os = null;
     try {
