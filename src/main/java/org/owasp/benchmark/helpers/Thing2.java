@@ -22,7 +22,7 @@ import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 public class Thing2 implements ThingInterface {
 
   @Override
-  public @RUntainted String doSomething(@RUntainted String i) {
+  public @RUntainted String doSomething(String i) {
     if (i == null) return "";
     @RUntainted String r = new StringBuilder(i).toString();
     return r;
