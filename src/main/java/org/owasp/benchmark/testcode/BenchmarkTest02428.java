@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,9 +46,9 @@ public class BenchmarkTest02428 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest02428");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
@@ -65,7 +66,7 @@ public class BenchmarkTest02428 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     String bar = "safe!";

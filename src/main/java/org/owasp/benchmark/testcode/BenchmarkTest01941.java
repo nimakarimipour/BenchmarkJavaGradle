@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,13 +49,14 @@ public class BenchmarkTest01941 extends HttpServlet {
     // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -67,7 +69,7 @@ public class BenchmarkTest01941 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     // Chain a bunch of propagators in sequence

@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,12 +44,12 @@ public class BenchmarkTest02148 extends HttpServlet {
     String param = request.getParameter("BenchmarkTest02148");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -63,7 +64,7 @@ public class BenchmarkTest02148 extends HttpServlet {
       args = new String[] {a1, a2, cmd + bar};
     }
 
-    String[] argsEnv = {"foo=bar"};
+    @RUntainted String[] argsEnv = {"foo=bar"};
 
     Runtime r = Runtime.getRuntime();
 
@@ -77,7 +78,7 @@ public class BenchmarkTest02148 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
     // Chain a bunch of propagators in sequence

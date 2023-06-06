@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +44,7 @@ public class BenchmarkTest00412 extends HttpServlet {
     String param = request.getParameter("BenchmarkTest00412");
     if (param == null) param = "";
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       java.util.List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -55,10 +56,11 @@ public class BenchmarkTest00412 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
     try {
       Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty("user.dir")));

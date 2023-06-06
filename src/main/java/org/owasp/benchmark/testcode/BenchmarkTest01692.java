@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,15 +67,15 @@ public class BenchmarkTest01692 extends HttpServlet {
     }
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -89,7 +90,7 @@ public class BenchmarkTest01692 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
       // Chain a bunch of propagators in sequence
@@ -113,7 +114,7 @@ public class BenchmarkTest01692 extends HttpServlet {
       org.owasp.benchmark.helpers.ThingInterface thing =
           org.owasp.benchmark.helpers.ThingFactory.createThing();
       String g28453 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-      String bar = thing.doSomething(g28453); // reflection
+      @RUntainted String bar = thing.doSomething(g28453); // reflection
 
       return bar;
     }

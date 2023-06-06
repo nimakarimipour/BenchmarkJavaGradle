@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,20 +41,22 @@ public class BenchmarkTest01364 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map =
+        request.getParameterMap();
+    @RUntainted String param = "";
     if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01364");
+      @RUntainted String[] values = map.get("BenchmarkTest01364");
       if (values != null) param = values[0];
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -68,10 +71,10 @@ public class BenchmarkTest01364 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;
