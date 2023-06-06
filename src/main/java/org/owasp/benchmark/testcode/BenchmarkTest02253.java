@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +41,8 @@ public class BenchmarkTest02253 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.Map<String, String[]> map = request.getParameterMap();
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map =
+        request.getParameterMap();
     String param = "";
     if (!map.isEmpty()) {
       String[] values = map.get("BenchmarkTest02253");
@@ -81,8 +83,8 @@ public class BenchmarkTest02253 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
     String bar;
     String guess = "ABC";

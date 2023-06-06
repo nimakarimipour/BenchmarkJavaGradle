@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,8 @@ public class BenchmarkTest00308 extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00308");
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest00308");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
