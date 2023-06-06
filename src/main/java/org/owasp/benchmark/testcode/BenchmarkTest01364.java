@@ -45,17 +45,18 @@ public class BenchmarkTest01364 extends HttpServlet {
         request.getParameterMap();
     String param = "";
     if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01364");
+      @RUntainted String[] values = map.get("BenchmarkTest01364");
       if (values != null) param = values[0];
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -73,7 +74,7 @@ public class BenchmarkTest01364 extends HttpServlet {
     public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;

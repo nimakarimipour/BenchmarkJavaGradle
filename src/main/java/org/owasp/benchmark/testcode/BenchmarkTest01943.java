@@ -49,15 +49,15 @@ public class BenchmarkTest01943 extends HttpServlet {
     // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

@@ -46,13 +46,14 @@ public class BenchmarkTest02510 extends HttpServlet {
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
     Runtime r = Runtime.getRuntime();
 

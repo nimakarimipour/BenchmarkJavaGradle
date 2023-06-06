@@ -67,7 +67,7 @@ public class BenchmarkTest01672 extends HttpServlet {
     }
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
     String a1 = "";
     String a2 = "";
@@ -79,7 +79,7 @@ public class BenchmarkTest01672 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder();
 
@@ -100,7 +100,7 @@ public class BenchmarkTest01672 extends HttpServlet {
     public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;

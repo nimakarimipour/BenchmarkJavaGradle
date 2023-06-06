@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,13 +54,13 @@ public class BenchmarkTest00742 extends HttpServlet {
     bar = (String) map62435.get("keyB-62435"); // get it back out
     bar = (String) map62435.get("keyA-62435"); // get safe value back out
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

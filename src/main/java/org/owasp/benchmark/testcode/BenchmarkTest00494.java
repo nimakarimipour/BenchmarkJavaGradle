@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +48,7 @@ public class BenchmarkTest00494 extends HttpServlet {
       if (values != null) param = values[0];
     }
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       java.util.List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -59,10 +60,10 @@ public class BenchmarkTest00494 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {

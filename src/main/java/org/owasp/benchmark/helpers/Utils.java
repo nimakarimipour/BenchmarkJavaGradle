@@ -174,7 +174,7 @@ public class Utils {
 
   public static @RUntainted String getOSCommandString(@RUntainted String append) {
 
-    String command = null;
+    @RUntainted String command = null;
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       command = "cmd.exe /c " + append + " ";

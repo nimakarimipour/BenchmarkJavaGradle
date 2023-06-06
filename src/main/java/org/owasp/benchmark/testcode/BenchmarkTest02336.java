@@ -58,7 +58,7 @@ public class BenchmarkTest02336 extends HttpServlet {
       }
     }
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String a1 = "";
     String a2 = "";
@@ -70,7 +70,7 @@ public class BenchmarkTest02336 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder();
 

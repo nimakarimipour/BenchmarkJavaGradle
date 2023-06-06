@@ -63,7 +63,7 @@ public class BenchmarkTest00093 extends HttpServlet {
       }
     }
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       java.util.List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -75,13 +75,13 @@ public class BenchmarkTest00093 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

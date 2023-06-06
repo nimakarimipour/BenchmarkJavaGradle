@@ -46,9 +46,9 @@ public class BenchmarkTest01528 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest01528");
     if (param == null) param = "";
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
@@ -71,7 +71,7 @@ public class BenchmarkTest01528 extends HttpServlet {
     public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
       String guess = "ABC";
       char switchTarget = guess.charAt(1); // condition 'B', which is safe
 

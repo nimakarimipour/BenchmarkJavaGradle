@@ -46,9 +46,9 @@ public class BenchmarkTest01527 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest01527");
     if (param == null) param = "";
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
@@ -71,7 +71,7 @@ public class BenchmarkTest01527 extends HttpServlet {
     public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple ? condition that assigns constant to bar on true condition
       int num = 106;

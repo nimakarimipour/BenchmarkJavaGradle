@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,13 +65,14 @@ public class BenchmarkTest00411 extends HttpServlet {
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
     String g18204 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-    String bar = thing.doSomething(g18204); // reflection
+    @RUntainted String bar = thing.doSomething(g18204); // reflection
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {

@@ -41,15 +41,15 @@ public class BenchmarkTest02149 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest02149");
+    @RUntainted String param = request.getParameter("BenchmarkTest02149");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -64,7 +64,7 @@ public class BenchmarkTest02149 extends HttpServlet {
       args = new String[] {a1, a2, cmd + bar};
     }
 
-    String[] argsEnv = {"foo=bar"};
+    @RUntainted String[] argsEnv = {"foo=bar"};
 
     Runtime r = Runtime.getRuntime();
 
@@ -81,7 +81,7 @@ public class BenchmarkTest02149 extends HttpServlet {
   private static @RUntainted String doSomething(
       HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns constant to bar on true condition
     int num = 106;

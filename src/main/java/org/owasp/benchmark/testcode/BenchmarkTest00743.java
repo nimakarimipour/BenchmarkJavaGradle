@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,12 +41,12 @@ public class BenchmarkTest00743 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest00743");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest00743");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
@@ -66,10 +67,11 @@ public class BenchmarkTest00743 extends HttpServlet {
         break;
     }
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
     try {
       Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty("user.dir")));

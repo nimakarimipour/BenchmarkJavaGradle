@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,7 +64,7 @@ public class BenchmarkTest00732 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder(args);
 

@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,17 +43,17 @@ public class BenchmarkTest00658 extends HttpServlet {
 
     org.owasp.benchmark.helpers.SeparateClassRequest scr =
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheParameter("BenchmarkTest00658");
+    @RUntainted String param = scr.getTheParameter("BenchmarkTest00658");
     if (param == null) param = "";
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns constant to bar on true condition
     int num = 106;
 
     bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");

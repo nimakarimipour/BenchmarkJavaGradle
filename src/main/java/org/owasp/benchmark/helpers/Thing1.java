@@ -24,7 +24,7 @@ public class Thing1 implements ThingInterface {
   @Override
   public @RUntainted String doSomething(@RUntainted String i) {
     // just assign input to return value
-    String r = i;
+    @RUntainted String r = i;
     return r;
   }
 }

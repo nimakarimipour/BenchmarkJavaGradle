@@ -45,12 +45,13 @@ public class BenchmarkTest02714 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest02714");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
     try {
       Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty("user.dir")));
@@ -65,7 +66,7 @@ public class BenchmarkTest02714 extends HttpServlet {
   private static @RUntainted String doSomething(HttpServletRequest request, String param)
       throws ServletException, IOException {
 
-    String bar = "";
+    @RUntainted String bar = "";
     if (param != null) {
       java.util.List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");

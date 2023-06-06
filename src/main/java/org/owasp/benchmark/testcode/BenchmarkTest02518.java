@@ -41,17 +41,18 @@ public class BenchmarkTest02518 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest02518");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest02518");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
     try {
       Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty("user.dir")));
@@ -66,7 +67,7 @@ public class BenchmarkTest02518 extends HttpServlet {
   private static @RUntainted String doSomething(
       HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
