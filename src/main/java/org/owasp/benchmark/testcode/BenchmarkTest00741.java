@@ -24,6 +24,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00741")
 public class BenchmarkTest00741 extends HttpServlet {
@@ -46,7 +47,7 @@ public class BenchmarkTest00741 extends HttpServlet {
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -58,13 +59,13 @@ public class BenchmarkTest00741 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

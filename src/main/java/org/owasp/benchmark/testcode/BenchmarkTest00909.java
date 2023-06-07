@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest00909")
 public class BenchmarkTest00909 extends HttpServlet {
@@ -42,20 +43,20 @@ public class BenchmarkTest00909 extends HttpServlet {
 
     org.owasp.benchmark.helpers.SeparateClassRequest scr =
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest00909");
+    @RUntainted String param = scr.getTheValue("BenchmarkTest00909");
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple if statement that assigns constant to bar on true condition
     int num = 86;
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
     Runtime r = Runtime.getRuntime();
 

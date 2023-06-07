@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00739")
 public class BenchmarkTest00739 extends HttpServlet {
@@ -40,22 +41,22 @@ public class BenchmarkTest00739 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest00739");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest00739");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns constant to bar on true condition
     int num = 106;
 
     bar = (7 * 18) + num > 200 ? "This_should_always_happen" : param;
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -70,7 +71,7 @@ public class BenchmarkTest00739 extends HttpServlet {
       args = new String[] {a1, a2, cmd + bar};
     }
 
-    String[] argsEnv = {"foo=bar"};
+    @RUntainted String[] argsEnv = {"foo=bar"};
 
     Runtime r = Runtime.getRuntime();
 

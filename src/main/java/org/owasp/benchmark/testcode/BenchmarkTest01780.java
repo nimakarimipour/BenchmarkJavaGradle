@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest01780")
 public class BenchmarkTest01780 extends HttpServlet {
@@ -44,7 +45,7 @@ public class BenchmarkTest01780 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest01780");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
     String a1 = "";
     String a2 = "";
@@ -56,7 +57,7 @@ public class BenchmarkTest01780 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder(args);
 
@@ -72,7 +73,7 @@ public class BenchmarkTest01780 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
       String bar = "safe!";

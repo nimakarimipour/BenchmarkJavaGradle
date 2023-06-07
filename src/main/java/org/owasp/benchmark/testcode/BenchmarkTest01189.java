@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01189")
 public class BenchmarkTest01189 extends HttpServlet {
@@ -40,8 +41,8 @@ public class BenchmarkTest01189 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest01189");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest01189");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -50,12 +51,12 @@ public class BenchmarkTest01189 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -84,10 +85,10 @@ public class BenchmarkTest01189 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;

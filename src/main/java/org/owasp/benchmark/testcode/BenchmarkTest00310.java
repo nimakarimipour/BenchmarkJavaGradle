@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00310")
 public class BenchmarkTest00310 extends HttpServlet {
@@ -40,8 +41,8 @@ public class BenchmarkTest00310 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00310");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest00310");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -50,7 +51,7 @@ public class BenchmarkTest00310 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
@@ -71,13 +72,13 @@ public class BenchmarkTest00310 extends HttpServlet {
         break;
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

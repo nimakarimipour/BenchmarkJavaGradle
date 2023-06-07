@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00305")
 public class BenchmarkTest00305 extends HttpServlet {
@@ -71,12 +72,12 @@ public class BenchmarkTest00305 extends HttpServlet {
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
     String g99928 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-    String bar = thing.doSomething(g99928); // reflection
+    @RUntainted String bar = thing.doSomething(g99928); // reflection
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -91,7 +92,7 @@ public class BenchmarkTest00305 extends HttpServlet {
       args = new String[] {a1, a2, cmd + bar};
     }
 
-    String[] argsEnv = {"foo=bar"};
+    @RUntainted String[] argsEnv = {"foo=bar"};
 
     Runtime r = Runtime.getRuntime();
 

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest00908")
 public class BenchmarkTest00908 extends HttpServlet {
@@ -42,9 +43,9 @@ public class BenchmarkTest00908 extends HttpServlet {
 
     org.owasp.benchmark.helpers.SeparateClassRequest scr =
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest00908");
+    @RUntainted String param = scr.getTheValue("BenchmarkTest00908");
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 
@@ -65,11 +66,11 @@ public class BenchmarkTest00908 extends HttpServlet {
         break;
     }
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
     Runtime r = Runtime.getRuntime();
 

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01607")
 public class BenchmarkTest01607 extends HttpServlet {
@@ -40,17 +41,17 @@ public class BenchmarkTest01607 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String[] values = request.getParameterValues("BenchmarkTest01607");
-    String param;
+    @RUntainted String[] values = request.getParameterValues("BenchmarkTest01607");
+    @RUntainted String param;
     if (values != null && values.length > 0) param = values[0];
     else param = "";
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -79,10 +80,10 @@ public class BenchmarkTest01607 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
       String guess = "ABC";
       char switchTarget = guess.charAt(1); // condition 'B', which is safe
 

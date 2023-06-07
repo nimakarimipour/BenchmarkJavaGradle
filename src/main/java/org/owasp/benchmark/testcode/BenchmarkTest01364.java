@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01364")
 public class BenchmarkTest01364 extends HttpServlet {
@@ -40,20 +41,20 @@ public class BenchmarkTest01364 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.Map<String, String[]> map = request.getParameterMap();
-    String param = "";
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map = request.getParameterMap();
+    @RUntainted String param = "";
     if (!map.isEmpty()) {
-      String[] values = map.get("BenchmarkTest01364");
+      @RUntainted String[] values = map.get("BenchmarkTest01364");
       if (values != null) param = values[0];
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -68,10 +69,10 @@ public class BenchmarkTest01364 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
         throws ServletException, IOException {
 
-      String bar;
+      @RUntainted String bar;
 
       // Simple if statement that assigns constant to bar on true condition
       int num = 86;

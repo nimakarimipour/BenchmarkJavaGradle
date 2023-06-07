@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01445")
 public class BenchmarkTest01445 extends HttpServlet {
@@ -57,13 +58,13 @@ public class BenchmarkTest01445 extends HttpServlet {
       }
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -78,7 +79,7 @@ public class BenchmarkTest01445 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
       String bar = "safe!";

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00406")
 public class BenchmarkTest00406 extends HttpServlet {
@@ -40,20 +41,20 @@ public class BenchmarkTest00406 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest00406");
+    @RUntainted String param = request.getParameter("BenchmarkTest00406");
     if (param == null) param = "";
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple if statement that assigns constant to bar on true condition
     int num = 86;
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00396")
 public class BenchmarkTest00396 extends HttpServlet {
@@ -40,10 +41,10 @@ public class BenchmarkTest00396 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = request.getParameter("BenchmarkTest00396");
+    @RUntainted String param = request.getParameter("BenchmarkTest00396");
     if (param == null) param = "";
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple if statement that assigns constant to bar on true condition
     int num = 86;
@@ -60,7 +61,7 @@ public class BenchmarkTest00396 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder();
 

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest00978")
 public class BenchmarkTest00978 extends HttpServlet {
@@ -30,7 +31,7 @@ public class BenchmarkTest00978 extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(@RUntainted HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     javax.servlet.http.Cookie userCookie =
@@ -62,12 +63,12 @@ public class BenchmarkTest00978 extends HttpServlet {
       }
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -96,7 +97,7 @@ public class BenchmarkTest00978 extends HttpServlet {
 
   private class Test {
 
-    public String doSomething(HttpServletRequest request, String param)
+    public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
       // Chain a bunch of propagators in sequence

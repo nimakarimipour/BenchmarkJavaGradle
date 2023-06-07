@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00051")
 public class BenchmarkTest00051 extends HttpServlet {
@@ -43,7 +44,7 @@ public class BenchmarkTest00051 extends HttpServlet {
 
     org.owasp.benchmark.helpers.SeparateClassRequest scr =
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
-    String param = scr.getTheValue("BenchmarkTest00051");
+    @RUntainted String param = scr.getTheValue("BenchmarkTest00051");
 
     String a1 = "";
     String a2 = "";
@@ -55,7 +56,7 @@ public class BenchmarkTest00051 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + param};
+    @RUntainted String[] args = {a1, a2, "echo " + param};
 
     ProcessBuilder pb = new ProcessBuilder(args);
 

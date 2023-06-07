@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00411")
 public class BenchmarkTest00411 extends HttpServlet {
@@ -64,13 +65,13 @@ public class BenchmarkTest00411 extends HttpServlet {
     org.owasp.benchmark.helpers.ThingInterface thing =
         org.owasp.benchmark.helpers.ThingFactory.createThing();
     String g18204 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
-    String bar = thing.doSomething(g18204); // reflection
+    @RUntainted String bar = thing.doSomething(g18204); // reflection
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {

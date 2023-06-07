@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00412")
 public class BenchmarkTest00412 extends HttpServlet {
@@ -43,7 +44,7 @@ public class BenchmarkTest00412 extends HttpServlet {
     String param = request.getParameter("BenchmarkTest00412");
     if (param == null) param = "";
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       java.util.List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -55,10 +56,10 @@ public class BenchmarkTest00412 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd =
+    @RUntainted String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
     try {
       Process p = r.exec(cmd, argsEnv, new java.io.File(System.getProperty("user.dir")));
