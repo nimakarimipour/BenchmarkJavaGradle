@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-00/BenchmarkTest00411")
 public class BenchmarkTest00411 extends HttpServlet {
@@ -67,7 +67,8 @@ public class BenchmarkTest00411 extends HttpServlet {
     String g18204 = "barbarians_at_the_gate"; // This is static so this whole flow is 'safe'
     @RUntainted String bar = thing.doSomething(g18204); // reflection
 
-    @RUntainted String cmd =
+    @RUntainted
+    String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 

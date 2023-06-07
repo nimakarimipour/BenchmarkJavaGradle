@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest02068")
 public class BenchmarkTest02068 extends HttpServlet {
@@ -42,7 +42,8 @@ public class BenchmarkTest02068 extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     @RUntainted String param = "";
-    java.util.@RUntainted Enumeration<@RUntainted String> headers = request.getHeaders("BenchmarkTest02068");
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest02068");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -53,7 +54,8 @@ public class BenchmarkTest02068 extends HttpServlet {
 
     @RUntainted String bar = doSomething(request, param);
 
-    @RUntainted String cmd =
+    @RUntainted
+    String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
     @RUntainted String[] args = {cmd};
@@ -71,8 +73,8 @@ public class BenchmarkTest02068 extends HttpServlet {
     }
   } // end doPost
 
-  private static @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
     @RUntainted String bar;
 

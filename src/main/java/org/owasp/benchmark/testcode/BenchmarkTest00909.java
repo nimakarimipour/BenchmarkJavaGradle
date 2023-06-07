@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest00909")
 public class BenchmarkTest00909 extends HttpServlet {
@@ -52,7 +52,8 @@ public class BenchmarkTest00909 extends HttpServlet {
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    @RUntainted String cmd =
+    @RUntainted
+    String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
     @RUntainted String[] args = {cmd};

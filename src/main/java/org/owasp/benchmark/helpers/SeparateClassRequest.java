@@ -17,9 +17,9 @@
  */
 package org.owasp.benchmark.helpers;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class SeparateClassRequest {
   private @RUntainted HttpServletRequest request;

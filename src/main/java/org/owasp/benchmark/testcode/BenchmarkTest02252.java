@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest02252")
 public class BenchmarkTest02252 extends HttpServlet {
@@ -41,7 +41,8 @@ public class BenchmarkTest02252 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map = request.getParameterMap();
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map =
+        request.getParameterMap();
     @RUntainted String param = "";
     if (!map.isEmpty()) {
       @RUntainted String[] values = map.get("BenchmarkTest02252");
@@ -82,8 +83,8 @@ public class BenchmarkTest02252 extends HttpServlet {
     }
   } // end doPost
 
-  private static @RUntainted String doSomething(HttpServletRequest request, @RUntainted String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
     @RUntainted String bar;
 

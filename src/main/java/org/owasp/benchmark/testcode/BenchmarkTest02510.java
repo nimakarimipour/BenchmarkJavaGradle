@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-02/BenchmarkTest02510")
 public class BenchmarkTest02510 extends HttpServlet {
@@ -48,7 +48,8 @@ public class BenchmarkTest02510 extends HttpServlet {
 
     @RUntainted String bar = doSomething(request, param);
 
-    @RUntainted String cmd =
+    @RUntainted
+    String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
     @RUntainted String[] args = {cmd};

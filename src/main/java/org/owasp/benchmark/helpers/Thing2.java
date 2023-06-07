@@ -16,6 +16,7 @@
  * @created 2015
  */
 package org.owasp.benchmark.helpers;
+
 import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 public class Thing2 implements ThingInterface {

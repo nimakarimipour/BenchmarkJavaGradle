@@ -17,13 +17,13 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 
 @WebServlet(value = "/cmdi-01/BenchmarkTest01364")
 public class BenchmarkTest01364 extends HttpServlet {
@@ -41,7 +41,8 @@ public class BenchmarkTest01364 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map = request.getParameterMap();
+    java.util.@RUntainted Map<@RUntainted String, @RUntainted String[]> map =
+        request.getParameterMap();
     @RUntainted String param = "";
     if (!map.isEmpty()) {
       @RUntainted String[] values = map.get("BenchmarkTest01364");
@@ -50,7 +51,8 @@ public class BenchmarkTest01364 extends HttpServlet {
 
     @RUntainted String bar = new Test().doSomething(request, param);
 
-    @RUntainted String cmd =
+    @RUntainted
+    String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
