@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.helpers;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -171,7 +172,7 @@ public class Utils {
     return param;
   }
 
-  public static String getOSCommandString(String append) {
+  public static @RUntainted String getOSCommandString(@RUntainted String append) {
 
     String command = null;
     String osName = System.getProperty("os.name");
@@ -184,7 +185,7 @@ public class Utils {
     return command;
   }
 
-  public static String getInsecureOSCommandString(ClassLoader classLoader) {
+  public static @RUntainted String getInsecureOSCommandString(ClassLoader classLoader) {
     String command = null;
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
@@ -289,7 +290,7 @@ public class Utils {
     }
   }
 
-  public static File getFileFromClasspath(String fileName, ClassLoader classLoader) {
+  public static @RUntainted File getFileFromClasspath(String fileName, ClassLoader classLoader) {
     URL url = classLoader.getResource(fileName);
     if (url != null) {
       try {
@@ -368,7 +369,8 @@ public class Utils {
     return ESAPI.encoder().encodeForHTML(value);
   }
 
-  public static boolean writeLineToFile(Path pathToFileDir, String completeName, String line) {
+  public static boolean writeLineToFile(
+      @RUntainted Path pathToFileDir, String completeName, String line) {
     boolean result = true;
     PrintStream os = null;
     try {
