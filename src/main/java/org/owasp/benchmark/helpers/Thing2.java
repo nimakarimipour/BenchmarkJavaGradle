@@ -24,7 +24,7 @@ public class Thing2 implements ThingInterface {
   @Override
   public @RUntainted String doSomething(@RUntainted String i) {
     if (i == null) return "";
-    String r = new StringBuilder(i).toString();
+    @RUntainted String r = new StringBuilder(i).toString();
     return r;
   }
 }

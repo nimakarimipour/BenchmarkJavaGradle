@@ -45,7 +45,7 @@ public class BenchmarkTest02699 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest02699");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String a1 = "";
     String a2 = "";
@@ -57,7 +57,7 @@ public class BenchmarkTest02699 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder(args);
 
@@ -74,7 +74,7 @@ public class BenchmarkTest02699 extends HttpServlet {
   private static @RUntainted String doSomething(
       HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns param to bar on false condition
     int num = 106;

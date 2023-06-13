@@ -58,13 +58,14 @@ public class BenchmarkTest01444 extends HttpServlet {
       }
     }
 
-    String bar = new Test().doSomething(request, param);
+    @RUntainted String bar = new Test().doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
 
-    String[] argsEnv = {bar};
+    @RUntainted String[] argsEnv = {bar};
     Runtime r = Runtime.getRuntime();
 
     try {
@@ -82,7 +83,7 @@ public class BenchmarkTest01444 extends HttpServlet {
     public @RUntainted String doSomething(HttpServletRequest request, String param)
         throws ServletException, IOException {
 
-      String bar = "alsosafe";
+      @RUntainted String bar = "alsosafe";
       if (param != null) {
         java.util.List<String> valuesList = new java.util.ArrayList<String>();
         valuesList.add("safe");

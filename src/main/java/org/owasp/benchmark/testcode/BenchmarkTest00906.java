@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,7 @@ public class BenchmarkTest00906 extends HttpServlet {
         new org.owasp.benchmark.helpers.SeparateClassRequest(request);
     String param = scr.getTheValue("BenchmarkTest00906");
 
-    String bar = "";
+    @RUntainted String bar = "";
     if (param != null) {
       bar =
           new String(
@@ -52,10 +53,10 @@ public class BenchmarkTest00906 extends HttpServlet {
                   org.apache.commons.codec.binary.Base64.encodeBase64(param.getBytes())));
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
