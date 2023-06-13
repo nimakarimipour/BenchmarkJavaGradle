@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class BenchmarkTest00307 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = "alsosafe";
+    @RUntainted String bar = "alsosafe";
     if (param != null) {
       List<String> valuesList = new java.util.ArrayList<String>();
       valuesList.add("safe");
@@ -63,13 +64,13 @@ public class BenchmarkTest00307 extends HttpServlet {
       bar = valuesList.get(1); // get the last 'safe' value
     }
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {

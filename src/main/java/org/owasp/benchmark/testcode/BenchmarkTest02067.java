@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,9 @@ public class BenchmarkTest02067 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest02067");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest02067");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -50,12 +52,12 @@ public class BenchmarkTest02067 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String a1 = "";
     String a2 = "";
-    String[] args = null;
+    @RUntainted String[] args = null;
     String osName = System.getProperty("os.name");
 
     if (osName.indexOf("Windows") != -1) {
@@ -70,7 +72,7 @@ public class BenchmarkTest02067 extends HttpServlet {
       args = new String[] {a1, a2, cmd + bar};
     }
 
-    String[] argsEnv = {"foo=bar"};
+    @RUntainted String[] argsEnv = {"foo=bar"};
 
     Runtime r = Runtime.getRuntime();
 
@@ -84,10 +86,10 @@ public class BenchmarkTest02067 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 

@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,7 @@ public class BenchmarkTest00090 extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(@RUntainted HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     javax.servlet.http.Cookie userCookie =
@@ -52,7 +53,7 @@ public class BenchmarkTest00090 extends HttpServlet {
 
     javax.servlet.http.Cookie[] theCookies = request.getCookies();
 
-    String param = "noCookieValueSupplied";
+    @RUntainted String param = "noCookieValueSupplied";
     if (theCookies != null) {
       for (javax.servlet.http.Cookie theCookie : theCookies) {
         if (theCookie.getName().equals("BenchmarkTest00090")) {
@@ -62,14 +63,14 @@ public class BenchmarkTest00090 extends HttpServlet {
       }
     }
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple if statement that assigns constant to bar on true condition
     int num = 86;
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");

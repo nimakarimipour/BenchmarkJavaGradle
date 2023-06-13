@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -72,7 +73,7 @@ public class BenchmarkTest02698 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
+  private static String doSomething(HttpServletRequest request, @RUntainted String param)
       throws ServletException, IOException {
 
     org.owasp.benchmark.helpers.ThingInterface thing =

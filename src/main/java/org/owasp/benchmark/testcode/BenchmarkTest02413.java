@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,7 @@ public class BenchmarkTest02413 extends HttpServlet {
     String param = scr.getTheParameter("BenchmarkTest02413");
     if (param == null) param = "";
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
     String a1 = "";
     String a2 = "";
@@ -57,7 +58,7 @@ public class BenchmarkTest02413 extends HttpServlet {
       a1 = "sh";
       a2 = "-c";
     }
-    String[] args = {a1, a2, "echo " + bar};
+    @RUntainted String[] args = {a1, a2, "echo " + bar};
 
     ProcessBuilder pb = new ProcessBuilder();
 
@@ -73,10 +74,10 @@ public class BenchmarkTest02413 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple ? condition that assigns constant to bar on true condition
     int num = 106;

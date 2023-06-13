@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,11 +41,11 @@ public class BenchmarkTest02341 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
+    @RUntainted String param = "";
     boolean flag = true;
     java.util.Enumeration<String> names = request.getParameterNames();
     while (names.hasMoreElements() && flag) {
-      String name = (String) names.nextElement();
+      @RUntainted String name = (String) names.nextElement();
       String[] values = request.getParameterValues(name);
       if (values != null) {
         for (int i = 0; i < values.length && flag; i++) {
@@ -57,13 +58,14 @@ public class BenchmarkTest02341 extends HttpServlet {
       }
     }
 
-    String bar = doSomething(request, param);
+    @RUntainted String bar = doSomething(request, param);
 
+    @RUntainted
     String cmd =
         org.owasp.benchmark.helpers.Utils.getInsecureOSCommandString(
             this.getClass().getClassLoader());
-    String[] args = {cmd};
-    String[] argsEnv = {bar};
+    @RUntainted String[] args = {cmd};
+    @RUntainted String[] argsEnv = {bar};
 
     Runtime r = Runtime.getRuntime();
 
@@ -77,10 +79,10 @@ public class BenchmarkTest02341 extends HttpServlet {
     }
   } // end doPost
 
-  private static String doSomething(HttpServletRequest request, String param)
-      throws ServletException, IOException {
+  private static @RUntainted String doSomething(
+      HttpServletRequest request, @RUntainted String param) throws ServletException, IOException {
 
-    String bar;
+    @RUntainted String bar;
     String guess = "ABC";
     char switchTarget = guess.charAt(1); // condition 'B', which is safe
 

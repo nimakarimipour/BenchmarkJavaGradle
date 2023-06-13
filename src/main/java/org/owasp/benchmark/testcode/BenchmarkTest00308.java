@@ -17,6 +17,7 @@
  */
 package org.owasp.benchmark.testcode;
 
+import edu.ucr.cs.riple.taint.ucrtainting.qual.RUntainted;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,9 @@ public class BenchmarkTest00308 extends HttpServlet {
       throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
 
-    String param = "";
-    java.util.Enumeration<String> headers = request.getHeaders("BenchmarkTest00308");
+    @RUntainted String param = "";
+    java.util.@RUntainted Enumeration<@RUntainted String> headers =
+        request.getHeaders("BenchmarkTest00308");
 
     if (headers != null && headers.hasMoreElements()) {
       param = headers.nextElement(); // just grab first element
@@ -50,20 +52,20 @@ public class BenchmarkTest00308 extends HttpServlet {
     // URL Decode the header value since req.getHeaders() doesn't. Unlike req.getParameters().
     param = java.net.URLDecoder.decode(param, "UTF-8");
 
-    String bar;
+    @RUntainted String bar;
 
     // Simple if statement that assigns constant to bar on true condition
     int num = 86;
     if ((7 * 42) - num > 200) bar = "This_should_always_happen";
     else bar = param;
 
-    String cmd = "";
+    @RUntainted String cmd = "";
     String osName = System.getProperty("os.name");
     if (osName.indexOf("Windows") != -1) {
       cmd = org.owasp.benchmark.helpers.Utils.getOSCommandString("echo");
     }
 
-    String[] argsEnv = {"Foo=bar"};
+    @RUntainted String[] argsEnv = {"Foo=bar"};
     Runtime r = Runtime.getRuntime();
 
     try {
